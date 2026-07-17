@@ -1,0 +1,701 @@
+/* ===========================
+   GOOGLE FONT
+=========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:#05070c url("football.jpeg") center center/cover fixed;
+
+color:#fff;
+
+overflow-x:hidden;
+
+position:relative;
+
+min-height:100vh;
+
+}
+
+
+/* Dark Overlay */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.70);
+
+backdrop-filter:blur(2px);
+
+z-index:-3;
+
+}
+
+
+/* ===========================
+BACKGROUND ANIMATION
+=========================== */
+
+.bg-animation{
+
+position:fixed;
+
+width:100%;
+
+height:100%;
+
+left:0;
+
+top:0;
+
+overflow:hidden;
+
+z-index:-2;
+
+}
+
+.bg-animation::before{
+
+content:"";
+
+position:absolute;
+
+width:200%;
+
+height:200%;
+
+background:
+
+radial-gradient(circle,#00ff6625 0%,transparent 45%),
+
+radial-gradient(circle,#ffd70025 0%,transparent 35%),
+
+radial-gradient(circle,#00d4ff20 0%,transparent 30%);
+
+animation:rotateBG 35s linear infinite;
+
+}
+
+@keyframes rotateBG{
+
+0%{
+
+transform:rotate(0deg);
+
+}
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+
+/* ===========================
+PARTICLES
+=========================== */
+
+.particles{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+z-index:-1;
+
+overflow:hidden;
+
+}
+
+.particles span{
+
+position:absolute;
+
+display:block;
+
+width:4px;
+
+height:4px;
+
+background:#fff;
+
+border-radius:50%;
+
+box-shadow:
+
+0 0 8px white,
+
+0 0 15px #00ff66;
+
+animation:floatParticle linear infinite;
+
+}
+
+@keyframes floatParticle{
+
+0%{
+
+transform:translateY(100vh) scale(.4);
+
+opacity:0;
+
+}
+
+30%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-120vh) scale(1.5);
+
+opacity:0;
+
+}
+
+}
+
+
+/* ===========================
+HEADER
+=========================== */
+
+header{
+
+padding:45px 20px;
+
+text-align:center;
+
+animation:fadeUp 1.3s;
+
+}
+
+header h1{
+
+font-size:55px;
+
+font-weight:800;
+
+color:#FFD700;
+
+letter-spacing:3px;
+
+text-shadow:
+
+0 0 15px gold,
+
+0 0 35px gold,
+
+0 0 60px #ffcc00;
+
+animation:titleGlow 2s infinite alternate;
+
+}
+
+header p{
+
+margin-top:12px;
+
+font-size:20px;
+
+opacity:.9;
+
+letter-spacing:2px;
+
+}
+
+@keyframes titleGlow{
+
+from{
+
+text-shadow:
+
+0 0 8px gold;
+
+}
+
+to{
+
+text-shadow:
+
+0 0 35px gold,
+
+0 0 70px gold;
+
+}
+
+}
+
+
+/* ===========================
+SECTION
+=========================== */
+
+section{
+
+width:min(1300px,95%);
+
+margin:auto;
+
+padding:40px 0;
+
+}
+
+section h2{
+
+text-align:center;
+
+font-size:38px;
+
+margin-bottom:40px;
+
+color:#fff;
+
+text-shadow:
+
+0 0 12px #00ff66;
+
+}
+
+
+/* ===========================
+GLASS CARD
+=========================== */
+
+.table-card,
+
+.match,
+
+.match-card{
+
+background:rgba(255,255,255,.07);
+
+backdrop-filter:blur(15px);
+
+border:2px solid rgba(255,255,255,.12);
+
+border-radius:18px;
+
+box-shadow:
+
+0 10px 35px rgba(0,0,0,.5);
+
+transition:.45s;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+/* Shine Effect */
+
+.table-card::before,
+
+.match::before,
+
+.match-card::before{
+
+content:"";
+
+position:absolute;
+
+left:-120%;
+
+top:0;
+
+width:70%;
+
+height:100%;
+
+background:linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.35),
+
+transparent
+
+);
+
+transform:skewX(-30deg);
+
+transition:.8s;
+
+}
+
+.table-card:hover::before,
+
+.match:hover::before,
+
+.match-card:hover::before{
+
+left:150%;
+
+}
+
+
+/* Hover */
+
+.table-card:hover,
+
+.match:hover,
+
+.match-card:hover{
+
+transform:translateY(-8px) scale(1.03);
+
+box-shadow:
+
+0 0 20px #00ff66,
+
+0 0 40px #00ff66;
+
+}
+
+
+/* ===========================
+COMMON ANIMATION
+=========================== */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(50px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/*==============================
+  KNOCKOUT STAGE
+===============================*/
+
+.bracket{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:60px;
+flex-wrap:wrap;
+margin-top:40px;
+}
+
+.round{
+display:flex;
+flex-direction:column;
+gap:35px;
+}
+
+.match{
+width:280px;
+padding:18px;
+border-radius:20px;
+animation:fadeUp 1s;
+}
+
+.team{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px 18px;
+margin:8px 0;
+border-radius:12px;
+background:rgba(255,255,255,.05);
+border:2px solid rgba(255,255,255,.08);
+transition:.4s;
+}
+
+.team:hover{
+transform:scale(1.03);
+border-color:#00ff66;
+box-shadow:0 0 20px #00ff66;
+}
+
+.team span{
+background:#d31535;
+color:#fff;
+font-weight:bold;
+padding:10px 16px;
+border-radius:10px;
+min-width:45px;
+text-align:center;
+box-shadow:0 0 18px #00ff66;
+}
+
+.winner .team:first-child{
+border:2px solid #00ff66;
+animation:winnerPulse 1.6s infinite;
+}
+
+@keyframes winnerPulse{
+
+0%{
+box-shadow:0 0 10px #00ff66;
+}
+
+50%{
+box-shadow:0 0 30px #00ff66;
+}
+
+100%{
+box-shadow:0 0 10px #00ff66;
+}
+
+}
+
+/*==============================
+CONNECTOR
+===============================*/
+
+.connector{
+width:120px;
+height:4px;
+background:linear-gradient(90deg,#00ff66,#ffd700);
+border-radius:20px;
+animation:lineGlow 2s infinite;
+}
+
+@keyframes lineGlow{
+
+0%{
+box-shadow:0 0 10px #00ff66;
+}
+
+50%{
+box-shadow:0 0 35px gold;
+}
+
+100%{
+box-shadow:0 0 10px #00ff66;
+}
+
+}
+
+/*==============================
+TROPHY
+===============================*/
+
+.trophy{
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.trophy img{
+
+width:140px;
+
+filter:
+drop-shadow(0 0 15px rgb(15, 15, 15))
+drop-shadow(0 0 40px rgb(3, 3, 3));
+
+animation:
+trophyFloat 3s ease-in-out infinite,
+trophyRotate 10s linear infinite;
+
+}
+
+
+/*==============================
+TABLE
+===============================*/
+
+.tables{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+
+gap:35px;
+
+}
+
+.table-card{
+
+padding:25px;
+
+}
+
+.table-card h3{
+
+margin-bottom:20px;
+
+text-align:center;
+
+font-size:28px;
+
+color:#FFD700;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+th{
+
+background:#00ff6630;
+
+padding:14px;
+
+}
+
+td{
+
+padding:14px;
+
+text-align:center;
+
+}
+
+tr{
+
+transition:.4s;
+
+}
+
+tr:hover{
+
+background:#00ff6620;
+
+transform:scale(1.02);
+
+}
+
+/*==============================
+MATCH RESULT
+===============================*/
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+gap:25px;
+
+}
+
+.match-card{
+
+display:grid;
+
+grid-template-columns:1fr 70px 1fr 70px;
+
+align-items:center;
+
+padding:20px;
+
+font-size:18px;
+
+}
+
+.match-card .score{
+
+background:#2f3ad8;
+
+padding:10px;
+
+border-radius:10px;
+
+text-align:center;
+
+font-weight:bold;
+
+box-shadow:0 0 20px #00ff66;
+
+}
+
+.match-card.winner{
+
+border:2px solid #00ff66;
+
+animation:winnerPulse 2s infinite;
+
+}
+
+/*==============================
+RESPONSIVE
+===============================*/
+
+@media(max-width:900px){
+
+.bracket{
+
+flex-direction:column;
+
+}
+
+.connector{
+
+width:5px;
+
+height:90px;
+
+}
+
+header h1{
+
+font-size:38px;
+
+}
+
+section h2{
+
+font-size:28px;
+
+}
+
+.match{
+
+width:100%;
+
+}
+
+.tables{
+
+grid-template-columns:1fr;
+
+}
+
+}

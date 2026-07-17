@@ -1,0 +1,32 @@
+
+.navbar2{
+    position: fixed;
+    top: 29px;
+    left: 287px;
+    width: auto;
+    z-index: 1000;
+}
+.navbar2 ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.navbar2 ul li{
+    display: inline-block;
+}
+.navbar2 ul li a{
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 22px;
+    color: white;
+    background: rgba(255,165,0,.9);
+    border-radius: 25px;
+    transition: .3s ease;
+    margin-right: 81px;
+}
+.navbar2 ul li a:hover{
+    background: #000;
+    color: #fff;
+    transform: translateY(-2px);
+}
+

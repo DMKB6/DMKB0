@@ -1,0 +1,489 @@
+/* ===========================
+   GOOGLE FONT & RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+    background:#050816;
+    overflow-x:hidden;
+    color:white;
+    min-height:100vh;
+}
+
+/* ===========================
+      GAMING BACKGROUND
+=========================== */
+
+body::before{
+
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+    radial-gradient(circle at 20% 20%,rgba(0,255,255,.18),transparent 25%),
+    radial-gradient(circle at 80% 30%,rgba(153,0,255,.18),transparent 25%),
+    radial-gradient(circle at 50% 80%,rgba(0,140,255,.18),transparent 30%),
+    #050816;
+
+    animation:bgMove 12s linear infinite alternate;
+
+    z-index:-2;
+
+}
+
+@keyframes bgMove{
+
+    from{
+
+        transform:scale(1) rotate(0deg);
+
+    }
+
+    to{
+
+        transform:scale(1.15) rotate(2deg);
+
+    }
+
+}
+
+/* Floating Stars */
+
+.bg-animation{
+
+    position:fixed;
+    inset:0;
+
+    background-image:
+
+    radial-gradient(#00ffff 1px,transparent 1px),
+    radial-gradient(#ffffff 1px,transparent 1px);
+
+    background-size:90px 90px,150px 150px;
+
+    animation:stars 25s linear infinite;
+
+    opacity:.25;
+
+    z-index:-1;
+
+}
+
+@keyframes stars{
+
+    from{
+
+        transform:translateY(0);
+
+    }
+
+    to{
+
+        transform:translateY(-300px);
+
+    }
+
+}
+
+/* ===========================
+        CONTAINER
+=========================== */
+
+.container{
+
+    width:90%;
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:40px 0;
+
+}
+
+/* ===========================
+     GLOW BORDER EFFECT
+=========================== */
+
+.glow-border{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    border:2px solid rgba(255,255,255,.12);
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+
+    0 0 25px rgba(0,255,255,.25);
+
+}
+
+.glow-border::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180%;
+
+    height:180%;
+
+    background:linear-gradient(
+
+    90deg,
+
+    transparent,
+
+    #00ffff,
+
+    #9d00ff,
+
+    transparent
+
+    );
+
+    animation:borderMove 4s linear infinite;
+
+}
+
+.glow-border::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:3px;
+
+    background:#08111f;
+
+    border-radius:15px;
+
+    z-index:1;
+
+}
+
+.glow-border>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+@keyframes borderMove{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ===========================
+       TITLE BOX
+=========================== */
+
+.title-box{
+
+    padding:22px;
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    animation:fadeUp 1s;
+
+}
+
+.title-box h1{
+
+    font-size:40px;
+
+    letter-spacing:2px;
+
+    text-shadow:
+
+    0 0 10px cyan,
+
+    0 0 30px cyan;
+
+}
+
+/* ===========================
+       DATE BOX
+=========================== */
+
+.date-box{
+
+    width:260px;
+
+    margin:auto;
+
+    text-align:center;
+
+    padding:15px;
+
+    font-size:22px;
+
+    margin-bottom:18px;
+
+    animation:fadeUp 1.3s;
+
+}
+
+/* ===========================
+      TIME BOX
+=========================== */
+
+.time-box{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+    font-size:22px;
+
+    color:#00ffff;
+
+    text-shadow:0 0 15px cyan;
+
+    animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.05);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* ===========================
+        TABLE
+=========================== */
+
+.table-box{
+
+    padding:20px;
+
+    animation:fadeUp 1.5s;
+
+}
+
+.table-header,
+
+.player{
+
+    display:grid;
+
+    grid-template-columns:
+
+    2fr
+
+    1fr
+
+    1fr
+
+    1fr;
+
+    align-items:center;
+
+}
+
+.table-header{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    padding:18px;
+
+    color:#00ffff;
+
+    border-bottom:2px solid rgba(255,255,255,.15);
+
+}
+
+.player{
+
+    padding:18px;
+
+    margin-top:12px;
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:12px;
+
+    transition:.35s;
+
+}
+
+/* Hover */
+
+.player:hover{
+
+    transform:translateY(-6px) scale(1.02);
+
+    background:rgba(0,255,255,.12);
+
+    box-shadow:
+
+    0 0 25px cyan;
+
+}
+
+/* ===========================
+       POSITION COLORS
+=========================== */
+
+.gold{
+
+    color:gold;
+
+    font-weight:bold;
+
+}
+
+.silver{
+
+    color:silver;
+
+    font-weight:bold;
+
+}
+
+.bronze{
+
+    color:#cd7f32;
+
+    font-weight:bold;
+
+}
+
+/* ===========================
+      FADE ANIMATION
+=========================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===========================
+      RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+.title-box h1{
+
+    font-size:28px;
+
+}
+
+.date-box{
+
+    width:200px;
+
+    font-size:18px;
+
+}
+
+.time-box{
+
+    font-size:18px;
+
+}
+
+.table-header{
+
+    display:none;
+
+}
+
+.player{
+
+    grid-template-columns:1fr;
+    gap:8px;
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+.player div{
+
+    padding:3px;
+
+}
+
+}
+
+.close-btn{
+
+    position:absolute;
+    top:0px;
+    right:0px;
+
+    width:33px;
+    height:35px;
+
+    border:none;
+    font-size:22px;
+    cursor:pointer;
+
+    border-radius:8px;
+
+}
