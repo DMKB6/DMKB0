@@ -1,192 +1,362 @@
-/*=========================================
- WORLD CUP V2 - script.js
-=========================================*/
+/* =========================================
+   WORLD CUP 2026
+   FINAL JAVASCRIPT
+========================================= */
 
-/* Floating Particles */
 
-const particles = document.querySelector(".particles");
+/* =========================================
+   FLOATING PARTICLES
+========================================= */
 
-for(let i=0;i<80;i++){
+const particles =
+    document.querySelector(".particles");
 
-    const dot=document.createElement("span");
+if(particles){
 
-    let size=Math.random()*6+2;
+    for(let i = 0; i < 80; i++){
 
-    dot.style.width=size+"px";
-    dot.style.height=size+"px";
+        const dot =
+            document.createElement("span");
 
-    dot.style.left=Math.random()*100+"%";
+        const size =
+            Math.random() * 5 + 2;
 
-    dot.style.animationDuration=
-    (Math.random()*10+8)+"s";
+        dot.style.width =
+            size + "px";
 
-    dot.style.animationDelay=
-    Math.random()*5+"s";
+        dot.style.height =
+            size + "px";
 
-    particles.appendChild(dot);
+        dot.style.left =
+            Math.random() * 100 + "%";
 
+        dot.style.animationDuration =
+            Math.random() * 10 + 8 + "s";
+
+        dot.style.animationDelay =
+            Math.random() * 8 + "s";
+
+        particles.appendChild(dot);
+    }
 }
 
-/*======================================
-Mouse Glow
-======================================*/
 
-const glow=document.createElement("div");
+/* =========================================
+   MOUSE GLOW
+========================================= */
 
-glow.className="mouseGlow";
+const glow =
+    document.createElement("div");
+
+glow.className =
+    "mouseGlow";
+
+glow.style.position =
+    "fixed";
+
+glow.style.width =
+    "120px";
+
+glow.style.height =
+    "120px";
+
+glow.style.borderRadius =
+    "50%";
+
+glow.style.pointerEvents =
+    "none";
+
+glow.style.transform =
+    "translate(-50%,-50%)";
+
+glow.style.background =
+    "radial-gradient(circle, rgba(0,255,102,.12), transparent 70%)";
+
+glow.style.zIndex =
+    "-1";
 
 document.body.appendChild(glow);
 
-document.addEventListener("mousemove",(e)=>{
 
-glow.style.left=e.pageX+"px";
+document.addEventListener(
+    "mousemove",
+    function(e){
 
-glow.style.top=e.pageY+"px";
+        glow.style.left =
+            e.clientX + "px";
 
-});
+        glow.style.top =
+            e.clientY + "px";
+    }
+);
 
-/*======================================
-Scroll Fade
-======================================*/
 
-const observer=new IntersectionObserver(entries=>{
+/* =========================================
+   SCROLL REVEAL
+========================================= */
 
-entries.forEach(entry=>{
+const observer =
+    new IntersectionObserver(
+        function(entries){
 
-if(entry.isIntersecting){
+            entries.forEach(
+                function(entry){
 
-entry.target.classList.add("show");
+                    if(entry.isIntersecting){
 
-}
+                        entry.target.style.opacity =
+                            "1";
 
-});
+                        entry.target.style.transform =
+                            "translateY(0)";
+                    }
+                }
+            );
 
-});
+        },
+        {
+            threshold:.15
+        }
+    );
 
-document.querySelectorAll(".group-card,.match-card,.team-card")
-.forEach(el=>observer.observe(el));
 
-/*======================================
-Score Pulse Random
-======================================*/
+document.querySelectorAll(
+    ".table-card, .match-card, .match, .champion-box"
+).forEach(
+    function(element){
 
-setInterval(()=>{
+        element.style.opacity =
+            "0";
 
-document.querySelectorAll(".score")
-.forEach(score=>{
+        element.style.transform =
+            "translateY(35px)";
 
-score.animate(
+        element.style.transition =
+            "opacity .8s ease, transform .8s ease";
 
-[
-{transform:"scale(1)"},
-{transform:"scale(1.15)"},
-{transform:"scale(1)"}
-],
+        observer.observe(element);
+    }
+);
 
-{
 
-duration:700
+/* =========================================
+   SCORE PULSE
+========================================= */
 
-});
+setInterval(
+    function(){
 
-});
+        document
+            .querySelectorAll(".score")
+            .forEach(
+                function(score){
 
-},3000);
+                    score.animate(
+                        [
+                            {
+                                transform:
+                                    "scale(1)"
+                            },
 
-/*======================================
-Champion Glow
-======================================*/
+                            {
+                                transform:
+                                    "scale(1.12)"
+                            },
 
-const champion=document.querySelector(".champion");
+                            {
+                                transform:
+                                    "scale(1)"
+                            }
+                        ],
+                        {
+                            duration:700,
+                            easing:"ease-in-out"
+                        }
+                    );
+
+                }
+            );
+
+    },
+    3500
+);
+
+
+/* =========================================
+   CHAMPION GLOW
+========================================= */
+
+const champion =
+    document.querySelector(".champion-box");
 
 if(champion){
 
-setInterval(()=>{
+    setInterval(
+        function(){
 
-champion.classList.toggle("winner");
+            champion.animate(
+                [
+                    {
+                        filter:
+                            "brightness(1)"
+                    },
 
-},1200);
+                    {
+                        filter:
+                            "brightness(1.18)"
+                    },
 
+                    {
+                        filter:
+                            "brightness(1)"
+                    }
+                ],
+                {
+                    duration:1500,
+                    easing:"ease-in-out"
+                }
+            );
+
+        },
+        3000
+    );
 }
 
-/*======================================
-Confetti
-======================================*/
 
-function confetti(){
+/* =========================================
+   CONFETTI
+========================================= */
 
-for(let i=0;i<40;i++){
+function createConfetti(){
 
-let c=document.createElement("div");
+    for(let i = 0; i < 35; i++){
 
-c.className="confetti";
+        const c =
+            document.createElement("div");
 
-c.style.left=Math.random()*100+"vw";
+        c.className =
+            "confetti";
 
-c.style.background=
-["gold","#2196ff","#ffffff","#00d4ff"]
-[Math.floor(Math.random()*4)];
+        c.style.left =
+            Math.random() * 100 + "vw";
 
-c.style.animationDuration=
-(Math.random()*3+3)+"s";
+        c.style.animationDuration =
+            Math.random() * 3 + 3 + "s";
 
-document.body.appendChild(c);
+        c.style.animationDelay =
+            Math.random() * 1.5 + "s";
 
-setTimeout(()=>{
+        const colors = [
+            "#ffd700",
+            "#00ff66",
+            "#ffffff",
+            "#00d4ff"
+        ];
 
-c.remove();
+        c.style.background =
+            colors[
+                Math.floor(
+                    Math.random() * colors.length
+                )
+            ];
 
-},6000);
+        c.style.transform =
+            `rotate(${Math.random()*360}deg)`;
 
+        document.body.appendChild(c);
+
+        setTimeout(
+            function(){
+
+                c.remove();
+
+            },
+            6500
+        );
+    }
 }
 
+
+/* Start confetti after page load */
+
+setTimeout(
+    createConfetti,
+    1800
+);
+
+
+/* Repeat */
+
+setInterval(
+    createConfetti,
+    12000
+);
+
+
+/* =========================================
+   TROPHY SPARKLES
+========================================= */
+
+const trophy =
+    document.querySelector(
+        ".champion-trophy"
+    );
+
+
+function createSpark(){
+
+    if(!trophy)
+        return;
+
+    const spark =
+        document.createElement("div");
+
+    spark.className =
+        "spark";
+
+    const rect =
+        trophy.getBoundingClientRect();
+
+    spark.style.left =
+        rect.left +
+        Math.random() * rect.width +
+        "px";
+
+    spark.style.top =
+        rect.top +
+        Math.random() * rect.height +
+        "px";
+
+    document.body.appendChild(spark);
+
+    setTimeout(
+        function(){
+
+            spark.remove();
+
+        },
+        1500
+    );
 }
 
-setInterval(confetti,9000);
 
-/*======================================
-Trophy Sparkle
-======================================*/
+setInterval(
+    createSpark,
+    550
+);
 
-setInterval(()=>{
 
-let s=document.createElement("div");
+/* =========================================
+   PAGE LOAD
+========================================= */
 
-s.className="spark";
+window.addEventListener(
+    "load",
+    function(){
 
-let trophy=document.querySelector(".hero-trophy");
+        document.body.classList.add(
+            "loaded"
+        );
 
-if(!trophy) return;
-
-let rect=trophy.getBoundingClientRect();
-
-s.style.left=
-rect.left+rect.width/2+"px";
-
-s.style.top=
-rect.top+rect.height/2+"px";
-
-document.body.appendChild(s);
-
-setTimeout(()=>{
-
-s.remove();
-
-},1500);
-
-},500);
-
-/*======================================
-Background Light
-======================================*/
-
-let angle=0;
-
-setInterval(()=>{
-
-angle++;
-
-document.body.style.backgroundPosition=
-angle+"px center";
-
-},50);
+    }
+);
