@@ -1,0 +1,2180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>COD ELITE | Ghost Hunter</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --cyan:#00e5ff;
+    --blue:#1677ff;
+    --red:#ff3158;
+    --gold:#ffd447;
+    --green:#35e88b;
+    --bg:#03070c;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#fff;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0,229,255,.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 30%,
+            rgba(255,49,88,.09),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(22,119,255,.12),
+            transparent 35%
+        ),
+        var(--bg);
+
+    overflow-x:hidden;
+}
+
+
+/* =========================================
+   BACKGROUND LINES
+========================================= */
+
+.bg-lines{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.bg-lines span{
+    position:absolute;
+    width:1px;
+    height:100%;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,229,255,.16),
+            transparent
+        );
+
+    animation:lineMove 6s linear infinite;
+}
+
+.bg-lines span:nth-child(1){
+    left:10%;
+}
+
+.bg-lines span:nth-child(2){
+    left:30%;
+    animation-delay:2s;
+}
+
+.bg-lines span:nth-child(3){
+    left:50%;
+    animation-delay:4s;
+}
+
+.bg-lines span:nth-child(4){
+    left:70%;
+    animation-delay:1s;
+}
+
+.bg-lines span:nth-child(5){
+    left:90%;
+    animation-delay:3s;
+}
+
+@keyframes lineMove{
+
+    from{
+        transform:translateY(-100%);
+    }
+
+    to{
+        transform:translateY(100%);
+    }
+
+}
+
+
+/* =========================================
+   PARTICLES
+========================================= */
+
+.particles{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+}
+
+.particles i{
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:var(--cyan);
+
+    box-shadow:
+        0 0 12px var(--cyan);
+
+    animation:
+        particleMove 9s linear infinite;
+}
+
+.particles i:nth-child(1){
+    left:8%;
+    animation-delay:1s;
+}
+
+.particles i:nth-child(2){
+    left:20%;
+    animation-delay:4s;
+}
+
+.particles i:nth-child(3){
+    left:35%;
+    animation-delay:2s;
+}
+
+.particles i:nth-child(4){
+    left:52%;
+    animation-delay:6s;
+}
+
+.particles i:nth-child(5){
+    left:67%;
+    animation-delay:3s;
+}
+
+.particles i:nth-child(6){
+    left:80%;
+    animation-delay:7s;
+}
+
+.particles i:nth-child(7){
+    left:94%;
+    animation-delay:5s;
+}
+
+@keyframes particleMove{
+
+    0%{
+        transform:
+            translateY(110vh)
+            scale(.5);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    85%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(-10vh)
+            scale(1.5);
+
+        opacity:0;
+    }
+
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.container{
+    position:relative;
+    z-index:2;
+
+    width:min(1100px,94%);
+
+    margin:auto;
+
+    padding:
+        20px 0 60px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header{
+    position:relative;
+
+    text-align:center;
+
+    padding:
+        28px 15px;
+
+    border:
+        1px solid
+        rgba(0,229,255,.25);
+
+    border-radius:24px;
+
+    background:
+        rgba(5,12,19,.80);
+
+    backdrop-filter:
+        blur(15px);
+
+    overflow:hidden;
+
+    box-shadow:
+        0 0 35px
+        rgba(0,229,255,.08),
+
+        inset 0 0 30px
+        rgba(255,255,255,.02);
+}
+
+.header:before{
+    content:"";
+
+    position:absolute;
+
+    width:60%;
+    height:2px;
+
+    left:20%;
+    bottom:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            #fff,
+            var(--cyan),
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px var(--cyan);
+
+    animation:
+        headerLine 3s linear infinite;
+}
+
+@keyframes headerLine{
+
+    0%{
+        transform:translateX(-80%);
+    }
+
+    100%{
+        transform:translateX(80%);
+    }
+
+}
+
+.cod-title{
+    font-size:42px;
+
+    font-weight:900;
+
+    letter-spacing:6px;
+
+    text-shadow:
+        0 0 8px var(--cyan),
+        0 0 30px
+        rgba(0,229,255,.5);
+}
+
+.cod-subtitle{
+    margin-top:8px;
+
+    color:#7e9bad;
+
+    font-size:12px;
+
+    letter-spacing:4px;
+}
+
+.clan-title{
+    margin-top:15px;
+
+    display:inline-block;
+
+    padding:
+        7px 14px;
+
+    border-radius:20px;
+
+    color:#fff;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    background:
+        rgba(0,229,255,.08);
+
+    border:
+        1px solid
+        rgba(0,229,255,.25);
+}
+
+
+/* =========================================
+   SEARCH AREA
+========================================= */
+
+.search-area{
+    display:flex;
+
+    gap:10px;
+
+    margin:
+        20px 0 14px;
+}
+
+.search-box{
+    flex:1;
+}
+
+.search-box input{
+
+    width:100%;
+
+    height:54px;
+
+    padding:
+        0 20px;
+
+    border-radius:16px;
+
+    outline:none;
+
+    border:
+        1px solid
+        rgba(0,229,255,.25);
+
+    background:
+        rgba(5,12,19,.88);
+
+    color:#fff;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.search-box input::placeholder{
+    color:#5e7180;
+}
+
+.search-box input:focus{
+
+    border-color:
+        var(--cyan);
+
+    box-shadow:
+        0 0 25px
+        rgba(0,229,255,.15),
+
+        inset 0 0 15px
+        rgba(0,229,255,.04);
+}
+
+.sort-btn{
+
+    min-width:125px;
+
+    border:
+        1px solid
+        rgba(0,229,255,.3);
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087d9c,
+            #07506c
+        );
+
+    color:#fff;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.sort-btn:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 0 20px
+        rgba(0,229,255,.2);
+}
+
+
+/* =========================================
+   FILTER
+========================================= */
+
+.filters{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+}
+
+.filter{
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:#8093a2;
+
+    padding:
+        9px 14px;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.filter:hover,
+.filter.active{
+
+    color:#fff;
+
+    background:
+        rgba(0,180,220,.18);
+
+    border-color:
+        rgba(0,229,255,.5);
+
+    box-shadow:
+        0 0 15px
+        rgba(0,229,255,.12);
+}
+
+
+/* =========================================
+   RESULT BAR
+========================================= */
+
+.result-bar{
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:center;
+
+    margin-bottom:14px;
+
+    color:#667b8b;
+
+    font-size:12px;
+}
+
+.result-bar strong{
+    color:var(--cyan);
+}
+
+
+/* =========================================
+   PLAYER GRID
+========================================= */
+
+.player-list{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(300px,1fr)
+        );
+
+    gap:18px;
+}
+
+
+/* =========================================
+   PLAYER CARD
+========================================= */
+
+.player-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:18px;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13,24,35,.95),
+            rgba(4,9,15,.97)
+        );
+
+    border:
+        1px solid
+        rgba(0,229,255,.17);
+
+    box-shadow:
+
+        0 12px 35px
+        rgba(0,0,0,.35),
+
+        inset 0 0 25px
+        rgba(255,255,255,.015);
+
+    animation:
+        cardShow .55s ease both;
+
+    transition:.35s;
+}
+
+.player-card:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    right:-120px;
+    top:-120px;
+
+    border-radius:50%;
+
+    background:
+        var(--cyan);
+
+    filter:
+        blur(80px);
+
+    opacity:.08;
+
+    pointer-events:none;
+}
+
+.player-card:after{
+
+    content:"";
+
+    position:absolute;
+
+    left:-100%;
+
+    top:0;
+
+    width:60%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.04),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    animation:
+        cardShine 5s infinite;
+}
+
+@keyframes cardShine{
+
+    0%{
+        left:-100%;
+    }
+
+    45%{
+        left:140%;
+    }
+
+    100%{
+        left:140%;
+    }
+
+}
+
+.player-card:hover{
+
+    transform:
+        translateY(-7px)
+        scale(1.012);
+
+    border-color:
+        rgba(0,229,255,.55);
+
+    box-shadow:
+
+        0 20px 45px
+        rgba(0,0,0,.5),
+
+        0 0 28px
+        rgba(0,229,255,.12);
+}
+
+@keyframes cardShow{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(25px)
+            scale(.96);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================
+   TOP
+========================================= */
+
+.card-top{
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:center;
+}
+
+.rank{
+
+    color:#627786;
+
+    font-size:11px;
+
+    font-weight:bold;
+}
+
+.rank span{
+
+    color:var(--gold);
+
+    font-size:16px;
+}
+
+.position{
+
+    padding:
+        5px 9px;
+
+    border-radius:8px;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+
+    color:var(--cyan);
+
+    border:
+        1px solid
+        rgba(0,229,255,.2);
+
+    background:
+        rgba(0,229,255,.06);
+}
+
+
+/* =========================================
+   PROFILE
+========================================= */
+
+.profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin:
+        18px 0;
+}
+
+.avatar{
+
+    width:70px;
+    height:70px;
+
+    flex-shrink:0;
+
+    padding:3px;
+
+    border-radius:50%;
+
+    background:
+        conic-gradient(
+            var(--cyan),
+            #176eff,
+            var(--red),
+            var(--cyan)
+        );
+
+    animation:
+        avatarSpin 4s linear infinite;
+
+    box-shadow:
+        0 0 20px
+        rgba(0,229,255,.22);
+}
+
+.avatar img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:
+        3px solid
+        #061018;
+
+    animation:
+        avatarBack 4s linear infinite;
+}
+
+@keyframes avatarSpin{
+
+    to{
+        transform:
+            rotate(360deg);
+    }
+
+}
+
+@keyframes avatarBack{
+
+    to{
+        transform:
+            rotate(-360deg);
+    }
+
+}
+
+.main-name{
+
+    font-size:20px;
+
+    font-weight:900;
+
+    line-height:1.2;
+}
+
+.game-name{
+
+    margin-top:6px;
+
+    color:#7f96a6;
+
+    font-size:12px;
+}
+
+.clan-name{
+
+    margin-top:7px;
+
+    color:var(--green);
+
+    font-size:10px;
+}
+
+
+/* =========================================
+   INFO GRID
+   শুধু Position / Level / Like / Clan
+========================================= */
+
+.info{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:8px;
+}
+
+.info-box{
+
+    padding:11px;
+
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.028);
+
+    border:
+        1px solid
+        rgba(255,255,255,.055);
+
+    transition:.3s;
+}
+
+.info-box:hover{
+
+    background:
+        rgba(0,229,255,.04);
+
+    border-color:
+        rgba(0,229,255,.16);
+
+    transform:
+        translateY(-2px);
+}
+
+.label{
+
+    color:#566b7a;
+
+    font-size:8px;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+}
+
+.value{
+
+    margin-top:5px;
+
+    color:#e8f0f5;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    word-break:
+        break-word;
+}
+
+.level{
+
+    color:var(--gold);
+
+    font-size:17px;
+
+    text-shadow:
+        0 0 12px
+        rgba(255,212,71,.3);
+}
+
+.like-value{
+
+    color:#ff5275;
+}
+
+
+/* =========================================
+   UID
+========================================= */
+
+.card-bottom{
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:14px;
+}
+
+.uid{
+
+    color:#526877;
+
+    font-size:9px;
+
+    word-break:
+        break-all;
+
+    line-height:1.4;
+}
+
+.copy-btn{
+
+    flex-shrink:0;
+
+    padding:
+        8px 10px;
+
+    border-radius:9px;
+
+    border:
+        1px solid
+        rgba(0,229,255,.2);
+
+    background:
+        rgba(0,229,255,.05);
+
+    color:var(--cyan);
+
+    font-size:10px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.copy-btn:hover{
+
+    background:
+        rgba(0,229,255,.14);
+}
+
+
+/* =========================================
+   LIKE BUTTON
+========================================= */
+
+.like-btn{
+
+    margin-top:13px;
+
+    width:100%;
+
+    border:
+        1px solid
+        rgba(255,49,88,.2);
+
+    background:
+        rgba(255,49,88,.055);
+
+    color:#ff5b7c;
+
+    padding:10px;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.like-btn:hover{
+
+    background:
+        rgba(255,49,88,.14);
+
+    box-shadow:
+        0 0 18px
+        rgba(255,49,88,.12);
+}
+
+.like-btn.liked{
+
+    background:
+        rgba(255,49,88,.18);
+
+    border-color:
+        rgba(255,49,88,.45);
+}
+
+
+/* =========================================
+   NO RESULT
+========================================= */
+
+.no-result{
+
+    display:none;
+
+    text-align:center;
+
+    padding:60px 10px;
+
+    color:#607482;
+}
+
+.no-result .big{
+
+    font-size:40px;
+
+    margin-bottom:10px;
+}
+
+
+/* =========================================
+   RIPPLE
+========================================= */
+
+.ripple{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.18);
+
+    transform:
+        scale(0);
+
+    animation:
+        ripple .65s linear;
+
+    pointer-events:none;
+}
+
+@keyframes ripple{
+
+    to{
+
+        transform:
+            scale(4);
+
+        opacity:0;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:600px){
+
+    .container{
+
+        width:94%;
+
+        padding-top:12px;
+    }
+
+    .header{
+
+        padding:
+            24px 12px;
+
+        border-radius:19px;
+    }
+
+    .cod-title{
+
+        font-size:29px;
+
+        letter-spacing:4px;
+    }
+
+    .cod-subtitle{
+
+        font-size:9px;
+
+        letter-spacing:2px;
+    }
+
+    .search-area{
+
+        flex-direction:
+            column;
+    }
+
+    .search-box input{
+
+        height:50px;
+    }
+
+    .sort-btn{
+
+        height:45px;
+    }
+
+    .player-list{
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .player-card{
+
+        border-radius:19px;
+    }
+
+    .main-name{
+
+        font-size:18px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     BACKGROUND
+========================================= -->
+
+<div class="bg-lines">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+
+<div class="particles">
+
+    <i></i>
+    <i></i>
+    <i></i>
+    <i></i>
+    <i></i>
+    <i></i>
+    <i></i>
+
+</div>
+
+
+
+<div class="container">
+
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <header class="header">
+
+        <div class="cod-title">
+            COD ELITE
+        </div>
+
+        <div class="cod-subtitle">
+            TACTICAL PLAYER DATABASE
+        </div>
+
+        <div class="clan-title">
+            ☠ GHOST HUNTER ☠
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================
+         SEARCH
+    ====================================== -->
+
+    <div class="search-area">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search name, ID/name, UID or clan..."
+            >
+
+        </div>
+
+
+        <button
+            class="sort-btn"
+            id="sortBtn"
+        >
+            LEVEL ↓
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================
+         FILTER
+    ====================================== -->
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            data-clan="All"
+        >
+            ALL
+        </button>
+
+
+        <button
+            class="filter"
+            data-clan="ghost_hunter"
+        >
+            GHOST HUNTER
+        </button>
+
+
+        <button
+            class="filter"
+            data-clan="NOT IN A CLAN"
+        >
+            NO CLAN
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================
+         RESULT
+    ====================================== -->
+
+    <div class="result-bar">
+
+        <div>
+
+            PLAYERS:
+            <strong id="playerCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            SORTED BY
+            <strong>
+                LEVEL
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         PLAYER LIST
+    ====================================== -->
+
+    <div
+        class="player-list"
+        id="playerList"
+    ></div>
+
+
+
+    <!-- =====================================
+         NO RESULT
+    ====================================== -->
+
+    <div
+        class="no-result"
+        id="noResult"
+    >
+
+        <div class="big">
+            ⚠️
+        </div>
+
+        <div>
+            NO PLAYER FOUND
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   PLAYER DATABASE
+===================================================== */
+
+const players = [
+
+    {
+        mainName:"Monirul Islam",
+        gameName:"Ghost*ভুত",
+        position:"Vice Master",
+        uid:"6762096490329997313",
+        likes:3306,
+        clan:"ghost_hunter",
+        level:280,
+        image:"https://i.pravatar.cc/200?img=11"
+    },
+
+
+    {
+        mainName:"Sayem Chowdhury",
+        gameName:"Ghost_Sayem",
+        position:"Clan Master",
+        uid:"6947291703162896385",
+        likes:923,
+        clan:"ghost_hunter",
+        level:217,
+        image:"https://i.pravatar.cc/200?img=12"
+    },
+
+
+    {
+        mainName:"Sayem Chowdhury",
+        gameName:"GHOST SAYEM",
+        position:"Member",
+        uid:"7617902784358055950",
+        likes:43,
+        clan:"ghost_hunter",
+        level:30,
+        image:"https://i.pravatar.cc/200?img=13"
+    },
+
+
+    {
+        mainName:"Taki",
+        gameName:"Taki(Hunter)",
+        position:"Member",
+        uid:"7516464548682596359",
+        likes:322,
+        clan:"NOT IN A CLAN",
+        level:82,
+        image:"https://i.pravatar.cc/200?img=14"
+    },
+
+
+    {
+        mainName:"Muhit",
+        gameName:"m.rghot",
+        position:"Member",
+        uid:"7515014625555841025",
+        likes:75,
+        clan:"ghost_hunter",
+        level:37,
+        image:"https://i.pravatar.cc/200?img=15"
+    },
+
+
+    {
+        mainName:"Sakib",
+        gameName:"Ghost_Sakib",
+        position:"Member",
+        uid:"6966600626424446977",
+        likes:179,
+        clan:"ghost_hunter",
+        level:96,
+        image:"https://i.pravatar.cc/200?img=16"
+    },
+
+
+    {
+        mainName:"Rafi",
+        gameName:"GhostRafi",
+        position:"Member",
+        uid:"7514263320113643521",
+        likes:56,
+        clan:"ghost_hunter",
+        level:34,
+        image:"https://i.pravatar.cc/200?img=17"
+    },
+
+
+    {
+        mainName:"Hasib",
+        gameName:"hasib1223",
+        position:"Member",
+        uid:"6869299911423623169",
+        likes:129,
+        clan:"ghost_hunter",
+        level:72,
+        image:"https://i.pravatar.cc/200?img=18"
+    },
+
+
+    {
+        mainName:"Hasan Al Bannah",
+        gameName:"GHOST.HANTAR",
+        position:"Member",
+        uid:"7068188362393976833",
+        likes:6,
+        clan:"NOT IN A CLAN",
+        level:5,
+        image:"https://i.pravatar.cc/200?img=19"
+    },
+
+
+    {
+        mainName:"Sakib",
+        gameName:"GHOST_SAKIB",
+        position:"Vice Master",
+        uid:"7617614217920577537",
+        likes:100,
+        clan:"ghost_hunter",
+        level:46,
+        image:"https://i.pravatar.cc/200?img=20"
+    },
+
+
+    {
+        mainName:"GHXENON",
+        gameName:"U.A.C5",
+        position:"Member",
+        uid:"7645625268708507649",
+        likes:19,
+        clan:"ghost_hunter",
+        level:10,
+        image:"https://i.pravatar.cc/200?img=21"
+    }
+
+];
+
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let selectedClan = "All";
+
+let highToLow = true;
+
+
+const list =
+    document.getElementById(
+        "playerList"
+    );
+
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+
+const playerCount =
+    document.getElementById(
+        "playerCount"
+    );
+
+
+const noResult =
+    document.getElementById(
+        "noResult"
+    );
+
+
+const sortBtn =
+    document.getElementById(
+        "sortBtn"
+    );
+
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderPlayers(){
+
+    const keyword =
+        searchInput.value
+        .toLowerCase()
+        .trim();
+
+
+    let filtered =
+        players.filter(
+            player => {
+
+
+                const searchText = (
+
+                    player.mainName +
+                    " " +
+                    player.gameName +
+                    " " +
+                    player.position +
+                    " " +
+                    player.uid +
+                    " " +
+                    player.clan
+
+                ).toLowerCase();
+
+
+                const searchMatch =
+                    searchText.includes(
+                        keyword
+                    );
+
+
+                const clanMatch =
+                    selectedClan === "All" ||
+                    player.clan === selectedClan;
+
+
+                return (
+                    searchMatch &&
+                    clanMatch
+                );
+
+            }
+        );
+
+
+    /* LEVEL SORT */
+
+    filtered.sort(
+        (a,b) => {
+
+            return highToLow
+
+                ? b.level - a.level
+
+                : a.level - b.level;
+
+        }
+    );
+
+
+    list.innerHTML = "";
+
+
+    playerCount.innerText =
+        filtered.length;
+
+
+    if(filtered.length === 0){
+
+        noResult.style.display =
+            "block";
+
+        return;
+    }
+
+
+    noResult.style.display =
+        "none";
+
+
+    filtered.forEach(
+        (player,index) => {
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "player-card";
+
+
+            card.innerHTML = `
+
+                <!-- CARD TOP -->
+
+                <div class="card-top">
+
+                    <div class="rank">
+
+                        RANK
+
+                        <span>
+                            #${index + 1}
+                        </span>
+
+                    </div>
+
+
+                    <div class="position">
+
+                        ${player.position}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PROFILE -->
+
+                <div class="profile">
+
+                    <div class="avatar">
+
+                        <img
+                            src="${player.image}"
+                            alt="${player.mainName}"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <!-- MAIN NAME -->
+
+                        <div class="main-name">
+
+                            ${player.mainName}
+
+                        </div>
+
+
+                        <!-- ID / NAME -->
+
+                        <div class="game-name">
+
+                            🎮
+                            ${player.gameName}
+
+                        </div>
+
+
+                        <!-- CLAN -->
+
+                        <div class="clan-name">
+
+                            🛡
+                            ${player.clan}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ONLY 4 BOXES -->
+
+                <div class="info">
+
+
+                    <!-- POSITION -->
+
+                    <div class="info-box">
+
+                        <div class="label">
+                            Position
+                        </div>
+
+                        <div class="value">
+
+                            ${player.position}
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- LEVEL -->
+
+                    <div class="info-box">
+
+                        <div class="label">
+                            Level
+                        </div>
+
+                        <div class="value level">
+
+                            ⭐
+                            ${player.level}
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- LIKE -->
+
+                    <div class="info-box">
+
+                        <div class="label">
+                            Like
+                        </div>
+
+                        <div class="value like-value">
+
+                            ❤️
+                            ${player.likes}
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CLAN -->
+
+                    <div class="info-box">
+
+                        <div class="label">
+                            Clan
+                        </div>
+
+                        <div class="value">
+
+                            ${player.clan}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- UID -->
+
+                <div class="card-bottom">
+
+                    <div class="uid">
+
+                        UID:
+                        ${player.uid}
+
+                    </div>
+
+
+                    <button
+                        class="copy-btn"
+                        onclick="
+                            copyUID(
+                                '${player.uid}',
+                                this
+                            )
+                        "
+                    >
+
+                        COPY
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- LIKE -->
+
+                <button
+                    class="like-btn"
+                    onclick="
+                        likePlayer(
+                            '${player.uid}',
+                            this
+                        )
+                    "
+                >
+
+                    <span class="heart">
+                        ♥
+                    </span>
+
+                    LIKE
+
+                </button>
+
+            `;
+
+
+            list.appendChild(card);
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   LIKE SYSTEM
+===================================================== */
+
+function likePlayer(
+    uid,
+    button
+){
+
+    const player =
+        players.find(
+            p => p.uid === uid
+        );
+
+
+    if(!player)
+        return;
+
+
+    player.likes++;
+
+
+    button.classList.add(
+        "liked"
+    );
+
+
+    button.innerHTML = `
+
+        <span class="heart">
+            ♥
+        </span>
+
+        LIKED • ${player.likes}
+
+    `;
+
+
+    const heart =
+        button.querySelector(
+            ".heart"
+        );
+
+
+    if(heart){
+
+        heart.animate(
+
+            [
+
+                {
+                    transform:
+                        "scale(1)"
+                },
+
+                {
+                    transform:
+                        "scale(1.6)"
+                },
+
+                {
+                    transform:
+                        "scale(1)"
+                }
+
+            ],
+
+            {
+                duration:400
+            }
+
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   COPY UID
+===================================================== */
+
+function copyUID(
+    uid,
+    button
+){
+
+    navigator.clipboard
+    .writeText(uid)
+    .then(() => {
+
+
+        const oldText =
+            button.innerText;
+
+
+        button.innerText =
+            "COPIED ✓";
+
+
+        setTimeout(
+            () => {
+
+                button.innerText =
+                    oldText;
+
+            },
+            1200
+        );
+
+
+    })
+    .catch(() => {
+
+        alert(
+            "UID: " + uid
+        );
+
+    });
+
+}
+
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+searchInput.addEventListener(
+    "input",
+    renderPlayers
+);
+
+
+
+/* =====================================================
+   CLAN FILTER
+===================================================== */
+
+document
+.querySelectorAll(".filter")
+.forEach(
+    button => {
+
+
+        button.addEventListener(
+            "click",
+            function(){
+
+
+                document
+                .querySelectorAll(
+                    ".filter"
+                )
+                .forEach(
+                    btn => {
+
+                        btn.classList
+                        .remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                this.classList.add(
+                    "active"
+                );
+
+
+                selectedClan =
+                    this.dataset.clan;
+
+
+                renderPlayers();
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   LEVEL SORT
+===================================================== */
+
+sortBtn.addEventListener(
+    "click",
+    function(){
+
+
+        highToLow =
+            !highToLow;
+
+
+        this.innerText =
+            highToLow
+                ? "LEVEL ↓"
+                : "LEVEL ↑";
+
+
+        renderPlayers();
+
+    }
+);
+
+
+
+/* =====================================================
+   RIPPLE EFFECT
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function(e){
+
+
+        const target =
+            e.target.closest(
+                "button,.player-card"
+            );
+
+
+        if(!target)
+            return;
+
+
+        const rect =
+            target.getBoundingClientRect();
+
+
+        const ripple =
+            document.createElement(
+                "span"
+            );
+
+
+        const size =
+            Math.max(
+                rect.width,
+                rect.height
+            );
+
+
+        ripple.className =
+            "ripple";
+
+
+        ripple.style.width =
+            size + "px";
+
+
+        ripple.style.height =
+            size + "px";
+
+
+        ripple.style.left =
+            (
+                e.clientX -
+                rect.left -
+                size / 2
+            ) + "px";
+
+
+        ripple.style.top =
+            (
+                e.clientY -
+                rect.top -
+                size / 2
+            ) + "px";
+
+
+        target.appendChild(
+            ripple
+        );
+
+
+        setTimeout(
+            () => ripple.remove(),
+            650
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+renderPlayers();
+
+</script>
+
+</body>
+</html>
