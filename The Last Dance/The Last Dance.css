@@ -1,32 +1,497 @@
-
-.navbar2{
-    position: fixed;
-    top: 29px;
-    left: 287px;
-    width: auto;
-    z-index: 1000;
-}
-.navbar2 ul{
+* {
     margin: 0;
     padding: 0;
-    list-style: none;
-}
-.navbar2 ul li{
-    display: inline-block;
-}
-.navbar2 ul li a{
-    display: inline-block;
-    text-decoration: none;
-    padding: 10px 22px;
-    color: white;
-    background: rgba(255,165,0,.9);
-    border-radius: 25px;
-    transition: .3s ease;
-    margin-right: 81px;
-}
-.navbar2 ul li a:hover{
-    background: #000;
-    color: #fff;
-    transform: translateY(-2px);
+    box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 20% 20%, #182b70, transparent 35%),
+        radial-gradient(circle at 80% 80%, #5b0b68, transparent 35%),
+        #050611;
+}
+
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+.bg {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bg span {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    background: #00f7ff;
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 10px #00f7ff,
+        0 0 25px #00f7ff,
+        0 0 50px #00f7ff;
+
+    animation: particles 12s linear infinite;
+}
+
+.bg span:nth-child(1) {
+    left: 5%;
+    animation-duration: 9s;
+}
+
+.bg span:nth-child(2) {
+    left: 15%;
+    animation-duration: 14s;
+    animation-delay: 2s;
+}
+
+.bg span:nth-child(3) {
+    left: 28%;
+    animation-duration: 11s;
+    animation-delay: 4s;
+}
+
+.bg span:nth-child(4) {
+    left: 43%;
+    animation-duration: 16s;
+}
+
+.bg span:nth-child(5) {
+    left: 57%;
+    animation-duration: 10s;
+    animation-delay: 3s;
+}
+
+.bg span:nth-child(6) {
+    left: 70%;
+    animation-duration: 15s;
+}
+
+.bg span:nth-child(7) {
+    left: 84%;
+    animation-duration: 12s;
+    animation-delay: 5s;
+}
+
+.bg span:nth-child(8) {
+    left: 94%;
+    animation-duration: 17s;
+}
+
+@keyframes particles {
+
+    0% {
+        top: 110%;
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5) rotate(180deg);
+    }
+
+    100% {
+        top: -10%;
+        transform: scale(0.4) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    text-align: center;
+    padding: 55px 15px 30px;
+}
+
+header h1 {
+    font-size: clamp(32px, 7vw, 70px);
+    letter-spacing: 8px;
+
+    background: linear-gradient(
+        90deg,
+        #00f7ff,
+        #ffffff,
+        #ff00e6,
+        #00f7ff
+    );
+
+    background-size: 300%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation: gradientText 5s linear infinite;
+}
+
+header p {
+    margin-top: 10px;
+
+    color: #bfc8ff;
+
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+@keyframes gradientText {
+
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 300%;
+    }
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: min(1100px, 94%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 25px;
+
+    padding: 20px 0 50px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    position: relative;
+
+    min-height: 190px;
+
+    padding: 30px 20px;
+
+    text-decoration: none;
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    border: 3px solid transparent;
+
+    background:
+        linear-gradient(#0b0d20, #0b0d20) padding-box,
+        linear-gradient(
+            135deg,
+            #00f7ff,
+            #7b00ff,
+            #ff00c8,
+            #00f7ff
+        ) border-box;
+
+    background-size:
+        100% 100%,
+        300% 300%;
+
+    /* শুধু border animation */
+    animation: borderMove 5s linear infinite;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.5),
+        inset 0 0 25px rgba(0, 247, 255, 0.05);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+/* =========================
+   BORDER ANIMATION
+========================= */
+
+@keyframes borderMove {
+
+    0% {
+        background-position:
+            0 0,
+            0% 50%;
+    }
+
+    50% {
+        background-position:
+            0 0,
+            100% 50%;
+    }
+
+    100% {
+        background-position:
+            0 0,
+            0% 50%;
+    }
+}
+
+
+/* =========================
+   CARD SHINE
+========================= */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 160%;
+    height: 50px;
+
+    top: -80px;
+    left: -30%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.45),
+        transparent
+    );
+
+    transform: rotate(-15deg);
+
+    animation: shine 4s ease-in-out infinite;
+}
+
+@keyframes shine {
+
+    0% {
+        top: -100px;
+    }
+
+    45%,
+    100% {
+        top: 120%;
+    }
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.card:hover {
+    transform: translateY(-12px) scale(1.03);
+
+    box-shadow:
+        0 0 15px #00f7ff,
+        0 0 40px rgba(0, 247, 255, .45),
+        0 20px 60px rgba(0, 0, 0, .7);
+}
+
+.card:active {
+    transform: scale(.96);
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 32px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,247,255,.25),
+            rgba(123,0,255,.08)
+        );
+
+    border: 2px solid rgba(0,247,255,.5);
+
+    box-shadow:
+        0 0 15px rgba(0,247,255,.5),
+        inset 0 0 15px rgba(0,247,255,.15);
+
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(5deg);
+    }
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.card h2 {
+    margin-top: 15px;
+
+    font-size: clamp(18px, 3vw, 27px);
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 8px rgba(0,247,255,.7);
+}
+
+.card p {
+    margin-top: 7px;
+
+    font-size: 13px;
+
+    color: #aeb8df;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 15px 10px 30px;
+
+    color: #777fa8;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    header {
+        padding-top: 35px;
+    }
+
+    header h1 {
+        letter-spacing: 4px;
+    }
+
+    .container {
+        width: 94%;
+        gap: 12px;
+    }
+
+    .card {
+        min-height: 155px;
+
+        padding: 18px 8px;
+
+        border-radius: 18px;
+
+        border-width: 2px;
+    }
+
+    .icon {
+        width: 48px;
+        height: 48px;
+
+        font-size: 23px;
+    }
+
+    .card h2 {
+        margin-top: 10px;
+
+        font-size: 16px;
+    }
+
+    .card p {
+        font-size: 10px;
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONE
+========================= */
+
+@media (max-width: 360px) {
+
+    .container {
+        gap: 9px;
+    }
+
+    .card {
+        min-height: 140px;
+
+        padding: 14px 5px;
+    }
+
+    .icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 20px;
+    }
+
+    .card h2 {
+        font-size: 14px;
+    }
+
+    .card p {
+        font-size: 9px;
+    }
+}
