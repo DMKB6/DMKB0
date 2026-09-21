@@ -43,7 +43,7 @@ const friends = [
 
     {
         name: "আব্দুল খালেক",
-        birthday: "31 December",
+        birthday: "15 December",
         image: "images/abdul-khalek.jpg"
     },
 
