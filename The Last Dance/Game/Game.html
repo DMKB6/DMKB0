@@ -2,59 +2,873 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Game</title>
+<title>Gaming Dashboard</title>
 
-    <link rel="stylesheet" href="Game.css">
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+
+    background:
+        radial-gradient(circle at 20% 20%, #122b48 0%, transparent 35%),
+        radial-gradient(circle at 80% 80%, #35154d 0%, transparent 35%),
+        #050812;
+}
+
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-2;
+}
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(5px);
+    opacity:.35;
+    animation:float 12s infinite ease-in-out;
+}
+
+.orb1{
+    width:180px;
+    height:180px;
+    background:#00eaff;
+    top:8%;
+    left:5%;
+}
+
+.orb2{
+    width:230px;
+    height:230px;
+    background:#7b2cff;
+    bottom:5%;
+    right:5%;
+    animation-delay:2s;
+}
+
+.orb3{
+    width:100px;
+    height:100px;
+    background:#ff00aa;
+    top:55%;
+    left:45%;
+    animation-delay:4s;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translate(0,0) scale(1);
+    }
+
+    50%{
+        transform:translate(50px,-40px) scale(1.15);
+    }
+}
+
+
+/* Particles */
+
+.particles{
+    position:absolute;
+    inset:0;
+}
+
+.particles span{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:#00eaff;
+    border-radius:50%;
+    box-shadow:0 0 10px #00eaff;
+    animation:particle 7s linear infinite;
+}
+
+.particles span:nth-child(1){left:10%;animation-delay:0s;}
+.particles span:nth-child(2){left:25%;animation-delay:2s;}
+.particles span:nth-child(3){left:40%;animation-delay:4s;}
+.particles span:nth-child(4){left:55%;animation-delay:1s;}
+.particles span:nth-child(5){left:70%;animation-delay:3s;}
+.particles span:nth-child(6){left:85%;animation-delay:5s;}
+.particles span:nth-child(7){left:92%;animation-delay:2s;}
+.particles span:nth-child(8){left:15%;animation-delay:4s;}
+
+@keyframes particle{
+
+    0%{
+        top:110%;
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    80%{
+        opacity:1;
+    }
+
+    100%{
+        top:-10%;
+        opacity:0;
+    }
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard{
+
+    width:92%;
+    max-width:1100px;
+
+    padding:45px;
+
+    background:rgba(8,13,27,.72);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    border-radius:32px;
+
+    backdrop-filter:blur(25px);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.65),
+        inset 0 0 50px rgba(255,255,255,.02);
+
+    position:relative;
+
+    animation:dashboardIn 1s ease;
+
+}
+
+@keyframes dashboardIn{
+
+    from{
+        opacity:0;
+        transform:scale(.9) translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+
+}
+
+
+/* Neon border */
+
+.dashboard::before{
+
+    content:"";
+
+    position:absolute;
+    inset:-2px;
+
+    border-radius:34px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #00eaff,
+        transparent,
+        #8b2cff,
+        transparent
+    );
+
+    background-size:300% 100%;
+
+    animation:borderMove 6s linear infinite;
+
+    z-index:-1;
+
+    opacity:.45;
+
+}
+
+@keyframes borderMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    100%{
+        background-position:300% 50%;
+    }
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    text-align:center;
+
+    margin-bottom:42px;
+
+}
+
+.game-icon{
+
+    font-size:55px;
+
+    display:inline-block;
+
+    filter:
+        drop-shadow(0 0 10px #00eaff)
+        drop-shadow(0 0 25px #00eaff);
+
+    animation:
+
+        controller 2s infinite ease-in-out;
+
+}
+
+@keyframes controller{
+
+    0%,100%{
+        transform:translateY(0) rotate(0);
+    }
+
+    50%{
+        transform:translateY(-10px) rotate(3deg);
+    }
+
+}
+
+
+.header h1{
+
+    margin-top:12px;
+
+    font-size:42px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+}
+
+.header h1 span{
+
+    color:#00eaff;
+
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 25px #00eaff,
+        0 0 45px rgba(0,234,255,.6);
+
+    animation:textGlow 2s infinite alternate;
+
+}
+
+@keyframes textGlow{
+
+    from{
+        text-shadow:0 0 10px #00eaff;
+    }
+
+    to{
+        text-shadow:
+            0 0 10px #00eaff,
+            0 0 35px #00eaff;
+    }
+
+}
+
+.header p{
+
+    margin-top:10px;
+
+    color:#8190a8;
+
+    letter-spacing:2px;
+
+    font-size:13px;
+
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+/* Card */
+
+.card{
+
+    position:relative;
+
+    min-height:240px;
+
+    padding:30px 22px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    color:white;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.015)
+        );
+
+    border:1px solid rgba(255,255,255,.1);
+
+    transition:
+
+        transform .45s cubic-bezier(.2,.8,.2,1),
+
+        border .3s,
+
+        box-shadow .3s;
+
+    animation:cardAppear .8s backwards;
+
+}
+
+.card:nth-child(1){
+    animation-delay:.2s;
+}
+
+.card:nth-child(2){
+    animation-delay:.4s;
+}
+
+.card:nth-child(3){
+    animation-delay:.6s;
+}
+
+@keyframes cardAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* Moving shine */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:80px;
+    height:400px;
+
+    background:rgba(255,255,255,.12);
+
+    transform:rotate(25deg);
+
+    left:-150px;
+
+    top:-80px;
+
+    transition:.7s;
+
+}
+
+.card:hover::before{
+
+    left:120%;
+
+}
+
+
+/* Glow */
+
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:#00eaff;
+
+    filter:blur(80px);
+
+    opacity:0;
+
+    transition:.5s;
+
+}
+
+.card:hover::after{
+
+    opacity:.18;
+
+}
+
+
+/* Hover */
+
+.card:hover{
+
+    transform:
+        translateY(-15px)
+        scale(1.03);
+
+    border-color:#00eaff;
+
+    box-shadow:
+
+        0 20px 50px rgba(0,0,0,.6),
+
+        0 0 25px rgba(0,234,255,.2),
+
+        inset 0 0 25px rgba(0,234,255,.04);
+
+}
+
+
+/* =========================
+   CARD ICON
+========================= */
+
+.card-icon{
+
+    width:85px;
+    height:85px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    border-radius:24px;
+
+    font-size:40px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,234,255,.12),
+            rgba(255,255,255,.03)
+        );
+
+    border:1px solid rgba(0,234,255,.2);
+
+    box-shadow:
+
+        0 0 20px rgba(0,234,255,.08),
+
+        inset 0 0 20px rgba(0,234,255,.04);
+
+    margin-bottom:20px;
+
+    transition:.5s;
+
+}
+
+.card:hover .card-icon{
+
+    transform:
+        scale(1.15)
+        rotate(5deg);
+
+    border-color:#00eaff;
+
+    box-shadow:
+
+        0 0 15px #00eaff,
+
+        0 0 40px rgba(0,234,255,.3);
+
+}
+
+
+/* =========================
+   CARD TEXT
+========================= */
+
+.card h2{
+
+    font-size:21px;
+
+    letter-spacing:1px;
+
+    margin-bottom:9px;
+
+}
+
+.card p{
+
+    color:#7e8ba2;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+}
+
+
+/* Arrow */
+
+.arrow{
+
+    position:absolute;
+
+    right:18px;
+
+    bottom:15px;
+
+    color:#526078;
+
+    font-size:22px;
+
+    transition:.4s;
+
+}
+
+.card:hover .arrow{
+
+    color:#00eaff;
+
+    transform:
+        translateX(7px)
+        scale(1.2);
+
+    text-shadow:
+        0 0 10px #00eaff;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    text-align:center;
+
+    margin-top:35px;
+
+    color:#4e5a70;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    body{
+
+        overflow:auto;
+
+        padding:25px 0;
+
+    }
+
+    .dashboard{
+
+        width:94%;
+
+        padding:32px 18px;
+
+        border-radius:25px;
+
+    }
+
+    .header{
+
+        margin-bottom:30px;
+
+    }
+
+    .game-icon{
+
+        font-size:45px;
+
+    }
+
+    .header h1{
+
+        font-size:28px;
+
+        letter-spacing:2px;
+
+    }
+
+    .header p{
+
+        font-size:11px;
+
+    }
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+        gap:17px;
+
+    }
+
+    .card{
+
+        min-height:180px;
+
+        padding:25px 18px;
+
+    }
+
+    .card-icon{
+
+        width:70px;
+        height:70px;
+
+        font-size:32px;
+
+        margin-bottom:15px;
+
+    }
+
+}
+
+
+/* Small phones */
+
+@media(max-width:380px){
+
+    .header h1{
+
+        font-size:24px;
+
+    }
+
+    .dashboard{
+
+        padding:28px 14px;
+
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-    <div class="container">
 
-        <!-- Free Fire -->
-        <div class="player">
-            <a href="Ff Games/Ff Games.html" class="circle">
-                <img src="free fire.jpg" alt="Free Fire">
-            </a>
-            <div class="name">Free Fire</div>
-        </div>
+<!-- Background -->
 
-        <!-- E Football -->
-        <div class="player">
-            <a href="ef tournament /Ef.html" class="circle">
-                <img src="e football.jpg" alt="E Football">
-            </a>
-            <div class="name">E Football</div>
-        </div>
+<div class="background">
 
-        <!-- Call of Duty -->
-        <div class="player">
-            <a href="Cod/Cod.html" class="circle">
-                <img src="cod.jpg" alt="Call of Duty">
-            </a>
-            <div class="name">Call of Duty</div>
-        </div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
 
-        <!-- Clash of Clans -->
-        <div class="player">
-            <a href="Coc list/Coc.html" class="circle">
-                <img src="coc.jpg" alt="Clash of Clans">
-            </a>
-            <div class="name">Clash of Clans</div>
-        </div>
+    <div class="particles">
 
-        <!-- Mobile Legends -->
-        <div class="player">
-            <a href="#" class="circle">
-                <img src="mobile legends.jpg" alt="Mobile Legends">
-            </a>
-            <div class="name">Mobile Legends</div>
-        </div>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
 
     </div>
 
+</div>
+
+
+<!-- Dashboard -->
+
+<main class="dashboard">
+
+
+    <!-- Header -->
+
+    <header class="header">
+
+        <div class="game-icon">
+            🎮
+        </div>
+
+        <h1>
+            Game <span>Dashboard</span>
+        </h1>
+
+        <p>
+            ENTER • PLAY • DOMINATE
+        </p>
+
+    </header>
+
+
+
+    <!-- Cards -->
+
+    <section class="cards">
+
+
+        <!-- Contact -->
+
+        <a href="contact.html" class="card">
+
+            <div class="card-icon">
+                📞
+            </div>
+
+            <h2>
+                Contact
+            </h2>
+
+            <p>
+                Connect with players,
+                friends and teammates.
+            </p>
+
+            <span class="arrow">
+                →
+            </span>
+
+        </a>
+
+
+
+        <!-- Tournament -->
+
+        <a href="tournament.html" class="card">
+
+            <div class="card-icon">
+                🏆
+            </div>
+
+            <h2>
+                Tournament
+            </h2>
+
+            <p>
+                Explore tournaments,
+                matches and competitions.
+            </p>
+
+            <span class="arrow">
+                →
+            </span>
+
+        </a>
+
+
+
+        <!-- Monthly Progress -->
+
+        <a href="monthly-progress.html" class="card">
+
+            <div class="card-icon">
+                📈
+            </div>
+
+            <h2>
+                Monthly Progress
+            </h2>
+
+            <p>
+                Track your monthly
+                score and achievements.
+            </p>
+
+            <span class="arrow">
+                →
+            </span>
+
+        </a>
+
+
+    </section>
+
+
+
+    <footer class="footer">
+
+        GAMING HUB • 2026
+
+    </footer>
+
+
+</main>
+
+
 </body>
+
 </html>
