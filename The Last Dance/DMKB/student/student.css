@@ -1,0 +1,447 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    padding: 25px 15px;
+
+    background:
+        radial-gradient(circle at top left, #162447, transparent 35%),
+        radial-gradient(circle at bottom right, #1f4068, transparent 35%),
+        #050914;
+
+    color: white;
+}
+
+
+/* ==============================
+   CONTAINER
+============================== */
+
+.container {
+    width: 100%;
+    max-width: 1050px;
+    margin: auto;
+}
+
+
+/* ==============================
+   HEADER
+============================== */
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+
+    animation: headerDown 0.8s ease;
+}
+
+.header-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: auto;
+    margin-bottom: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.07);
+
+    border: 1px solid rgba(255,255,255,0.18);
+
+    box-shadow:
+        0 0 20px rgba(0,200,255,0.25);
+
+    font-size: 28px;
+
+    animation: iconPulse 2s infinite;
+}
+
+header h1 {
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
+header p {
+    margin-top: 6px;
+    color: #9ba8bd;
+    font-size: 14px;
+}
+
+
+/* ==============================
+   CONTACT GRID
+============================== */
+
+.contact-list {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 13px;
+}
+
+
+/* ==============================
+   CONTACT CARD
+============================== */
+
+.contact-card {
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 90px;
+
+    padding: 12px;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,0.055);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    backdrop-filter: blur(12px);
+
+    overflow: hidden;
+
+    transition: 0.35s ease;
+
+    animation: cardShow 0.7s ease both;
+}
+
+
+/* Shine */
+
+.contact-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 200%;
+
+    left: -120px;
+    top: -50%;
+
+    background: rgba(255,255,255,0.08);
+
+    transform: rotate(25deg);
+
+    transition: 0.7s;
+}
+
+.contact-card:hover::before {
+    left: 120%;
+}
+
+
+/* Hover */
+
+.contact-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color: rgba(0,210,255,0.45);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.35),
+        0 0 20px rgba(0,200,255,0.12);
+}
+
+
+/* ==============================
+   PROFILE
+============================== */
+
+.profile {
+
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(135deg, #243b55, #141e30);
+
+    border: 2px solid rgba(255,255,255,0.20);
+
+    box-shadow:
+        0 0 14px rgba(0,200,255,0.20);
+
+    transition: 0.35s;
+}
+
+.contact-card:hover .profile {
+
+    transform: rotate(5deg) scale(1.06);
+
+    box-shadow:
+        0 0 20px rgba(0,200,255,0.35);
+}
+
+.profile img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.profile i {
+
+    font-size: 23px;
+    color: #cbd5e1;
+}
+
+
+/* ==============================
+   INFO
+============================== */
+
+.info {
+
+    min-width: 0;
+
+    flex: 1;
+
+    margin-left: 12px;
+}
+
+.info h2 {
+
+    font-size: 16px;
+
+    margin-bottom: 8px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* ==============================
+   BUTTONS
+============================== */
+
+.buttons {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+}
+
+.contact-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 5px 8px;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 10px;
+
+    border: 1px solid rgba(255,255,255,0.13);
+
+    background: rgba(255,255,255,0.065);
+
+    transition: 0.25s ease;
+
+    cursor: pointer;
+}
+
+.contact-btn:hover {
+
+    transform: translateY(-2px) scale(1.03);
+
+    background: rgba(255,255,255,0.15);
+}
+
+
+/* ==============================
+   SOCIAL GLOW
+============================== */
+
+.call:hover {
+    box-shadow: 0 0 13px rgba(70,255,130,0.45);
+}
+
+.whatsapp:hover {
+    box-shadow: 0 0 13px rgba(37,211,102,0.50);
+}
+
+.telegram:hover {
+    box-shadow: 0 0 13px rgba(0,170,255,0.50);
+}
+
+.facebook:hover {
+    box-shadow: 0 0 13px rgba(24,119,242,0.55);
+}
+
+.x:hover {
+    box-shadow: 0 0 13px rgba(255,255,255,0.35);
+}
+
+.imo:hover {
+    box-shadow: 0 0 13px rgba(0,200,255,0.45);
+}
+
+.instagram:hover {
+    box-shadow: 0 0 15px rgba(225,48,108,0.55);
+}
+
+.tiktok:hover {
+    box-shadow: 0 0 15px rgba(255,255,255,0.40);
+}
+
+
+/* ==============================
+   ANIMATIONS
+============================== */
+
+@keyframes cardShow {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+@keyframes headerDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes iconPulse {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+
+        box-shadow:
+            0 0 30px rgba(0,200,255,0.4);
+    }
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 18px 10px;
+    }
+
+    .contact-list {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    header {
+        margin-bottom: 22px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    .contact-card {
+        min-height: 82px;
+    }
+
+    .profile {
+        width: 53px;
+        height: 53px;
+    }
+
+    .info {
+        margin-left: 10px;
+    }
+
+    .info h2 {
+        font-size: 15px;
+    }
+
+    .contact-btn {
+        font-size: 10px;
+        padding: 5px 7px;
+    }
+}
+
+
+/* ==============================
+   SMALL MOBILE
+============================== */
+
+@media (max-width: 390px) {
+
+    body {
+        padding: 15px 7px;
+    }
+
+    .profile {
+        width: 48px;
+        height: 48px;
+    }
+
+    .info h2 {
+        font-size: 14px;
+    }
+
+    .contact-btn {
+        font-size: 9px;
+        padding: 4px 6px;
+    }
+}
