@@ -1,0 +1,570 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #070b16;
+    --card: rgba(18, 25, 45, 0.75);
+    --text: #ffffff;
+    --muted: #9da8c2;
+    --accent: #00e5ff;
+    --accent2: #7c3cff;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Noto Sans Bengali", sans-serif;
+    color: var(--text);
+
+    background:
+        radial-gradient(circle at 15% 20%, rgba(0,229,255,.12), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(124,60,255,.14), transparent 30%),
+        var(--bg);
+
+    overflow-x: hidden;
+    padding: 45px 20px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    text-align: center;
+    margin-bottom: 45px;
+    position: relative;
+    z-index: 2;
+}
+
+.small-title {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+}
+
+header h1 {
+    font-size: clamp(30px, 5vw, 55px);
+    font-weight: 800;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #00e5ff,
+        #9d6cff,
+        #ffffff
+    );
+
+    background-size: 300%;
+    -webkit-background-clip: text;
+    color: transparent;
+
+    animation: titleFlow 5s linear infinite;
+}
+
+header p {
+    color: var(--muted);
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+@keyframes titleFlow {
+
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 300%;
+    }
+
+}
+
+
+/* =========================
+   MEMBER GRID
+========================= */
+
+.member-container {
+    width: min(1100px, 100%);
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 25px;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.member-card {
+    position: relative;
+
+    min-height: 170px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 25px 20px;
+
+    border: 1px solid rgba(255,255,255,.09);
+
+    border-radius: 25px;
+
+    background: var(--card);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    overflow: hidden;
+
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1),
+        border-color .45s,
+        box-shadow .45s;
+
+    animation: cardAppear .8s ease both;
+}
+
+
+/* Stagger Animation */
+
+.member-card:nth-child(1) {
+    animation-delay: .1s;
+}
+
+.member-card:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.member-card:nth-child(3) {
+    animation-delay: .3s;
+}
+
+.member-card:nth-child(4) {
+    animation-delay: .4s;
+}
+
+.member-card:nth-child(5) {
+    animation-delay: .5s;
+}
+
+.member-card:nth-child(6) {
+    animation-delay: .6s;
+}
+
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* Hover */
+
+.member-card:hover {
+
+    transform:
+        translateY(-10px)
+        scale(1.025);
+
+    border-color:
+        rgba(0,229,255,.45);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.45),
+        0 0 35px rgba(0,229,255,.12);
+}
+
+
+/* =========================
+   NUMBER
+========================= */
+
+.number {
+    position: absolute;
+
+    top: 12px;
+    right: 18px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    color: rgba(255,255,255,.3);
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   PROFILE IMAGE
+========================= */
+
+.profile {
+    width: 90px;
+    height: 90px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    padding: 3px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2),
+            #ff4fd8
+        );
+
+    animation: profileFloat 4s ease-in-out infinite;
+}
+
+
+.profile img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid #101629;
+
+    display: block;
+}
+
+
+@keyframes profileFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+}
+
+
+/* =========================
+   INFORMATION
+========================= */
+
+.info {
+    padding-left: 18px;
+    position: relative;
+    z-index: 2;
+}
+
+.info h2 {
+    font-size: 20px;
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.info p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.info p span {
+    color: var(--accent);
+}
+
+.info a {
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: .3s;
+}
+
+.info a:hover {
+    color: var(--accent);
+
+    text-shadow:
+        0 0 15px rgba(0,229,255,.7);
+}
+
+
+/* =========================
+   CARD GLOW
+========================= */
+
+.card-glow {
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -60px;
+    bottom: -70px;
+
+    border-radius: 50%;
+
+    background:
+        var(--accent);
+
+    filter: blur(55px);
+
+    opacity: .18;
+
+    transition: .5s;
+}
+
+.member-card:hover .card-glow {
+    opacity: .45;
+
+    transform:
+        scale(1.5);
+}
+
+
+/* =========================
+   FLOATING BACKGROUND
+========================= */
+
+.floating {
+
+    position: fixed;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    filter: blur(2px);
+
+    opacity: .35;
+
+    z-index: 0;
+}
+
+
+.f1 {
+    width: 8px;
+    height: 8px;
+
+    background: #00e5ff;
+
+    left: 10%;
+    bottom: -20px;
+
+    animation: float1 12s linear infinite;
+}
+
+.f2 {
+    width: 5px;
+    height: 5px;
+
+    background: #a970ff;
+
+    left: 30%;
+    bottom: -20px;
+
+    animation: float2 15s linear infinite;
+}
+
+.f3 {
+    width: 10px;
+    height: 10px;
+
+    background: #00e5ff;
+
+    left: 60%;
+    bottom: -20px;
+
+    animation: float1 17s linear infinite;
+}
+
+.f4 {
+    width: 6px;
+    height: 6px;
+
+    background: #ff4fd8;
+
+    left: 80%;
+    bottom: -20px;
+
+    animation: float2 13s linear infinite;
+}
+
+.f5 {
+    width: 4px;
+    height: 4px;
+
+    background: white;
+
+    left: 90%;
+    bottom: -20px;
+
+    animation: float1 20s linear infinite;
+}
+
+
+@keyframes float1 {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .7;
+    }
+
+    50% {
+        transform:
+            translateY(-50vh)
+            translateX(80px);
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            translateX(-80px);
+
+        opacity: 0;
+    }
+
+}
+
+
+@keyframes float2 {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: .8;
+    }
+
+    50% {
+        transform:
+            translateY(-55vh)
+            translateX(-100px);
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            translateX(100px);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding:
+            30px 13px;
+    }
+
+    header {
+        margin-bottom: 30px;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .member-container {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .member-card {
+        min-height: 145px;
+        padding: 20px 16px;
+        border-radius: 21px;
+    }
+
+    .profile {
+        width: 72px;
+        height: 72px;
+    }
+
+    .info {
+        padding-left: 14px;
+    }
+
+    .info h2 {
+        font-size: 17px;
+    }
+
+    .info p,
+    .info a {
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================
+   VERY SMALL PHONE
+========================= */
+
+@media (max-width: 360px) {
+
+    .member-card {
+        padding: 17px 12px;
+    }
+
+    .profile {
+        width: 62px;
+        height: 62px;
+    }
+
+    .info h2 {
+        font-size: 15px;
+    }
+
+}

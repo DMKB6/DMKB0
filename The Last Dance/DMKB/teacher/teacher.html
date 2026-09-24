@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>শিক্ষকদের তালিকা</title>
+
+<link rel="stylesheet" href="Teacher.css">
+
+<style>
+
+/* ================================
+   RESET
+================================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(0,255,200,.08), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(100,0,255,.10), transparent 30%),
+        #05070d;
+    color:#fff;
+    font-family:Arial, sans-serif;
+    overflow-x:hidden;
+}
+
+
+/* ================================
+   FLOATING BACKGROUND
+================================ */
+
+.floating{
+    position:fixed;
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(2px);
+    opacity:.35;
+    z-index:-1;
+}
+
+.f1{
+    width:220px;
+    height:220px;
+    background:#00ffd5;
+    top:5%;
+    left:-80px;
+    animation:floatOne 12s ease-in-out infinite alternate;
+}
+
+.f2{
+    width:170px;
+    height:170px;
+    background:#7b2cff;
+    right:-60px;
+    top:20%;
+    animation:floatTwo 10s ease-in-out infinite alternate;
+}
+
+.f3{
+    width:140px;
+    height:140px;
+    background:#00aaff;
+    left:15%;
+    bottom:5%;
+    animation:floatThree 14s ease-in-out infinite alternate;
+}
+
+.f4{
+    width:180px;
+    height:180px;
+    background:#ff00c8;
+    right:15%;
+    bottom:10%;
+    animation:floatFour 11s ease-in-out infinite alternate;
+}
+
+.f5{
+    width:90px;
+    height:90px;
+    background:#00ff88;
+    left:50%;
+    top:45%;
+    animation:floatFive 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatOne{
+    from{transform:translate(0,0) scale(1);}
+    to{transform:translate(120px,180px) scale(1.3);}
+}
+
+@keyframes floatTwo{
+    from{transform:translate(0,0);}
+    to{transform:translate(-100px,130px) scale(1.25);}
+}
+
+@keyframes floatThree{
+    from{transform:translate(0,0);}
+    to{transform:translate(180px,-100px) scale(1.2);}
+}
+
+@keyframes floatFour{
+    from{transform:translate(0,0);}
+    to{transform:translate(-130px,-120px) scale(1.3);}
+}
+
+@keyframes floatFive{
+    from{transform:translate(-50px,-20px);}
+    to{transform:translate(80px,100px) scale(1.5);}
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+header{
+    text-align:center;
+    padding:55px 20px 30px;
+    animation:headerIn 1s ease forwards;
+}
+
+.small-title{
+    display:inline-block;
+    color:#00ffd5;
+    font-size:13px;
+    letter-spacing:3px;
+    margin-bottom:12px;
+    animation:glowText 2s ease-in-out infinite alternate;
+}
+
+header h1{
+    font-size:clamp(30px,6vw,55px);
+    background:linear-gradient(90deg,#fff,#00ffd5,#a66cff,#fff);
+    background-size:300%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:titleGradient 5s linear infinite;
+}
+
+@keyframes headerIn{
+    from{
+        opacity:0;
+        transform:translateY(-40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes glowText{
+    from{text-shadow:0 0 5px #00ffd5;}
+    to{text-shadow:0 0 25px #00ffd5;}
+}
+
+@keyframes titleGradient{
+    0%{background-position:0%;}
+    100%{background-position:300%;}
+}
+
+
+/* ================================
+   GROUP
+================================ */
+
+.teacher-group{
+    width:min(1200px,94%);
+    margin:45px auto 70px;
+}
+
+
+/* ================================
+   GROUP TITLE
+================================ */
+
+.group-title{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:20px 25px;
+    margin-bottom:25px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.35),
+        inset 0 0 25px rgba(0,255,220,.03);
+
+    overflow:hidden;
+
+    animation:groupIn .8s ease both;
+}
+
+.group-title::before{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:100%;
+    top:0;
+    left:-150px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.18),
+        transparent
+    );
+    transform:skewX(-20deg);
+    animation:shine 4s linear infinite;
+}
+
+.group-number{
+    width:55px;
+    height:55px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:16px;
+
+    background:linear-gradient(135deg,#00ffd5,#008cff);
+
+    color:#001b18;
+    font-weight:900;
+    font-size:20px;
+
+    box-shadow:
+        0 0 20px rgba(0,255,213,.45);
+
+    animation:numberPulse 2.5s ease-in-out infinite;
+}
+
+.group-title h2{
+    font-size:24px;
+    margin-bottom:4px;
+}
+
+.group-title p{
+    color:#a9b2c7;
+    font-size:14px;
+}
+
+@keyframes groupIn{
+    from{
+        opacity:0;
+        transform:translateX(-50px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes shine{
+    0%{left:-150px;}
+    50%,100%{left:120%;}
+}
+
+@keyframes numberPulse{
+    0%,100%{
+        transform:scale(1);
+        box-shadow:0 0 15px rgba(0,255,213,.35);
+    }
+    50%{
+        transform:scale(1.08);
+        box-shadow:0 0 30px rgba(0,255,213,.7);
+    }
+}
+
+
+/* ================================
+   MEMBER GRID
+================================ */
+
+.member-container{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+
+/* ================================
+   MEMBER CARD
+================================ */
+
+.member-card{
+    position:relative;
+    min-height:125px;
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    padding:18px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.025)
+        );
+
+    border:1px solid rgba(255,255,255,.1);
+
+    backdrop-filter:blur(14px);
+
+    overflow:hidden;
+
+    opacity:0;
+
+    animation:cardIn .7s cubic-bezier(.2,.8,.2,1) forwards;
+
+    transition:
+        transform .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
+}
+
+
+/* stagger animation */
+
+.member-card:nth-child(1){animation-delay:.05s;}
+.member-card:nth-child(2){animation-delay:.10s;}
+.member-card:nth-child(3){animation-delay:.15s;}
+.member-card:nth-child(4){animation-delay:.20s;}
+.member-card:nth-child(5){animation-delay:.25s;}
+.member-card:nth-child(6){animation-delay:.30s;}
+.member-card:nth-child(7){animation-delay:.35s;}
+.member-card:nth-child(8){animation-delay:.40s;}
+.member-card:nth-child(9){animation-delay:.45s;}
+.member-card:nth-child(10){animation-delay:.50s;}
+.member-card:nth-child(11){animation-delay:.55s;}
+.member-card:nth-child(12){animation-delay:.60s;}
+.member-card:nth-child(13){animation-delay:.65s;}
+.member-card:nth-child(14){animation-delay:.70s;}
+.member-card:nth-child(15){animation-delay:.75s;}
+.member-card:nth-child(16){animation-delay:.80s;}
+.member-card:nth-child(17){animation-delay:.85s;}
+.member-card:nth-child(18){animation-delay:.90s;}
+.member-card:nth-child(19){animation-delay:.95s;}
+.member-card:nth-child(20){animation-delay:1s;}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:
+            translateY(35px)
+            scale(.94);
+        filter:blur(6px);
+    }
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+        filter:blur(0);
+    }
+}
+
+
+/* ================================
+   CARD HOVER
+================================ */
+
+.member-card:hover{
+    transform:
+        translateY(-8px)
+        scale(1.015);
+
+    border-color:rgba(0,255,213,.55);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.45),
+        0 0 25px rgba(0,255,213,.13);
+}
+
+
+/* ================================
+   CARD LIGHT
+================================ */
+
+.member-card::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+
+    background:linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(0,255,213,.12),
+        transparent 70%
+    );
+
+    opacity:0;
+    transition:.5s;
+}
+
+.member-card:hover::before{
+    opacity:1;
+}
+
+
+/* ================================
+   NUMBER
+================================ */
+
+.number{
+    min-width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:rgba(0,255,213,.08);
+    border:1px solid rgba(0,255,213,.25);
+
+    color:#00ffd5;
+
+    font-weight:bold;
+    font-size:14px;
+
+    transition:.4s;
+}
+
+.member-card:hover .number{
+    background:#00ffd5;
+    color:#001b18;
+
+    transform:
+        rotate(-5deg)
+        scale(1.12);
+
+    box-shadow:0 0 20px rgba(0,255,213,.5);
+}
+
+
+/* ================================
+   PROFILE
+================================ */
+
+.profile{
+    position:relative;
+    min-width:72px;
+    width:72px;
+    height:72px;
+}
+
+.profile::before{
+    content:"";
+    position:absolute;
+    inset:-4px;
+
+    border-radius:50%;
+
+    border:2px solid transparent;
+
+    border-top-color:#00ffd5;
+    border-right-color:#8d5cff;
+
+    animation:profileRotate 4s linear infinite;
+}
+
+.profile img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:3px solid rgba(255,255,255,.12);
+
+    transition:.5s;
+}
+
+.member-card:hover .profile img{
+    transform:scale(1.08);
+}
+
+@keyframes profileRotate{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* ================================
+   INFO
+================================ */
+
+.info{
+    position:relative;
+    z-index:2;
+    min-width:0;
+}
+
+.info h2{
+    font-size:18px;
+    margin-bottom:8px;
+    color:#fff;
+}
+
+.info p{
+    color:#aab4c7;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.info p span{
+    color:#00ffd5;
+}
+
+.info a{
+    color:#00ffd5;
+    text-decoration:none;
+    font-size:13px;
+
+    transition:.3s;
+}
+
+.info a:hover{
+    color:#fff;
+    text-shadow:0 0 12px #00ffd5;
+}
+
+
+/* ================================
+   CARD GLOW
+================================ */
+
+.card-glow{
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    right:-70px;
+    bottom:-70px;
+
+    border-radius:50%;
+
+    background:#00ffd5;
+
+    filter:blur(60px);
+
+    opacity:.08;
+
+    transition:.5s;
+}
+
+.member-card:hover .card-glow{
+    opacity:.25;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media(max-width:800px){
+
+    .member-container{
+        grid-template-columns:1fr;
+    }
+
+    .teacher-group{
+        width:92%;
+        margin-bottom:55px;
+    }
+
+    .group-title{
+        padding:17px;
+    }
+
+    .group-title h2{
+        font-size:20px;
+    }
+
+    .member-card{
+        min-height:115px;
+        padding:15px;
+    }
+
+    .profile{
+        min-width:62px;
+        width:62px;
+        height:62px;
+    }
+
+    .info h2{
+        font-size:16px;
+    }
+
+}
+
+@media(max-width:450px){
+
+    header{
+        padding-top:40px;
+    }
+
+    .small-title{
+        font-size:10px;
+        letter-spacing:2px;
+    }
+
+    .group-title{
+        gap:12px;
+        border-radius:16px;
+    }
+
+    .group-number{
+        width:45px;
+        height:45px;
+        border-radius:12px;
+        font-size:16px;
+    }
+
+    .member-card{
+        gap:12px;
+        border-radius:17px;
+    }
+
+    .number{
+        min-width:34px;
+        height:34px;
+        font-size:12px;
+    }
+
+    .profile{
+        min-width:55px;
+        width:55px;
+        height:55px;
+    }
+
+    .info h2{
+        font-size:14px;
+    }
+
+    .info p,
+    .info a{
+        font-size:11px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- Floating Background -->
+
+<div class="floating f1"></div>
+<div class="floating f2"></div>
+<div class="floating f3"></div>
+<div class="floating f4"></div>
+<div class="floating f5"></div>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <span class="small-title">
+        DARUNNAZAT MADRASA KITAB BIVAG
+    </span>
+
+    <h1>শিক্ষকদের তালিকা</h1>
+
+</header>
+
+
+
+<!-- =====================================================
+     01 REGULAR FACULTY
+===================================================== -->
+
+<section class="teacher-group">
+
+<div class="group-title">
+
+    <span class="group-number">01</span>
+
+    <div>
+        <h2>Regular Faculty</h2>
+        <p>নিয়মিত শিক্ষকবৃন্দ</p>
+    </div>
+
+</div>
+
+
+<main class="member-container">
+
+
+<!-- 01 -->
+<div class="member-card">
+<div class="number">01</div>
+<div class="profile"><img src="images/person34.jpg"></div>
+<div class="info">
+<h2>আ.খ.ম আবু বকর সিদ্দীক</h2>
+<p><span>❖</span> (প্রিন্সিপাল হুজুর)</p>
+<a href="tel:01712891493">📞 01712-891493</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 02 -->
+<div class="member-card">
+<div class="number">02</div>
+<div class="profile"><img src="images/person1.jpg"></div>
+<div class="info">
+<h2>মুহাম্মদ ফরিদ </h2>
+<p><span>❖</span> (ফরিদগঞ্জী হুজুর)</p>
+<a href="tel:01923130565">📞 01923-130565</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 03 -->
+<div class="member-card">
+<div class="number">03</div>
+<div class="profile"><img src="images/person2.jpg"></div>
+<div class="info">
+<h2>বাহাউদ্দিন রিফাত</h2>
+<p><span>❖</span> (শরিফপুরী হুজুর)</p>
+<a href="tel:01870174647">📞 01870-174647</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 04 -->
+<div class="member-card">
+<div class="number">04</div>
+<div class="profile"><img src="images/person3.jpg"></div>
+<div class="info">
+<h2>শরীফ আল ফয়সাল</h2>
+<p><span>❖</span> (ইছাপুরী হুজুর)</p>
+<a href="tel:01826301093">📞 01826-301093</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 05 -->
+<div class="member-card">
+<div class="number">05</div>
+<div class="profile"><img src="images/person4.jpg"></div>
+<div class="info">
+<h2>নাজমুল ইসলাম</h2>
+<p><span>❖</span> (ওলিপুরী হুজুর)</p>
+<a href="tel:01518608128">📞 01518-608128</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 06 -->
+<div class="member-card">
+<div class="number">06</div>
+<div class="profile"><img src="images/person5.jpg"></div>
+<div class="info">
+<h2>জুবায়ের আহমেদ</h2>
+<p><span>❖</span> (গাজিপুরী হুজুর)</p>
+<a href="tel:01521725871">📞 01521-725871</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 07 -->
+<div class="member-card">
+<div class="number">07</div>
+<div class="profile"><img src="images/person6.jpg"></div>
+<div class="info">
+<h2>আঃ আল মামুন</h2>
+<p><span>❖</span> (মাটিরাঙ্গা হুজুর)</p>
+<a href="tel:01862180584">📞 01862-180584</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 08 -->
+<div class="member-card">
+<div class="number">08</div>
+<div class="profile"><img src="images/person5.jpg"></div>
+<div class="info">
+<h2>নোমান আহমেদ</h2>
+<p><span>❖</span> (সিলেটি হুজুর)</p>
+<a href="tel:01758767862">📞 01758-767862</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 09 -->
+<div class="member-card">
+<div class="number">09</div>
+<div class="profile"><img src="images/person5.jpg"></div>
+<div class="info">
+<h2>ফরিদুল ইসলাম</h2>
+<p><span>❖</span> (বদরপুরী হুজুর)</p>
+<a href="tel:01571278089">📞 01571-278089</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 10 -->
+<div class="member-card">
+<div class="number">10</div>
+<div class="profile"><img src="images/person5.jpg"></div>
+<div class="info">
+<h2>হায়দার আলী</h2>
+<p><span>❖</span> (নোয়াখালী স্যার)</p>
+<a href="tel:01890143565">📞 01890-143565</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 11 -->
+<div class="member-card">
+<div class="number">11</div>
+<div class="profile"><img src="images/person5.jpg"></div>
+<div class="info">
+<h2>আঃ আল কাউছার</h2>
+<p><span>❖</span> (বনশ্রী হুজুর)</p>
+<a href="tel:01993221905">📞 01993-221905</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 12 -->
+<div class="member-card">
+<div class="number">12</div>
+<div class="profile"><img src="images/person5.jpg"></div>
+<div class="info">
+<h2>ইকবাল হোসেন</h2>
+<p><span>❖</span> (মালিবাগি হুজুর)</p>
+<a href="tel:01913944783">📞 01913-944783</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 13 -->
+<div class="member-card">
+<div class="number">13</div>
+<div class="profile"><img src="images/person1.jpg"></div>
+<div class="info">
+<h2>হুসাইন আহমেদ</h2>
+<p><span>❖</span> (চান্দিনা হুজুর)</p>
+<a href="tel:01521715825">📞 01521-715825</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 14 -->
+<div class="member-card">
+<div class="number">14</div>
+<div class="profile"><img src="images/person2.jpg"></div>
+<div class="info">
+<h2>মাহবুব স্যার</h2>
+<p><span>❖</span> (I.C.T স্যার)</p>
+<a href="tel:01743793170">📞 01743-793170</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 15 -->
+<div class="member-card">
+<div class="number">15</div>
+<div class="profile"><img src="images/person3.jpg"></div>
+<div class="info">
+<h2>শেখ নাজমুল ইসলাম</h2>
+<p><span>❖</span> (হবিগঞ্জি হুজুর)</p>
+<a href="tel:01886969755">📞 01886-969755</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 16 -->
+<div class="member-card">
+<div class="number">16</div>
+<div class="profile"><img src="images/person4.jpg"></div>
+<div class="info">
+<h2>মুহিব্বুল হাসান জিহাদ</h2>
+<p><span>❖</span> (রংপুরি হুজুর)</p>
+<a href="tel:01849400646">📞 01849-400646</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 17 -->
+<div class="member-card">
+<div class="number">17</div>
+<div class="profile"><img src="images/person5.jpg"></div>
+<div class="info">
+<h2>হাবিবুর রহমান</h2>
+<p><span>❖</span> (সখিপুরি হুজুর)</p>
+<a href="tel:01874685051">📞 01874-685051</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 18 -->
+<div class="member-card">
+<div class="number">18</div>
+<div class="profile"><img src="images/person6.jpg"></div>
+<div class="info">
+<h2>ওবায়দুল হাসান</h2>
+<p><span>❖</span> (বরুরা হুজুর)</p>
+<a href="tel:01968312183">📞 01968-312183</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 19 -->
+<div class="member-card">
+<div class="number">19</div>
+<div class="profile"><img src="images/person7.jpg"></div>
+<div class="info">
+<h2>ফাহিম আব্দুল্লাহ</h2>
+<p><span>❖</span> (গণিত স্যার)</p>
+<a href="tel:01632396488">📞 01632-396488</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 20 -->
+<div class="member-card">
+<div class="number">20</div>
+<div class="profile"><img src="images/person9.jpg"></div>
+<div class="info">
+<h2>নেয়ামত উল্লাহ</h2>
+<p><span>❖</span> (কুমিল্লা হুজুর)</p>
+<a href="tel:01646943490">📞 01646-943490</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 21 -->
+<div class="member-card">
+<div class="number">21</div>
+<div class="profile"><img src="images/person10.jpg"></div>
+<div class="info">
+<h2>মাহমুদুল হাসান</h2>
+<p><span>❖</span> (ইংরেজি স্যার)</p>
+<a href="tel:01700000000">📞 017******</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 22 -->
+<div class="member-card">
+<div class="number">22</div>
+<div class="profile"><img src="images/person11.jpg"></div>
+<div class="info">
+<h2>শোয়াইব আহমেদ</h2>
+<p><span>❖</span> (ফিরোজপুরী হুজুর)</p>
+<a href="tel:01892713316">📞 01892-713316</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 23 -->
+<div class="member-card">
+<div class="number">23</div>
+<div class="profile"><img src="images/person12.jpg"></div>
+<div class="info">
+<h2>ওয়ালি উল্লাহ</h2>
+<p><span>❖</span> (ইংরেজী স্যার)</p>
+<a href="tel:01777231405">📞 01777-231405</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 24 -->
+<div class="member-card">
+<div class="number">24</div>
+<div class="profile"><img src="images/person13.jpg"></div>
+<div class="info">
+<h2>ইলিয়াস মাহমুদ</h2>
+<p><span>❖</span> (বিজ্ঞান স্যার)</p>
+<a href="tel:01884930522">📞 01884-930522</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 25 -->
+<div class="member-card">
+<div class="number">25</div>
+<div class="profile"><img src="images/person15.jpg"></div>
+<div class="info">
+<h2>মোরাদ হোসেন</h2>
+<p><span>❖</span> (বাংলা স্যার)</p>
+<a href="tel:01608787676">📞 01608-787676</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 26 -->
+<div class="member-card">
+<div class="number">26</div>
+<div class="profile"><img src="images/person22.jpg"></div>
+<div class="info">
+<h2>ফরিদুল ইসলাম</h2>
+<p><span>❖</span> (বদরপুরী হুজুর)</p>
+<a href="tel:01600018621">📞 01600-018621</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 27 -->
+<div class="member-card">
+<div class="number">27</div>
+<div class="profile"><img src="images/person23.jpg"></div>
+<div class="info">
+<h2>আশিকুর রহমান হামিদী</h2>
+<p><span>❖</span> (মুন্সিগঞ্জ হুজুর)</p>
+<a href="tel:01822303968">📞 01822-303968</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 28 -->
+<div class="member-card">
+<div class="number">28</div>
+<div class="profile"><img src="images/person24.jpg"></div>
+<div class="info">
+<h2>-------</h2>
+<p><span>❖</span> (বানিয়াপাড়া হুজুর)</p>
+<a href="tel:01830000000">📞 018300****</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 29 -->
+<div class="member-card">
+<div class="number">29</div>
+<div class="profile"><img src="images/person25.jpg"></div>
+<div class="info">
+<h2>মুহাম্মদ নাসরুল্লাহ</h2>
+<p><span>❖</span> (বরগুনা হুজুর)</p>
+<a href="tel:01530000000">📞 0153*****</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 30 -->
+<div class="member-card">
+<div class="number">30</div>
+<div class="profile"><img src="images/person26.jpg"></div>
+<div class="info">
+<h2>মুহাম্মদ সাইফউদ্দিন</h2>
+<p><span>❖</span> (ইংরেজী স্যার)</p>
+<a href="tel:01400000000">📞 01400****</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 31 -->
+<div class="member-card">
+<div class="number">31</div>
+<div class="profile"><img src="images/person27.jpg"></div>
+<div class="info">
+<h2>সিদ্দিকুর রহমান</h2>
+<p><span>❖</span> (মনিটরিং স্যার)</p>
+<a href="tel:01718438373">📞 01718-438373</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 32 -->
+<div class="member-card">
+<div class="number">32</div>
+<div class="profile"><img src="images/person28.jpg"></div>
+<div class="info">
+<h2>মুহাম্মদ সাব্বির</h2>
+<p><span>❖</span> (বরিশানী হুজুর)</p>
+<a href="tel:01570233863">📞 01570-233863</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<!-- 33 -->
+<div class="member-card">
+<div class="number">33</div>
+<div class="profile"><img src="images/person29.jpg"></div>
+<div class="info">
+<h2>মুহাম্মদ সানাউল্লাহ</h2>
+<p><span>❖</span> (মির্জাগঞ্জি হুজুর)</p>
+<a href="tel:01886135540">📞 01886-135540</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+</main>
+</section>
+
+
+
+<!-- =====================================================
+     02 GUEST FACULTY
+===================================================== -->
+
+<section class="teacher-group">
+
+<div class="group-title">
+<span class="group-number">02</span>
+<div>
+<h2>Guest Faculty</h2>
+<p>অতিথি শিক্ষকবৃন্দ</p>
+</div>
+</div>
+
+
+<main class="member-container">
+
+
+<div class="member-card">
+<div class="number">01</div>
+<div class="profile"><img src="images/person5.jpg"></div>
+<div class="info">
+<h2>রায়হান মাহবুব</h2>
+<p><span>❖</span> (মাদানী হুজুর)</p>
+<a href="tel:01859575692">📞 01859-575692</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">02</div>
+<div class="profile"><img src="images/person8.jpg"></div>
+<div class="info">
+<h2>শাহাদাত হোসাইন</h2>
+<p><span>❖</span> (হাফেজ সাহেব হুজুর)</p>
+<a href="tel:01835220347">📞 01835-220347</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">03</div>
+<div class="profile"><img src="images/person14.jpg"></div>
+<div class="info">
+<h2>রমজান আহমেদ</h2>
+<p><span>❖</span> (কুড়িগ্রাম হুজুর)</p>
+<a href="tel:01976594868">📞 01976-594868</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">04</div>
+<div class="profile"><img src="images/person16.jpg"></div>
+<div class="info">
+<h2>এনামুল হক</h2>
+<p><span>❖</span> (ICT স্যার)</p>
+<a href="tel:01912304089">📞 01912-304089</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">05</div>
+<div class="profile"><img src="images/person19.jpg"></div>
+<div class="info">
+<h2>মাহদি হাসান</h2>
+<p><span>❖</span> (শাহরাস্তি হুজুর)</p>
+<a href="tel:01765144350">📞 01765-144350</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">06</div>
+<div class="profile"><img src="images/person21.jpg"></div>
+<div class="info">
+<h2>শাহ পরান আবিদ</h2>
+<p><span>❖</span> (ইংরেজী স্যার)</p>
+<a href="tel:01581404285">📞 01581-404285</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">07</div>
+<div class="profile"><img src="images/person25.jpg"></div>
+<div class="info">
+<h2>বোরহান উদ্দিন</h2>
+<p><span>❖</span> (মুফতি সাহেব হুজুর)</p>
+<a href="tel:01905506424">📞 01905-506424</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+</main>
+</section>
+
+
+
+<!-- =====================================================
+     03 ESTEEMED FACULTY
+===================================================== -->
+
+<section class="teacher-group">
+
+<div class="group-title">
+<span class="group-number">03</span>
+<div>
+<h2>Esteemed Faculty</h2>
+<p>সম্মানিত শিক্ষকবৃন্দ</p>
+</div>
+</div>
+
+
+<main class="member-container">
+
+
+<div class="member-card">
+<div class="number">01</div>
+<div class="profile"><img src="images/person35.jpg"></div>
+<div class="info">
+<h2>আব্দুল লতিফ শেখ</h2>
+<p><span>❖</span> (জি হু)</p>
+<a href="tel:01914387913">📞 01914-387913</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">02</div>
+<div class="profile"><img src="images/person36.jpg"></div>
+<div class="info">
+<h2>ওসমান গণী সালেহী</h2>
+<p><span>❖</span> (জি হু)</p>
+<a href="tel:01716643887">📞 01716-643887</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">03</div>
+<div class="profile"><img src="images/person37.jpg"></div>
+<div class="info">
+<h2>এম.এ. আর দিদার হামীদি</h2>
+<p><span>❖</span> (জি হু)</p>
+<a href="tel:01818681578">📞 01818-681578</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">04</div>
+<div class="profile"><img src="images/person38.jpg"></div>
+<div class="info">
+<h2>জান্নাতুন নাঈম</h2>
+<p><span>❖</span> (জি হু)</p>
+<a href="tel:01778191320">📞 01778-191320</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">05</div>
+<div class="profile"><img src="images/person39.jpg"></div>
+<div class="info">
+<h2>হাসান জামান</h2>
+<p><span>❖</span> (জি সা)</p>
+<a href="tel:01757342286">📞 01757-342286</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">06</div>
+<div class="profile"><img src="images/person40.jpg"></div>
+<div class="info">
+<h2>ফয়সাল আহমেদ</h2>
+<p><span>❖</span> (জি সা)</p>
+<a href="tel:01581508915">📞 01581-508915</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+</main>
+</section>
+
+
+
+<!-- =====================================================
+     04 VISITING FACULTY
+===================================================== -->
+
+<section class="teacher-group">
+
+<div class="group-title">
+<span class="group-number">04</span>
+<div>
+<h2>Visiting Faculty</h2>
+<p>আগত শিক্ষকবৃন্দ</p>
+</div>
+</div>
+
+
+<main class="member-container">
+
+
+<div class="member-card">
+<div class="number">01</div>
+<div class="profile"><img src="images/person17.jpg"></div>
+<div class="info">
+<h2>আবু হানিফ</h2>
+<p><span>❖</span> (ইতিহাস স্যার)</p>
+<a href="tel:01830907008">📞 01830-907008</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">02</div>
+<div class="profile"><img src="images/person18.jpg"></div>
+<div class="info">
+<h2>আদনান</h2>
+<p><span>❖</span> (ইংরেজী স্যার)</p>
+<a href="tel:01633000726">📞 01633-000726</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">03</div>
+<div class="profile"><img src="images/person20.jpg"></div>
+<div class="info">
+<h2>আ. শাকুর</h2>
+<p><span>❖</span> (বাংলা স্যার)</p>
+<a href="tel:01914199990">📞 01914-199990</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">04</div>
+<div class="profile"><img src="images/person32.jpg"></div>
+<div class="info">
+<h2>আরাফাত বিন আজিজ</h2>
+<p><span>❖</span> (Doctor)</p>
+<a href="tel:01771402615">📞 01771-402615</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">05</div>
+<div class="profile"><img src="images/person33.jpg"></div>
+<div class="info">
+<h2>সাইফার রহমান খান</h2>
+<p><span>❖</span> (জি সা)</p>
+<a href="tel:01713432002">📞 01713-432002</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+</main>
+</section>
+
+
+
+<!-- =====================================================
+     05 SUPPORT STAFF
+===================================================== -->
+
+<section class="teacher-group">
+
+<div class="group-title">
+<span class="group-number">05</span>
+<div>
+<h2>Support Staff</h2>
+<p>সহায়ক কর্মীবৃন্দ</p>
+</div>
+</div>
+
+
+<main class="member-container">
+
+
+<div class="member-card">
+<div class="number">01</div>
+<div class="profile"><img src="images/person30.jpg"></div>
+<div class="info">
+<h2>সায়েম আহমেদ</h2>
+<p><span>❖</span> (IT Specialist)</p>
+<a href="tel:01880474881">📞 01880-474881</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+<div class="member-card">
+<div class="number">02</div>
+<div class="profile"><img src="images/person31.jpg"></div>
+<div class="info">
+<h2>ইসমাইল হোসেন</h2>
+<p><span>❖</span> (Electrical Engineer)</p>
+<a href="tel:01614871747">📞 01614-871747</a>
+</div>
+<div class="card-glow"></div>
+</div>
+
+
+</main>
+</section>
+
+
+</body>
+</html>
