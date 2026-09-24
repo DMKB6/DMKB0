@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Entertainment Hub</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            #24183d 0%,
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            #102f3d 0%,
+            transparent 35%
+        ),
+        #050509;
+
+}
+
+
+/* =========================
+   CINEMATIC BACKGROUND
+========================= */
+
+.bg{
+
+    position:fixed;
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-5;
+
+}
+
+
+/* Big cinematic lights */
+
+.light{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    opacity:.25;
+
+    animation:lightMove 14s infinite alternate ease-in-out;
+
+}
+
+.light.one{
+
+    width:420px;
+    height:420px;
+
+    background:#8b2cff;
+
+    top:-180px;
+    left:-150px;
+
+}
+
+.light.two{
+
+    width:350px;
+    height:350px;
+
+    background:#00c8ff;
+
+    right:-130px;
+    bottom:-130px;
+
+    animation-delay:4s;
+
+}
+
+.light.three{
+
+    width:200px;
+    height:200px;
+
+    background:#ff237f;
+
+    left:50%;
+    top:45%;
+
+    animation-delay:7s;
+
+}
+
+
+@keyframes lightMove{
+
+    0%{
+        transform:translate(0,0) scale(1);
+    }
+
+    50%{
+        transform:translate(80px,-50px) scale(1.2);
+    }
+
+    100%{
+        transform:translate(-50px,60px) scale(.9);
+    }
+
+}
+
+
+/* =========================
+   FILM GRAIN
+========================= */
+
+.noise{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.035;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+
+}
+
+
+/* =========================
+   FLOATING LIGHT DOTS
+========================= */
+
+.dots span{
+
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:0 0 8px white;
+
+    animation:stars 8s linear infinite;
+
+}
+
+.dots span:nth-child(1){
+    left:10%;
+    animation-delay:1s;
+}
+
+.dots span:nth-child(2){
+    left:22%;
+    animation-delay:4s;
+}
+
+.dots span:nth-child(3){
+    left:35%;
+    animation-delay:2s;
+}
+
+.dots span:nth-child(4){
+    left:50%;
+    animation-delay:6s;
+}
+
+.dots span:nth-child(5){
+    left:67%;
+    animation-delay:3s;
+}
+
+.dots span:nth-child(6){
+    left:80%;
+    animation-delay:5s;
+}
+
+.dots span:nth-child(7){
+    left:93%;
+    animation-delay:1.5s;
+}
+
+
+@keyframes stars{
+
+    0%{
+        top:105%;
+        opacity:0;
+    }
+
+    20%{
+        opacity:.7;
+    }
+
+    80%{
+        opacity:.7;
+    }
+
+    100%{
+        top:-10%;
+        opacity:0;
+    }
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+
+    width:92%;
+
+    max-width:1100px;
+
+    padding:45px;
+
+    position:relative;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.025)
+        );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(25px);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.65);
+
+    animation:containerIn 1s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+@keyframes containerIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(40px)
+            scale(.94);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+
+.logo{
+
+    font-size:52px;
+
+    display:inline-block;
+
+    animation:logoFloat 3s infinite ease-in-out;
+
+    filter:
+        drop-shadow(0 0 10px rgba(255,255,255,.3));
+
+}
+
+
+@keyframes logoFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-9px);
+    }
+
+}
+
+
+.header h1{
+
+    margin-top:10px;
+
+    font-size:42px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+}
+
+
+.header h1 span{
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff4d9d,
+            #b56cff,
+            #4edcff
+        );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+    background-size:200%;
+
+    animation:gradientText 4s linear infinite;
+
+}
+
+
+@keyframes gradientText{
+
+    0%{
+        background-position:0%;
+    }
+
+    100%{
+        background-position:200%;
+    }
+
+}
+
+
+.header p{
+
+    margin-top:10px;
+
+    color:#9693a7;
+
+    font-size:12px;
+
+    letter-spacing:4px;
+
+}
+
+
+/* =========================
+   OPTIONS
+========================= */
+
+.options{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:25px;
+
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+
+    height:330px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    text-decoration:none;
+
+    color:white;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    padding:30px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:#101016;
+
+    isolation:isolate;
+
+    transition:
+
+        transform .5s cubic-bezier(.2,.8,.2,1),
+
+        box-shadow .5s;
+
+    animation:cardIn .9s backwards;
+
+}
+
+
+.card:nth-child(1){
+    animation-delay:.2s;
+}
+
+.card:nth-child(2){
+    animation-delay:.4s;
+}
+
+
+@keyframes cardIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(60px)
+            scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* Background art */
+
+.movie{
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(10,10,15,.05),
+            rgba(5,5,10,.95)
+        ),
+        radial-gradient(
+            circle at 70% 25%,
+            #ff267c,
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #281022,
+            #09090d
+        );
+
+}
+
+
+.anime{
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(10,10,15,.05),
+            rgba(5,5,10,.95)
+        ),
+        radial-gradient(
+            circle at 70% 25%,
+            #29c9ff,
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #10283a,
+            #09090d
+        );
+
+}
+
+
+/* Moving spotlight */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:500px;
+
+    top:-100px;
+    left:-250px;
+
+    transform:rotate(25deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.14),
+            transparent
+        );
+
+    transition:1s;
+
+    z-index:2;
+
+}
+
+
+.card:hover::before{
+
+    left:120%;
+
+}
+
+
+/* Glow */
+
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 40%,
+            rgba(255,255,255,.08),
+            transparent 60%
+        );
+
+    opacity:0;
+
+    transition:.5s;
+
+}
+
+
+.card:hover::after{
+
+    opacity:1;
+
+}
+
+
+/* =========================
+   CARD HOVER
+========================= */
+
+.card:hover{
+
+    transform:
+        translateY(-12px)
+        scale(1.025);
+
+    box-shadow:
+
+        0 30px 70px rgba(0,0,0,.65),
+
+        0 0 35px rgba(255,255,255,.08);
+
+}
+
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+.content{
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+
+.card-icon{
+
+    width:70px;
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:20px;
+
+    font-size:34px;
+
+    margin-bottom:18px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(10px);
+
+    transition:.5s;
+
+}
+
+
+.card:hover .card-icon{
+
+    transform:
+        scale(1.12)
+        rotate(-4deg);
+
+    box-shadow:
+        0 0 25px rgba(255,255,255,.15);
+
+}
+
+
+.card h2{
+
+    font-size:28px;
+
+    margin-bottom:8px;
+
+    letter-spacing:1px;
+
+}
+
+
+.card p{
+
+    max-width:320px;
+
+    color:#aaa8b7;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+}
+
+
+/* =========================
+   ENTER BUTTON
+========================= */
+
+.enter{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:18px;
+
+    padding:10px 16px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.07);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    font-size:12px;
+
+    color:#ddd;
+
+    transition:.4s;
+
+}
+
+
+.card:hover .enter{
+
+    background:rgba(255,255,255,.13);
+
+    transform:translateX(6px);
+
+}
+
+
+.arrow{
+
+    font-size:18px;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    text-align:center;
+
+    margin-top:30px;
+
+    color:#666475;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:750px){
+
+    body{
+
+        overflow:auto;
+
+        padding:25px 0;
+
+    }
+
+    .container{
+
+        width:94%;
+
+        padding:28px 17px;
+
+        border-radius:24px;
+
+    }
+
+    .header{
+
+        margin-bottom:27px;
+
+    }
+
+    .logo{
+
+        font-size:43px;
+
+    }
+
+    .header h1{
+
+        font-size:28px;
+
+        letter-spacing:2px;
+
+    }
+
+    .header p{
+
+        font-size:9px;
+
+        letter-spacing:2px;
+
+    }
+
+    .options{
+
+        grid-template-columns:1fr;
+
+        gap:17px;
+
+    }
+
+    .card{
+
+        height:270px;
+
+        padding:23px;
+
+    }
+
+    .card h2{
+
+        font-size:24px;
+
+    }
+
+}
+
+
+/* Small phone */
+
+@media(max-width:380px){
+
+    .header h1{
+
+        font-size:24px;
+
+    }
+
+    .card{
+
+        height:250px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- BACKGROUND -->
+
+<div class="bg">
+
+    <div class="light one"></div>
+    <div class="light two"></div>
+    <div class="light three"></div>
+
+    <div class="dots">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+    <div class="noise"></div>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            🎬
+        </div>
+
+        <h1>
+            <span>Entertainment</span>
+            Hub
+        </h1>
+
+        <p>
+            WATCH • DISCOVER • ENJOY
+        </p>
+
+    </header>
+
+
+
+    <!-- OPTIONS -->
+
+    <section class="options">
+
+
+        <!-- MOVIE -->
+
+        <a href="movie.html" class="card movie">
+
+            <div class="content">
+
+                <div class="card-icon">
+                    🎬
+                </div>
+
+                <h2>
+                    Movies
+                </h2>
+
+                <p>
+                    Explore movies, latest releases,
+                    favorites and your watchlist.
+                </p>
+
+                <div class="enter">
+
+                    Explore Movies
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- ANIME -->
+
+        <a href="anime.html" class="card anime">
+
+            <div class="content">
+
+                <div class="card-icon">
+                    🌸
+                </div>
+
+                <h2>
+                    Anime
+                </h2>
+
+                <p>
+                    Discover anime series,
+                    characters and unforgettable stories.
+                </p>
+
+                <div class="enter">
+
+                    Explore Anime
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+    </section>
+
+
+
+    <footer class="footer">
+
+        MOVIE • ANIME • ENTERTAINMENT
+
+    </footer>
+
+
+</main>
+
+
+</body>
+
+</html>
