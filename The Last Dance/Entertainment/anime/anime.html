@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MovieZone - Home</title>
+
+    <link rel="stylesheet" href="anime.css">
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                🔥 TRENDING NOW
+            </div>
+
+            <h1 id="heroTitle">
+                House of the Dragon
+            </h1>
+
+            <div class="hero-info">
+                <span>🎬 2026</span>
+                <span>•</span>
+                <span>Fantasy</span>
+                <span>•</span>
+                <span>English</span>
+            </div>
+
+            <p id="heroDescription">
+                A legendary story of dragons, power, family and the struggle
+                for the Iron Throne.
+            </p>
+
+        </div>
+
+        <!-- Slider Dots -->
+        <div class="slider-dots" id="sliderDots"></div>
+
+    </section>
+
+
+    <!-- Movies -->
+    <section class="section">
+
+        <div class="section-heading">
+
+            <h2>
+                Movies
+            </h2>
+
+            <button class="see-all">
+                All <span>›</span>
+            </button>
+
+        </div>
+
+        <div class="movie-row" id="trendingMovies"></div>
+
+    </section>
+
+
+    <!-- No Results -->
+    <div class="no-results" id="noResults">
+
+        <div>🎬</div>
+
+        <h3>
+            No Movies Found
+        </h3>
+
+        <p>
+            Try searching with another name.
+        </p>
+
+    </div>
+
+
+    <!-- Movie Modal -->
+    <div class="modal" id="movieModal">
+
+        <div class="modal-box">
+
+            <button class="close-modal" id="closeModal">
+                ×
+            </button>
+
+            <img
+                id="modalPoster"
+                src=""
+                alt="Movie"
+            >
+
+            <div class="modal-content">
+
+                <span
+                    class="modal-language"
+                    id="modalLanguage"
+                >
+                    English
+                </span>
+
+                <h2 id="modalTitle">
+                    Movie Title
+                </h2>
+
+                <div
+                    class="modal-meta"
+                    id="modalMeta"
+                >
+                    2026 • Fantasy
+                </div>
+
+                <p id="modalDescription">
+                    Movie description.
+                </p>
+
+                <button class="modal-play">
+                    ▶ Play Movie
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+
+        <button class="nav-item active">
+
+            <span>🎬</span>
+
+            <small>
+                Movie
+            </small>
+
+        </button>
+
+
+        <button class="nav-item">
+
+            <span>⛩️</span>
+
+            <small>
+                Anime
+            </small>
+
+        </button>
+
+
+        <button class="nav-item">
+
+            <span>🏁</span>
+
+            <small>
+                Sports
+            </small>
+
+        </button>
+
+
+        <button class="nav-item">
+
+            <span>🎮</span>
+
+            <small>
+                Games
+            </small>
+
+        </button>
+
+    </nav>
+
+
+    <!-- JavaScript -->
+    <script src="anime.js"></script>
+
+</body>
+
+</html>
