@@ -17,10 +17,10 @@ const movies = [
 
         category: "Hollywood",
 
-        poster: "images/movie1.jpg",
+        poster: "house.jpg",
 
         hero:
-            "images/hero1.jpg",
+            "Hou.jpg",
 
         description:
             "A powerful fantasy story filled with dragons, royal families, ambition and a struggle for the Iron Throne."
