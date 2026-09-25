@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Free Fire Tournament Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Orbitron',sans-serif;
+    background:#030712;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+
+/* =====================================================
+   ANIMATED BACKGROUND
+===================================================== */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-3;
+
+    background:
+    radial-gradient(circle at 20% 20%, #00e5ff20, transparent 25%),
+    radial-gradient(circle at 80% 30%, #7c00ff20, transparent 25%),
+    radial-gradient(circle at 50% 90%, #00ff9d15, transparent 30%);
+
+    animation:bgMove 12s ease-in-out infinite alternate;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:-100px;
+    z-index:-2;
+
+    background-image:
+    radial-gradient(#00ffff55 1px, transparent 1px),
+    radial-gradient(#ffffff33 1px, transparent 1px);
+
+    background-size:55px 55px;
+    background-position:0 0,27px 27px;
+
+    opacity:.35;
+
+    animation:stars 25s linear infinite;
+}
+
+@keyframes bgMove{
+
+    0%{
+        transform:scale(1);
+    }
+
+    100%{
+        transform:scale(1.15);
+    }
+}
+
+@keyframes stars{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(100px,100px);
+    }
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.container{
+    width:min(1250px,94%);
+    margin:auto;
+    padding:25px 0 60px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+    position:relative;
+
+    padding:35px 25px;
+
+    border:1px solid rgba(0,255,255,.5);
+    border-radius:28px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,255,255,.10),
+        rgba(255,255,255,.04)
+    );
+
+    backdrop-filter:blur(18px);
+
+    overflow:hidden;
+
+    text-align:center;
+
+    box-shadow:
+    0 0 25px rgba(0,255,255,.25),
+    inset 0 0 30px rgba(0,255,255,.04);
+
+    animation:headerGlow 3s infinite alternate;
+}
+
+@keyframes headerGlow{
+
+    from{
+        box-shadow:
+        0 0 20px rgba(0,255,255,.2);
+    }
+
+    to{
+        box-shadow:
+        0 0 45px rgba(0,255,255,.45);
+    }
+}
+
+.header::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:200px;
+    height:200px;
+
+    background:#00ffff;
+
+    filter:blur(100px);
+
+    opacity:.15;
+
+    top:-100px;
+    left:-80px;
+}
+
+.header::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:200px;
+    height:200px;
+
+    background:#8a2be2;
+
+    filter:blur(100px);
+
+    opacity:.15;
+
+    right:-80px;
+    bottom:-100px;
+}
+
+.header h1{
+
+    position:relative;
+    z-index:2;
+
+    font-size:clamp(24px,4vw,44px);
+
+    letter-spacing:3px;
+
+    text-shadow:
+    0 0 10px cyan,
+    0 0 30px #00ffff88;
+}
+
+.header p{
+
+    position:relative;
+    z-index:2;
+
+    margin-top:10px;
+
+    color:#a9b8c8;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:18px;
+
+    margin-top:25px;
+}
+
+
+/* =====================================================
+   SUMMARY CARD
+===================================================== */
+
+.card{
+
+    position:relative;
+
+    padding:25px 15px;
+
+    min-height:130px;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.10),
+        rgba(255,255,255,.035)
+    );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    overflow:hidden;
+
+    transition:.4s;
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    background:#00ffff;
+
+    filter:blur(70px);
+
+    opacity:.10;
+
+    top:-50px;
+    right:-40px;
+}
+
+.card:hover{
+
+    transform:translateY(-7px);
+
+    border-color:#00ffff;
+
+    box-shadow:
+    0 0 25px rgba(0,255,255,.25);
+}
+
+.card .icon{
+
+    font-size:25px;
+}
+
+.card span{
+
+    display:block;
+
+    margin-top:10px;
+
+    color:#9caec0;
+
+    font-size:11px;
+
+    letter-spacing:1px;
+}
+
+.card h2{
+
+    margin-top:10px;
+
+    font-size:21px;
+
+    color:#00ffff;
+
+    text-shadow:
+    0 0 12px #00ffff88;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+
+    display:grid;
+
+    grid-template-columns:
+    2fr 1fr 1fr 1fr;
+
+    margin-top:30px;
+
+    padding:16px 20px;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(0,255,255,.9),
+        rgba(80,0,255,.85)
+    );
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    box-shadow:
+    0 0 25px rgba(0,255,255,.3);
+
+    text-align:center;
+}
+
+.navbar div:first-child{
+
+    text-align:left;
+
+    padding-left:15px;
+}
+
+
+/* =====================================================
+   PLAYERS
+===================================================== */
+
+.players{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+    margin-top:15px;
+}
+
+
+/* =====================================================
+   PLAYER CARD
+===================================================== */
+
+.player{
+
+    display:grid;
+
+    grid-template-columns:
+    2fr 1fr 1fr 1fr;
+
+    align-items:center;
+
+    min-height:78px;
+
+    padding:12px 20px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        100deg,
+        rgba(255,255,255,.085),
+        rgba(255,255,255,.035)
+    );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(15px);
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+    animation:playerIn .7s ease both;
+}
+
+@keyframes playerIn{
+
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.player::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:70%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.16),
+        transparent
+    );
+
+    transform:skewX(-20deg);
+
+    animation:shine 5s linear infinite;
+}
+
+@keyframes shine{
+
+    100%{
+        left:150%;
+    }
+}
+
+.player:hover{
+
+    transform:
+    translateY(-5px)
+    scale(1.01);
+
+    border-color:#00ffff;
+
+    box-shadow:
+    0 0 20px rgba(0,255,255,.25),
+    inset 0 0 15px rgba(0,255,255,.04);
+}
+
+
+/* =====================================================
+   PLAYER NAME
+===================================================== */
+
+.name{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:16px;
+
+    font-weight:700;
+}
+
+.avatar{
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #00ffff,
+        #6040ff
+    );
+
+    box-shadow:
+    0 0 15px rgba(0,255,255,.4);
+
+    font-size:19px;
+}
+
+
+/* =====================================================
+   PLAYER DATA
+===================================================== */
+
+.player .data{
+
+    text-align:center;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#dce7f2;
+}
+
+
+/* =====================================================
+   RANK
+===================================================== */
+
+.rank{
+
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    font-weight:900;
+
+    margin:auto;
+}
+
+.rank.gold{
+
+    background:linear-gradient(135deg,#ffd700,#ff9800);
+
+    color:#111;
+
+    box-shadow:
+    0 0 20px #ffd70099;
+}
+
+.rank.silver{
+
+    background:linear-gradient(135deg,#ffffff,#8d9aa5);
+
+    color:#111;
+
+    box-shadow:
+    0 0 18px #ffffff77;
+}
+
+.rank.bronze{
+
+    background:linear-gradient(135deg,#ffb45b,#a85d18);
+
+    color:#111;
+
+    box-shadow:
+    0 0 18px #cd7f3277;
+}
+
+.rank.normal{
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:#00ffff;
+}
+
+
+/* =====================================================
+   TOP 3
+===================================================== */
+
+.player.gold{
+    border-color:#ffd70066;
+}
+
+.player.silver{
+    border-color:#cfd8dc66;
+}
+
+.player.bronze{
+    border-color:#cd7f3266;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    margin-top:30px;
+
+    text-align:center;
+
+    color:#68788a;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:850px){
+
+    .container{
+        width:92%;
+    }
+
+    .summary{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .container{
+
+        width:94%;
+
+        padding-top:15px;
+
+    }
+
+
+    /* Header */
+
+    .header{
+
+        padding:25px 12px;
+
+        border-radius:20px;
+
+    }
+
+    .header h1{
+
+        font-size:22px;
+
+        letter-spacing:1px;
+
+    }
+
+    .header p{
+
+        font-size:9px;
+
+    }
+
+
+    /* Summary */
+
+    .summary{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+        gap:10px;
+
+        margin-top:15px;
+
+    }
+
+    .card{
+
+        min-height:110px;
+
+        padding:17px 7px;
+
+        border-radius:16px;
+
+    }
+
+    .card .icon{
+
+        font-size:20px;
+
+    }
+
+    .card span{
+
+        font-size:8px;
+
+    }
+
+    .card h2{
+
+        font-size:13px;
+
+        line-height:1.5;
+
+    }
+
+
+    /* Navbar */
+
+    .navbar{
+
+        grid-template-columns:
+        1.7fr 1fr 1fr 1fr;
+
+        padding:12px 6px;
+
+        border-radius:12px;
+
+        font-size:8px;
+
+        margin-top:18px;
+
+    }
+
+    .navbar div:first-child{
+
+        padding-left:5px;
+
+    }
+
+
+    /* Player */
+
+    .players{
+
+        gap:9px;
+
+        margin-top:10px;
+
+    }
+
+    .player{
+
+        grid-template-columns:
+        1.7fr 1fr 1fr 1fr;
+
+        min-height:64px;
+
+        padding:8px 6px;
+
+        border-radius:13px;
+
+    }
+
+
+    .name{
+
+        gap:6px;
+
+        font-size:10px;
+
+    }
+
+    .avatar{
+
+        width:30px;
+        height:30px;
+
+        font-size:13px;
+
+    }
+
+
+    .player .data{
+
+        font-size:10px;
+
+    }
+
+
+    .rank{
+
+        width:28px;
+        height:28px;
+
+        font-size:10px;
+
+    }
+
+
+    .footer{
+
+        font-size:8px;
+
+        margin-top:20px;
+
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media(max-width:360px){
+
+    .header h1{
+
+        font-size:18px;
+
+    }
+
+    .card{
+
+        min-height:100px;
+
+    }
+
+    .card h2{
+
+        font-size:11px;
+
+    }
+
+    .navbar{
+
+        font-size:7px;
+
+    }
+
+    .name{
+
+        font-size:8px;
+
+    }
+
+    .avatar{
+
+        width:26px;
+        height:26px;
+
+        font-size:11px;
+
+    }
+
+    .player .data{
+
+        font-size:8px;
+
+    }
+
+    .rank{
+
+        width:24px;
+        height:24px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="header">
+
+    <h1>🏆 FREE FIRE TOURNAMENT</h1>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     SUMMARY
+===================================================== -->
+
+<div class="summary">
+
+<div class="card">
+
+        <div class="icon">🏆</div>
+
+        <span>TOURNAMENT</span>
+
+        <h2>1ST TOURNAMENT</h2>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon">📅</div>
+
+        <span>TOURNAMENT DATE</span>
+
+        <h2>15 JULY 2026</h2>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="icon">🕘</div>
+
+        <span>START TIME</span>
+
+        <h2>9:19 AM</h2>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="icon">🏁</div>
+
+        <span>MATCH END</span>
+
+        <h2>9:37 AM</h2>
+
+    </div>
+
+
+
+    
+
+</div>
+
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<div class="navbar">
+
+    <div>PLAYER NAME</div>
+
+    <div>POSITION</div>
+
+    <div>KILL</div>
+
+    <div>SCORE</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     PLAYER LIST
+===================================================== -->
+
+<div class="players">
+
+
+    <!-- 1 -->
+
+    <div class="player gold">
+
+        <div class="name">
+
+            <div class="avatar">🥇</div>
+
+            Sohadat
+
+        </div>
+
+        <div class="data">
+
+            <div class="rank gold">1</div>
+
+        </div>
+
+        <div class="data">
+
+            6
+
+        </div>
+
+        <div class="data">
+
+            76
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 2 -->
+
+    <div class="player silver">
+
+        <div class="name">
+
+            <div class="avatar">🥈</div>
+
+            Muhit
+
+        </div>
+
+        <div class="data">
+
+            <div class="rank silver">2</div>
+
+        </div>
+
+        <div class="data">
+
+            5
+
+        </div>
+
+        <div class="data">
+
+            63
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 3 -->
+
+    <div class="player bronze">
+
+        <div class="name">
+
+            <div class="avatar">🥉</div>
+
+            Rakib
+
+        </div>
+
+        <div class="data">
+
+            <div class="rank bronze">3</div>
+
+        </div>
+
+        <div class="data">
+
+            6
+
+        </div>
+
+        <div class="data">
+
+            58
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 4 -->
+
+    <div class="player">
+
+        <div class="name">
+
+            <div class="avatar">🔥</div>
+
+            Tamim
+
+        </div>
+
+        <div class="data">
+
+            <div class="rank normal">4</div>
+
+        </div>
+
+        <div class="data">
+
+            2
+
+        </div>
+
+        <div class="data">
+
+            48
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 5 -->
+
+    <div class="player">
+
+        <div class="name">
+
+            <div class="avatar">⚡</div>
+
+            Sayem
+
+        </div>
+
+        <div class="data">
+
+            <div class="rank normal">5</div>
+
+        </div>
+
+        <div class="data">
+
+            2
+
+        </div>
+
+        <div class="data">
+
+            37
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 6 -->
+
+    <div class="player">
+
+        <div class="name">
+
+            <div class="avatar">🎯</div>
+
+            Taki
+
+        </div>
+
+        <div class="data">
+
+            <div class="rank normal">6</div>
+
+        </div>
+
+        <div class="data">
+
+            1
+
+        </div>
+
+        <div class="data">
+
+            12
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 7 -->
+
+    <div class="player">
+
+        <div class="name">
+
+            <div class="avatar">👑</div>
+
+            Sahriaan
+
+        </div>
+
+        <div class="data">
+
+            <div class="rank normal">7</div>
+
+        </div>
+
+        <div class="data">
+
+            0
+
+        </div>
+
+        <div class="data">
+
+            10
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 8 -->
+
+    <div class="player">
+
+        <div class="name">
+
+            <div class="avatar">💀</div>
+
+            Arman
+
+        </div>
+
+        <div class="data">
+
+            <div class="rank normal">8</div>
+
+        </div>
+
+        <div class="data">
+
+            0
+
+        </div>
+
+        <div class="data">
+
+            4
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<div class="footer">
+
+    FREE FIRE • TOURNAMENT DASHBOARD • 2026
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   PLAYER ANIMATION
+===================================================== */
+
+const players =
+document.querySelectorAll(".player");
+
+
+players.forEach((player,index)=>{
+
+    player.style.animationDelay =
+    `${index * 0.12}s`;
+
+});
+
+
+/* =====================================================
+   RANDOM CYAN GLOW
+===================================================== */
+
+setInterval(()=>{
+
+    players.forEach(player=>{
+
+        const glow =
+        Math.floor(Math.random()*12)+12;
+
+        player.style.boxShadow =
+        `0 0 ${glow}px rgba(0,255,255,.12)`;
+
+    });
+
+},1800);
+
+</script>
+
+
+</body>
+
+</html>
