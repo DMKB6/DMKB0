@@ -12,10 +12,53 @@
 
 <body>
 
-    <!-- Hero Section -->
+    <!-- ================================
+         HEADER
+    ================================= -->
+
+    <header class="header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎬
+            </div>
+
+            <span>MovieZone</span>
+
+        </div>
+
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search movies..."
+                autocomplete="off"
+            >
+
+            <button id="searchBtn">
+                Search
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================
+         HERO BANNER
+    ================================= -->
+
     <section class="hero" id="hero">
 
         <div class="hero-overlay"></div>
+
 
         <div class="hero-content">
 
@@ -23,32 +66,75 @@
                 🔥 TRENDING NOW
             </div>
 
+
             <h1 id="heroTitle">
                 House of the Dragon
             </h1>
 
+
             <div class="hero-info">
-                <span>🎬 2026</span>
+
+                <span id="heroYear">
+                    🎬 2022
+                </span>
+
                 <span>•</span>
-                <span>Fantasy</span>
+
+                <span id="heroGenre">
+                    Fantasy
+                </span>
+
                 <span>•</span>
-                <span>English</span>
+
+                <span id="heroLanguage">
+                    English
+                </span>
+
             </div>
 
+
             <p id="heroDescription">
-                A legendary story of dragons, power, family and the struggle
-                for the Iron Throne.
+                A powerful fantasy story filled with dragons,
+                royal families, ambition and a struggle for
+                the Iron Throne.
             </p>
+
+
+            <div class="hero-buttons">
+
+                <button
+                    class="play-btn"
+                    id="heroPlay"
+                >
+                    ▶ Play Movie
+                </button>
+
+                <button
+                    class="info-btn"
+                    id="heroInfo"
+                >
+                    ⓘ More Info
+                </button>
+
+            </div>
 
         </div>
 
-        <!-- Slider Dots -->
-        <div class="slider-dots" id="sliderDots"></div>
+
+        <!-- SLIDER DOTS -->
+
+        <div
+            class="slider-dots"
+            id="sliderDots"
+        ></div>
 
     </section>
 
 
-    <!-- Movies -->
+    <!-- ================================
+         MOVIES
+    ================================= -->
+
     <section class="section">
 
         <div class="section-heading">
@@ -63,13 +149,23 @@
 
         </div>
 
-        <div class="movie-row" id="trendingMovies"></div>
+
+        <div
+            class="movie-row"
+            id="trendingMovies"
+        ></div>
 
     </section>
 
 
-    <!-- No Results -->
-    <div class="no-results" id="noResults">
+    <!-- ================================
+         NO RESULTS
+    ================================= -->
+
+    <div
+        class="no-results"
+        id="noResults"
+    >
 
         <div>🎬</div>
 
@@ -84,20 +180,31 @@
     </div>
 
 
-    <!-- Movie Modal -->
-    <div class="modal" id="movieModal">
+    <!-- ================================
+         MOVIE MODAL
+    ================================= -->
+
+    <div
+        class="modal"
+        id="movieModal"
+    >
 
         <div class="modal-box">
 
-            <button class="close-modal" id="closeModal">
+            <button
+                class="close-modal"
+                id="closeModal"
+            >
                 ×
             </button>
+
 
             <img
                 id="modalPoster"
                 src=""
                 alt="Movie"
             >
+
 
             <div class="modal-content">
 
@@ -108,9 +215,11 @@
                     English
                 </span>
 
+
                 <h2 id="modalTitle">
                     Movie Title
                 </h2>
+
 
                 <div
                     class="modal-meta"
@@ -119,9 +228,11 @@
                     2026 • Fantasy
                 </div>
 
+
                 <p id="modalDescription">
                     Movie description.
                 </p>
+
 
                 <button class="modal-play">
                     ▶ Play Movie
@@ -134,7 +245,10 @@
     </div>
 
 
-    <!-- Bottom Navigation -->
+    <!-- ================================
+         BOTTOM NAVIGATION
+    ================================= -->
+
     <nav class="bottom-nav">
 
         <button class="nav-item active">
@@ -183,7 +297,6 @@
     </nav>
 
 
-    <!-- JavaScript -->
     <script src="movie.js"></script>
 
 </body>
