@@ -1,0 +1,692 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: white;
+
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #142d68,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            #31006b,
+            transparent 35%
+        ),
+        #03050d;
+}
+
+
+/* =================================
+   PARTICLES
+================================= */
+
+.particles {
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+.particles span {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #00eaff;
+
+    box-shadow:
+        0 0 10px #00eaff,
+        0 0 25px #00eaff;
+
+    animation: particleMove linear infinite;
+}
+
+.particles span:nth-child(1) {
+    left: 5%;
+    animation-duration: 9s;
+}
+
+.particles span:nth-child(2) {
+    left: 15%;
+    animation-duration: 13s;
+    animation-delay: 2s;
+}
+
+.particles span:nth-child(3) {
+    left: 25%;
+    animation-duration: 11s;
+    animation-delay: 1s;
+}
+
+.particles span:nth-child(4) {
+    left: 38%;
+    animation-duration: 15s;
+}
+
+.particles span:nth-child(5) {
+    left: 50%;
+    animation-duration: 10s;
+    animation-delay: 3s;
+}
+
+.particles span:nth-child(6) {
+    left: 62%;
+    animation-duration: 14s;
+}
+
+.particles span:nth-child(7) {
+    left: 74%;
+    animation-duration: 12s;
+    animation-delay: 2s;
+}
+
+.particles span:nth-child(8) {
+    left: 84%;
+    animation-duration: 16s;
+}
+
+.particles span:nth-child(9) {
+    left: 92%;
+    animation-duration: 10s;
+}
+
+.particles span:nth-child(10) {
+    left: 45%;
+    animation-duration: 17s;
+    animation-delay: 4s;
+}
+
+@keyframes particleMove {
+
+    0% {
+        top: 110%;
+        opacity: 0;
+        transform: scale(.2);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        top: -10%;
+        opacity: 0;
+        transform: scale(.3);
+    }
+}
+
+
+/* =================================
+   HEADER
+================================= */
+
+.header {
+    text-align: center;
+
+    padding: 45px 15px 30px;
+}
+
+.ball {
+    font-size: 45px;
+
+    margin-bottom: 8px;
+
+    animation: ballFloat 3s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 0 10px #00eaff)
+        drop-shadow(0 0 25px #00eaff);
+}
+
+@keyframes ballFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(15deg);
+    }
+}
+
+.header h1 {
+    font-size: clamp(32px, 7vw, 65px);
+
+    letter-spacing: 7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00eaff,
+            white,
+            #7d4dff,
+            #00eaff
+        );
+
+    background-size: 300%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation: titleGradient 5s linear infinite;
+
+    text-shadow:
+        0 0 30px rgba(0, 234, 255, .3);
+}
+
+@keyframes titleGradient {
+
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 300%;
+    }
+}
+
+.header h2 {
+    margin-top: 5px;
+
+    font-size: clamp(20px, 4vw, 32px);
+
+    letter-spacing: 5px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 10px #7b4dff,
+        0 0 25px #7b4dff;
+}
+
+.header p {
+    margin-top: 12px;
+
+    color: #8995bd;
+
+    letter-spacing: 2px;
+
+    font-size: 13px;
+}
+
+
+/* =================================
+   TOURNAMENT LIST
+================================= */
+
+.tournament-list {
+
+    width: min(900px, 92%);
+
+    margin: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    padding: 15px 0 50px;
+}
+
+
+/* =================================
+   TOURNAMENT BOX
+================================= */
+
+.tournament {
+
+    position: relative;
+
+    min-height: 125px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 20px 28px;
+
+    text-decoration: none;
+
+    color: white;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    border: 3px solid transparent;
+
+    background:
+        linear-gradient(
+            #080c1c,
+            #080c1c
+        ) padding-box,
+
+        linear-gradient(
+            100deg,
+            #00eaff,
+            #6b35ff,
+            #ff00c8,
+            #00eaff
+        ) border-box;
+
+    background-size:
+        100% 100%,
+        400% 400%;
+
+    animation: borderAnimation 5s linear infinite;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.5),
+        inset 0 0 25px rgba(0,234,255,.04);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+
+/* =================================
+   MOVING BORDER
+================================= */
+
+@keyframes borderAnimation {
+
+    0% {
+        background-position:
+            0 0,
+            0% 50%;
+    }
+
+    50% {
+        background-position:
+            0 0,
+            100% 50%;
+    }
+
+    100% {
+        background-position:
+            0 0,
+            0% 50%;
+    }
+}
+
+
+/* =================================
+   SHINE
+================================= */
+
+.tournament::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+
+    height: 250%;
+
+    top: -70%;
+
+    left: -120px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.35),
+            transparent
+        );
+
+    transform: rotate(20deg);
+
+    animation: boxShine 4s linear infinite;
+
+    pointer-events: none;
+}
+
+@keyframes boxShine {
+
+    0% {
+        left: -150px;
+    }
+
+    45%,
+    100% {
+        left: 120%;
+    }
+}
+
+
+/* =================================
+   NUMBER
+================================= */
+
+.number {
+
+    min-width: 45px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #00eaff;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 10px #00eaff;
+}
+
+
+/* =================================
+   TROPHY
+================================= */
+
+.trophy {
+
+    width: 65px;
+    height: 65px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 32px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,234,255,.18),
+            rgba(98,0,255,.08)
+        );
+
+    border: 2px solid rgba(0,234,255,.5);
+
+    box-shadow:
+        0 0 15px rgba(0,234,255,.4),
+        inset 0 0 20px rgba(0,234,255,.08);
+
+    animation: trophyFloat 3s ease-in-out infinite;
+}
+
+@keyframes trophyFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-7px) rotate(4deg);
+    }
+}
+
+
+/* =================================
+   TEXT
+================================= */
+
+.info {
+    flex: 1;
+}
+
+.info h3 {
+
+    font-size: clamp(17px, 3vw, 27px);
+
+    letter-spacing: 2px;
+
+    color: white;
+
+    text-shadow:
+        0 0 8px rgba(0,234,255,.6);
+}
+
+.info p {
+
+    margin-top: 7px;
+
+    font-size: 12px;
+
+    color: #8995bd;
+
+    letter-spacing: 1px;
+}
+
+
+/* =================================
+   ARROW
+================================= */
+
+.arrow {
+
+    font-size: 28px;
+
+    color: #00eaff;
+
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 25px #00eaff;
+
+    transition: .3s ease;
+}
+
+
+/* =================================
+   HOVER
+================================= */
+
+.tournament:hover {
+
+    transform:
+        translateX(10px)
+        scale(1.015);
+
+    box-shadow:
+        0 0 15px rgba(0,234,255,.5),
+        0 0 45px rgba(0,234,255,.2),
+        0 15px 40px rgba(0,0,0,.7);
+}
+
+.tournament:hover .arrow {
+
+    transform: translateX(8px);
+
+    color: white;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 25px #00eaff;
+}
+
+.tournament:hover .trophy {
+
+    box-shadow:
+        0 0 20px #00eaff,
+        0 0 40px rgba(0,234,255,.4);
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 10px 10px 30px;
+
+    font-size: 11px;
+
+    color: #59627f;
+
+    letter-spacing: 1px;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        padding-top: 30px;
+    }
+
+    .ball {
+        font-size: 38px;
+    }
+
+    .header h1 {
+        letter-spacing: 4px;
+    }
+
+    .header h2 {
+        letter-spacing: 3px;
+    }
+
+    .tournament-list {
+
+        width: 94%;
+
+        gap: 13px;
+    }
+
+    .tournament {
+
+        min-height: 105px;
+
+        padding: 15px 13px;
+
+        gap: 10px;
+
+        border-radius: 16px;
+
+        border-width: 2px;
+    }
+
+    .number {
+
+        min-width: 30px;
+
+        font-size: 11px;
+    }
+
+    .trophy {
+
+        width: 50px;
+        height: 50px;
+
+        font-size: 24px;
+    }
+
+    .info h3 {
+
+        font-size: 14px;
+
+        letter-spacing: 1px;
+    }
+
+    .info p {
+
+        font-size: 9px;
+
+        margin-top: 5px;
+    }
+
+    .arrow {
+
+        font-size: 21px;
+    }
+
+    .tournament:hover {
+
+        transform: translateX(5px) scale(1.01);
+    }
+}
+
+
+/* =================================
+   SMALL PHONE
+================================= */
+
+@media (max-width: 360px) {
+
+    .tournament {
+
+        padding: 12px 9px;
+
+        gap: 7px;
+    }
+
+    .number {
+
+        min-width: 24px;
+
+        font-size: 9px;
+    }
+
+    .trophy {
+
+        width: 43px;
+        height: 43px;
+
+        font-size: 20px;
+    }
+
+    .info h3 {
+
+        font-size: 12px;
+    }
+
+    .info p {
+
+        font-size: 8px;
+    }
+
+    .arrow {
+
+        font-size: 18px;
+    }
+}
