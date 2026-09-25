@@ -1,0 +1,4899 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#079d78">
+
+<meta name="description"
+content="নূর ইসলামিক অ্যাপ">
+
+<link rel="manifest"
+href="manifest.json">
+
+<title>নূর ইসলামিক অ্যাপ</title>
+
+
+<style>
+
+/* =========================
+        BASIC
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:
+    "Noto Sans Bengali",
+    "SolaimanLipi",
+    Arial,
+    sans-serif;
+
+    background:#edf8f5;
+
+    color:#24443f;
+
+}
+
+.app{
+
+    width:100%;
+
+    max-width:700px;
+
+    min-height:100vh;
+
+    margin:auto;
+
+    background:#f7fcfb;
+
+    overflow:hidden;
+
+}
+
+
+/* =========================
+        HOME HEADER
+========================= */
+
+.header{
+
+    position:relative;
+
+    padding:20px 18px 30px;
+
+    color:white;
+
+    overflow:hidden;
+
+    border-radius:
+    0 0 38px 38px;
+
+    background:
+    linear-gradient(
+        120deg,
+        #009b75,
+        #00ad88,
+        #168fc8,
+        #009b75
+    );
+
+    background-size:400% 400%;
+
+    animation:
+    gradientMove 8s ease infinite;
+
+    box-shadow:
+    0 15px 35px
+    rgba(0,150,120,.25);
+
+}
+
+@keyframes gradientMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+
+}
+
+
+.header::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    right:-130px;
+    top:-150px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.11);
+
+    animation:
+    floatingCircle 6s infinite;
+
+}
+
+@keyframes floatingCircle{
+
+    50%{
+        transform:
+        translate(-20px,20px);
+    }
+
+}
+
+
+.header::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:160px;
+    height:160px;
+
+    left:-90px;
+    bottom:-100px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.08);
+
+    animation:
+    floatingCircle2 7s infinite;
+
+}
+
+@keyframes floatingCircle2{
+
+    50%{
+        transform:
+        translate(30px,-20px);
+    }
+
+}
+
+
+.header-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+/* =========================
+        LOCATION
+========================= */
+
+.location-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.location{
+
+    font-size:20px;
+
+}
+
+.bell{
+
+    width:50px;
+
+    height:50px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.16);
+
+    color:white;
+
+    font-size:23px;
+
+    cursor:pointer;
+
+    animation:
+    bellPulse 2s infinite;
+
+}
+
+@keyframes bellPulse{
+
+    50%{
+
+        box-shadow:
+        0 0 28px
+        rgba(255,255,255,.45);
+
+    }
+
+}
+
+
+/* =========================
+        DATE
+========================= */
+
+.date{
+
+    text-align:center;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+}
+
+.gregorian{
+
+    margin-top:5px;
+
+    text-align:center;
+
+    opacity:.9;
+
+    font-size:15px;
+
+}
+
+
+/* =========================
+        SUN
+========================= */
+
+.sun-box{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:55px;
+
+    margin-top:18px;
+
+    text-align:center;
+
+}
+
+.sun-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:3px;
+
+}
+
+.sun-icon{
+
+    font-size:29px;
+
+    animation:
+    sunAnimation 3s infinite;
+
+}
+
+@keyframes sunAnimation{
+
+    50%{
+
+        transform:
+        scale(1.2)
+        rotate(8deg);
+
+    }
+
+}
+
+
+/* =========================
+        COUNTDOWN
+========================= */
+
+.countdown-box{
+
+    margin-top:22px;
+
+    padding:20px;
+
+    border-radius:26px;
+
+    background:
+    rgba(255,255,255,.13);
+
+    border:
+    1px solid
+    rgba(255,255,255,.32);
+
+    backdrop-filter:
+    blur(14px);
+
+    text-align:center;
+
+}
+
+.next-label{
+
+    font-size:17px;
+
+}
+
+.next-prayer{
+
+    font-size:27px;
+
+    font-weight:bold;
+
+}
+
+.countdown{
+
+    margin:7px 0;
+
+    font-size:42px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    font-variant-numeric:
+    tabular-nums;
+
+}
+
+.progress{
+
+    height:11px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:
+    rgba(255,255,255,.22);
+
+}
+
+.progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        90deg,
+        white,
+        #aaffed,
+        white
+    );
+
+    background-size:200%;
+
+    animation:
+    progressGlow 2s linear infinite;
+
+    transition:
+    width .8s linear;
+
+}
+
+@keyframes progressGlow{
+
+    to{
+        background-position:
+        200% 0;
+    }
+
+}
+
+.time-range{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:8px;
+
+    font-size:13px;
+
+}
+
+.running{
+
+    margin-top:12px;
+
+    font-size:14px;
+
+}
+
+
+/* =========================
+        CONTENT
+========================= */
+
+.content{
+
+    padding:22px 16px 95px;
+
+}
+
+.title{
+
+    margin-bottom:14px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+
+/* =========================
+        LOCATION PANEL
+========================= */
+
+.location-panel{
+
+    display:none;
+
+    margin-bottom:18px;
+
+    padding:17px;
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 8px 25px
+    rgba(0,80,70,.08);
+
+}
+
+.location-panel.show{
+
+    display:block;
+
+    animation:
+    slideDown .35s ease;
+
+}
+
+@keyframes slideDown{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(-15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+
+    }
+
+}
+
+.input{
+
+    width:100%;
+
+    padding:13px;
+
+    margin-bottom:10px;
+
+    border:
+    1px solid #dceae7;
+
+    border-radius:13px;
+
+    outline:none;
+
+    font-family:inherit;
+
+    font-size:16px;
+
+}
+
+.buttons{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:9px;
+
+}
+
+.btn{
+
+    padding:12px;
+
+    border:0;
+
+    border-radius:13px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-weight:bold;
+
+}
+
+.gps{
+
+    background:#e3f8f1;
+
+    color:#008e6e;
+
+}
+
+.save{
+
+    background:#079d78;
+
+    color:white;
+
+}
+
+
+/* =========================
+        INSTALL
+========================= */
+
+.install{
+
+    display:none;
+
+    margin-bottom:18px;
+
+    padding:17px;
+
+    border-radius:20px;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        120deg,
+        #008e6c,
+        #148fc9
+    );
+
+}
+
+.install.show{
+
+    display:block;
+
+    animation:
+    slideDown .4s ease;
+
+}
+
+.install button{
+
+    margin-top:10px;
+
+    padding:10px 17px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:white;
+
+    color:#008e6c;
+
+    font-family:inherit;
+
+    font-weight:bold;
+
+}
+
+
+/* =========================
+        JUMUAH
+========================= */
+
+.jumuah{
+
+    margin-bottom:18px;
+
+    padding:17px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #e8fff8,
+        #e8f5ff
+    );
+
+    border:
+    1px solid #ccebe3;
+
+    animation:
+    cardFloat 4s infinite;
+
+}
+
+@keyframes cardFloat{
+
+    50%{
+        transform:
+        translateY(-3px);
+    }
+
+}
+
+.jumuah-title{
+
+    color:#008d6d;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+.jumuah-time{
+
+    margin-top:4px;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+}
+
+.jumuah-note{
+
+    margin-top:4px;
+
+    font-size:12px;
+
+    color:#72837f;
+
+}
+
+
+/* =========================
+        PRAYER LIST
+========================= */
+
+.prayer-list{
+
+    overflow:hidden;
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 8px 25px
+    rgba(30,100,90,.08);
+
+}
+
+.prayer-row{
+
+    min-height:75px;
+
+    padding:14px 17px;
+
+    display:grid;
+
+    grid-template-columns:
+    95px 1fr;
+
+    align-items:center;
+
+    border-bottom:
+    1px solid #e7efed;
+
+}
+
+.prayer-row:last-child{
+
+    border-bottom:0;
+
+}
+
+.prayer-row.active{
+
+    color:white;
+
+    background:
+    linear-gradient(
+        100deg,
+        #009b75,
+        #08b795,
+        #168fc8
+    );
+
+    background-size:200%;
+
+    animation:
+    activePrayer 3s linear infinite;
+
+}
+
+@keyframes activePrayer{
+
+    to{
+        background-position:
+        200% 0;
+    }
+
+}
+
+.prayer-name{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+.prayer-time{
+
+    text-align:right;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+}
+
+.prayer-state{
+
+    margin-top:2px;
+
+    text-align:right;
+
+    font-size:11px;
+
+    color:#8b9b97;
+
+}
+
+.active .prayer-state{
+
+    color:white;
+
+}
+
+.badge{
+
+    display:none;
+
+    margin-top:3px;
+
+    padding:3px 7px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    background:
+    rgba(255,255,255,.2);
+
+}
+
+.active .badge{
+
+    display:inline-block;
+
+}
+
+
+/* =========================
+        MAKRUH HOME
+========================= */
+
+.makruh{
+
+    margin-top:25px;
+
+}
+
+.makruh-title{
+
+    margin-bottom:12px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+.makruh-card{
+
+    overflow:hidden;
+
+    background:#fffafa;
+
+    border:
+    1px solid #f0dddd;
+
+    border-radius:20px;
+
+}
+
+.makruh-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px;
+
+    border-bottom:
+    1px solid #f0e4e4;
+
+}
+
+.makruh-row:last-child{
+
+    border:0;
+
+}
+
+.makruh-name{
+
+    font-weight:bold;
+
+}
+
+.makruh-description{
+
+    font-size:11px;
+
+    color:#9a8888;
+
+}
+
+.makruh-time{
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    color:#b65b5b;
+
+}
+
+
+/* =========================
+        CALENDAR PAGE
+========================= */
+
+.calendar-page{
+
+    display:none;
+
+    min-height:100vh;
+
+    padding-bottom:90px;
+
+    background:#f8fcfb;
+
+}
+
+.calendar-page.show{
+
+    display:block;
+
+    animation:
+    calendarOpen .4s ease;
+
+}
+
+@keyframes calendarOpen{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateX(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateX(0);
+
+    }
+
+}
+
+
+/* =========================
+        CALENDAR HEADER
+========================= */
+
+.calendar-header{
+
+    height:76px;
+
+    display:grid;
+
+    grid-template-columns:
+    60px 1fr 60px;
+
+    align-items:center;
+
+    background:white;
+
+    border-bottom:
+    1px solid #e5eeee;
+
+}
+
+.back-btn{
+
+    border:0;
+
+    background:none;
+
+    color:#31534d;
+
+    font-size:46px;
+
+    line-height:1;
+
+    cursor:pointer;
+
+}
+
+.calendar-title{
+
+    text-align:center;
+
+    color:#31534d;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+}
+
+.calendar-grid-icon{
+
+    text-align:center;
+
+    color:#31534d;
+
+    font-size:31px;
+
+}
+
+
+/* =========================
+        SELECT
+========================= */
+
+.calendar-select{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:12px;
+
+    padding:15px;
+
+}
+
+.calendar-select select{
+
+    width:100%;
+
+    height:58px;
+
+    padding:0 15px;
+
+    border:
+    2px solid #dfe9e7;
+
+    border-radius:18px;
+
+    outline:none;
+
+    background:#f8fcfb;
+
+    color:#31534d;
+
+    font-family:inherit;
+
+    font-size:20px;
+
+}
+
+.calendar-select select:focus{
+
+    border-color:#079d78;
+
+    box-shadow:
+    0 0 0 4px
+    rgba(7,157,120,.1);
+
+}
+
+
+/* =========================
+        DAY CARD
+========================= */
+
+.calendar-day{
+
+    margin-bottom:18px;
+
+    animation:
+    dayAppear .5s ease both;
+
+}
+
+@keyframes dayAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+
+    }
+
+}
+
+
+/* =========================
+        GREEN DATE HEADER
+========================= */
+
+.day-head{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:18px 55px 18px 18px;
+
+    text-align:center;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        120deg,
+        #009d78,
+        #00aa82,
+        #078fc4,
+        #009d78
+    );
+
+    background-size:300% 300%;
+
+    animation:
+    calendarGradient 7s ease infinite;
+
+}
+
+@keyframes calendarGradient{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+
+}
+
+.day-head::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:160px;
+
+    height:160px;
+
+    right:-70px;
+
+    top:-100px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.1);
+
+}
+
+.day-date{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+.day-hijri{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:5px;
+
+    font-size:17px;
+
+}
+
+.today-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-left:8px;
+
+    padding:5px 12px;
+
+    border-radius:30px;
+
+    background:white;
+
+    color:#078d6d;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    animation:
+    todayPulse 2s infinite;
+
+}
+
+@keyframes todayPulse{
+
+    50%{
+        transform:scale(1.06);
+    }
+
+}
+
+.share-btn{
+
+    position:absolute;
+
+    right:17px;
+
+    top:50%;
+
+    transform:
+    translateY(-50%);
+
+    z-index:5;
+
+    border:0;
+
+    background:none;
+
+    color:white;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================
+        CALENDAR CONTENT
+========================= */
+
+.day-content{
+
+    padding:14px 15px 4px;
+
+}
+
+
+/* =========================
+        FIVE PRAYER
+========================= */
+
+.calendar-prayers{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    overflow:hidden;
+
+    background:#f3f8f7;
+
+    border:
+    2px solid #dfe8e6;
+
+    border-radius:20px;
+
+}
+
+.cal-prayer{
+
+    padding:11px 2px;
+
+    text-align:center;
+
+    border-right:
+    1px solid #dfe3e2;
+
+}
+
+.cal-prayer:last-child{
+
+    border-right:0;
+
+}
+
+.cal-name{
+
+    color:#506762;
+
+    font-size:14px;
+
+    white-space:nowrap;
+
+}
+
+.cal-time{
+
+    margin-top:6px;
+
+    color:#31534d;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================
+        SUN / SAHRI
+========================= */
+
+.extra-times{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:12px;
+
+    margin-top:12px;
+
+}
+
+.extra-box{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    padding:12px 7px;
+
+    background:#f3f8f7;
+
+    border:
+    2px solid #dfe8e6;
+
+    border-radius:18px;
+
+    text-align:center;
+
+}
+
+.extra-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+    color:#536963;
+
+    font-size:13px;
+
+}
+
+.extra-item + .extra-item{
+
+    border-left:
+    1px solid #d5dfdd;
+
+}
+
+.extra-time{
+
+    color:#31534d;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+
+/* =========================
+        CALENDAR MAKRUH
+========================= */
+
+.calendar-makruh-title{
+
+    margin-top:22px;
+
+    margin-bottom:10px;
+
+    color:#31534d;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+.calendar-makruh{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:10px;
+
+}
+
+.cal-makruh{
+
+    padding:12px 4px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #fff4f4,
+        #fff9f9
+    );
+
+    border:
+    1px solid #f4e5e5;
+
+}
+
+.makruh-label{
+
+    color:#715f5f;
+
+    font-size:14px;
+
+}
+
+.makruh-range{
+
+    margin-top:5px;
+
+    color:#705858;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+}
+
+
+/* =========================
+        BOTTOM NAV
+========================= */
+
+.bottom{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:0;
+
+    transform:
+    translateX(-50%);
+
+    width:100%;
+
+    max-width:700px;
+
+    height:74px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    z-index:100;
+
+    background:
+    rgba(255,255,255,.96);
+
+    backdrop-filter:
+    blur(15px);
+
+    border-top:
+    1px solid #dfeae8;
+
+}
+
+.nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:3px;
+
+    color:#899995;
+
+    font-size:12px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.nav-icon{
+
+    font-size:23px;
+
+}
+
+.nav.active{
+
+    color:#079d78;
+
+}
+
+.nav:active{
+
+    transform:
+    scale(.9);
+
+}
+
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:450px){
+
+    .date{
+        font-size:24px;
+    }
+
+    .countdown{
+        font-size:38px;
+    }
+
+    .calendar-title{
+        font-size:25px;
+    }
+
+    .calendar-select select{
+        font-size:18px;
+    }
+
+    .cal-name{
+        font-size:12px;
+    }
+
+    .cal-time{
+        font-size:16px;
+    }
+
+    .calendar-makruh{
+        gap:7px;
+    }
+
+    .makruh-label{
+        font-size:12px;
+    }
+
+    .makruh-range{
+        font-size:14px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- =================================
+            HOME
+================================= -->
+
+<div id="homePage">
+
+
+<header class="header">
+
+<div class="header-content">
+
+
+<div class="location-row">
+
+<div class="location">
+
+📍
+
+<span id="locationName">
+চাঁদপুর
+</span>
+
+</div>
+
+
+<button
+class="bell"
+onclick="enableAzan()">
+
+🔔
+
+</button>
+
+</div>
+
+
+<div
+class="date"
+id="hijriDate">
+
+লোড হচ্ছে...
+
+</div>
+
+
+<div
+class="gregorian"
+id="gregorianDate">
+
+লোড হচ্ছে...
+
+</div>
+
+
+<div class="sun-box">
+
+
+<div class="sun-item">
+
+<span class="sun-icon">
+🌅
+</span>
+
+সূর্যোদয়
+
+<b id="sunrise">
+--:--
+</b>
+
+</div>
+
+
+<div class="sun-item">
+
+<span class="sun-icon">
+☀️
+</span>
+
+সূর্যাস্ত
+
+<b id="sunset">
+--:--
+</b>
+
+</div>
+
+
+</div>
+
+
+<div class="countdown-box">
+
+
+<div class="next-label">
+পরবর্তী নামাজ
+</div>
+
+
+<div
+class="next-prayer"
+id="nextPrayer">
+
+লোড হচ্ছে...
+
+</div>
+
+
+<div
+class="countdown"
+id="countdown">
+
+০০:০০:০০
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="progressBar">
+</div>
+
+</div>
+
+
+<div class="time-range">
+
+<span>
+
+শুরু:
+
+<b id="startTime">
+--:--
+</b>
+
+</span>
+
+
+<span>
+
+শেষ:
+
+<b id="endTime">
+--:--
+</b>
+
+</span>
+
+</div>
+
+
+<div
+class="running"
+id="running">
+
+সময় হিসাব হচ্ছে...
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</header>
+
+
+<main class="content">
+
+
+<!-- LOCATION -->
+
+<div
+class="location-panel"
+id="locationPanel">
+
+<input
+class="input"
+id="cityInput"
+placeholder="এলাকার নাম লিখুন">
+
+
+<div class="buttons">
+
+
+<button
+class="btn gps"
+onclick="getGPS()">
+
+📍 GPS দিয়ে খুঁজুন
+
+</button>
+
+
+<button
+class="btn save"
+onclick="saveCity()">
+
+এলাকা সেট করুন
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- INSTALL -->
+
+<div
+class="install"
+id="installBox">
+
+<b>
+📱 নূর ইসলামিক অ্যাপ ইনস্টল করুন
+</b>
+
+<div style="margin-top:4px">
+
+হোম স্ক্রিনে অ্যাপ হিসেবে ব্যবহার করুন।
+
+</div>
+
+
+<button
+onclick="installApp()">
+
+অ্যাপ ইনস্টল করুন
+
+</button>
+
+</div>
+
+
+<!-- JUMUAH -->
+
+<div class="jumuah">
+
+<div class="jumuah-title">
+
+🕌 জুমু'আর নামাজ
+
+</div>
+
+
+<div
+class="jumuah-time"
+id="jumuahTime">
+
+সময় লোড হচ্ছে...
+
+</div>
+
+
+<div class="jumuah-note">
+
+স্থানীয় মসজিদের জুমু'আর সময় অবশ্যই যাচাই করুন।
+
+</div>
+
+</div>
+
+
+<div class="title">
+
+আজকের নামাজের সময়
+
+</div>
+
+
+<div class="prayer-list">
+
+
+<!-- FAJR -->
+
+<div
+class="prayer-row"
+id="row-Fajr">
+
+<div>
+
+<div class="prayer-name">
+ফজর
+</div>
+
+<span class="badge">
+চলমান
+</span>
+
+</div>
+
+
+<div>
+
+<div
+class="prayer-time"
+id="time-Fajr">
+
+--:-- – --:--
+
+</div>
+
+<div class="prayer-state">
+ফজরের সময়
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DHUHR -->
+
+<div
+class="prayer-row"
+id="row-Dhuhr">
+
+<div>
+
+<div class="prayer-name">
+যোহর
+</div>
+
+<span class="badge">
+চলমান
+</span>
+
+</div>
+
+
+<div>
+
+<div
+class="prayer-time"
+id="time-Dhuhr">
+
+--:-- – --:--
+
+</div>
+
+<div class="prayer-state">
+যোহরের সময়
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ASR -->
+
+<div
+class="prayer-row"
+id="row-Asr">
+
+<div>
+
+<div class="prayer-name">
+আসর
+</div>
+
+<span class="badge">
+চলমান
+</span>
+
+</div>
+
+
+<div>
+
+<div
+class="prayer-time"
+id="time-Asr">
+
+--:-- – --:--
+
+</div>
+
+<div class="prayer-state">
+আসরের সময়
+</div>
+
+</div>
+
+</div>
+
+
+<!-- MAGHRIB -->
+
+<div
+class="prayer-row"
+id="row-Maghrib">
+
+<div>
+
+<div class="prayer-name">
+মাগরিব
+</div>
+
+<span class="badge">
+চলমান
+</span>
+
+</div>
+
+
+<div>
+
+<div
+class="prayer-time"
+id="time-Maghrib">
+
+--:-- – --:--
+
+</div>
+
+<div class="prayer-state">
+মাগরিবের সময়
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ISHA -->
+
+<div
+class="prayer-row"
+id="row-Isha">
+
+<div>
+
+<div class="prayer-name">
+ইশা
+</div>
+
+<span class="badge">
+চলমান
+</span>
+
+</div>
+
+
+<div>
+
+<div
+class="prayer-time"
+id="time-Isha">
+
+--:-- – --:--
+
+</div>
+
+<div class="prayer-state">
+ইশার সময়
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- MAKRUH -->
+
+<section class="makruh">
+
+<div class="makruh-title">
+
+⚠️ মাকরূহ / নিষিদ্ধ সময়
+
+</div>
+
+
+<div class="makruh-card">
+
+
+<div class="makruh-row">
+
+<div>
+
+<div class="makruh-name">
+সূর্যোদয়
+</div>
+
+<div class="makruh-description">
+সূর্যোদয়ের পর সতর্ক সময়
+</div>
+
+</div>
+
+
+<div
+class="makruh-time"
+id="makruh1">
+
+--:-- – --:--
+
+</div>
+
+</div>
+
+
+<div class="makruh-row">
+
+<div>
+
+<div class="makruh-name">
+যওয়াল
+</div>
+
+<div class="makruh-description">
+যোহরের পূর্ববর্তী সতর্ক সময়
+</div>
+
+</div>
+
+
+<div
+class="makruh-time"
+id="makruh2">
+
+--:-- – --:--
+
+</div>
+
+</div>
+
+
+<div class="makruh-row">
+
+<div>
+
+<div class="makruh-name">
+সূর্যাস্ত
+</div>
+
+<div class="makruh-description">
+সূর্যাস্তের আশেপাশের সময়
+</div>
+
+</div>
+
+
+<div
+class="makruh-time"
+id="makruh3">
+
+--:-- – --:--
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<!-- =================================
+          CALENDAR PAGE
+================================= -->
+
+<section
+class="calendar-page"
+id="calendarPage">
+
+
+<div class="calendar-header">
+
+
+<button
+class="back-btn"
+onclick="closeCalendar()">
+
+‹
+
+</button>
+
+
+<div class="calendar-title">
+
+ক্যালেন্ডার
+
+</div>
+
+
+<div class="calendar-grid-icon">
+
+▦
+
+</div>
+
+
+</div>
+
+
+<div class="calendar-select">
+
+
+<select
+id="monthSelect"
+onchange="changeCalendar()">
+
+</select>
+
+
+<select
+id="yearSelect"
+onchange="changeCalendar()">
+
+</select>
+
+
+</div>
+
+
+<div id="calendarDays">
+
+</div>
+
+
+</section>
+
+
+<!-- =================================
+          BOTTOM NAV
+================================= -->
+
+<nav class="bottom">
+
+
+<div
+class="nav active"
+id="homeNav"
+onclick="home()">
+
+<div class="nav-icon">
+🏠
+</div>
+
+হোম
+
+</div>
+
+
+<div
+class="nav"
+id="calendarNav"
+onclick="openCalendar()">
+
+<div class="nav-icon">
+▦
+</div>
+
+ক্যালেন্ডার
+
+</div>
+
+
+<div
+class="nav"
+id="locationNav"
+onclick="openLocation()">
+
+<div class="nav-icon">
+📍
+</div>
+
+এলাকা
+
+</div>
+
+
+</nav>
+
+
+</div>
+
+
+<script>
+
+/* =========================================
+          MAIN SETTINGS
+========================================= */
+
+
+/*
+    1 = Karachi calculation method
+
+    1 = Hanafi school
+
+    বাংলাদেশের জন্য ব্যবহার করা হচ্ছে।
+*/
+
+const METHOD = 1;
+
+const SCHOOL = 1;
+
+
+let latitude =
+Number(
+localStorage.getItem("latitude")
+) || 23.2333;
+
+
+let longitude =
+Number(
+localStorage.getItem("longitude")
+) || 90.6712;
+
+
+let city =
+localStorage.getItem("city")
+|| "চাঁদপুর";
+
+
+let timings = {};
+
+let notified = {};
+
+let installPrompt = null;
+
+
+/* =========================================
+              START
+========================================= */
+
+window.addEventListener(
+"load",
+async function(){
+
+    updateLocation();
+
+    registerSW();
+
+    await loadPrayerTimes();
+
+    setInterval(
+        updateCountdown,
+        1000
+    );
+
+    updateCountdown();
+
+});
+
+
+/* =========================================
+            PRAYER API
+========================================= */
+
+async function loadPrayerTimes(){
+
+    try{
+
+        const today =
+        new Date();
+
+
+        const d =
+        String(
+            today.getDate()
+        ).padStart(2,"0");
+
+
+        const m =
+        String(
+            today.getMonth()+1
+        ).padStart(2,"0");
+
+
+        const y =
+        today.getFullYear();
+
+
+        const url =
+        `https://api.aladhan.com/v1/timings/${d}-${m}-${y}?latitude=${latitude}&longitude=${longitude}&method=${METHOD}&school=${SCHOOL}`;
+
+
+        const response =
+        await fetch(url);
+
+
+        const json =
+        await response.json();
+
+
+        if(json.code !== 200){
+
+            throw new Error(
+                "Prayer API error"
+            );
+
+        }
+
+
+        timings =
+        json.data.timings;
+
+
+        updateDate(
+            json.data.date
+        );
+
+
+        updatePrayerTimes();
+
+        updateMakruh();
+
+        updateJumuah();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        document.getElementById(
+            "nextPrayer"
+        ).textContent =
+        "সময় পাওয়া যায়নি";
+
+    }
+
+}
+
+
+/* =========================================
+                DATE
+========================================= */
+
+function updateDate(data){
+
+    const months = {
+
+        "Muharram":"মুহররম",
+
+        "Safar":"সফর",
+
+        "Rabi al-Awwal":
+        "রবিউল আউয়াল",
+
+        "Rabi al-Thani":
+        "রবিউস সানি",
+
+        "Jumada al-Awwal":
+        "জমাদিউল আউয়াল",
+
+        "Jumada al-Thani":
+        "জমাদিউস সানি",
+
+        "Rajab":"রজব",
+
+        "Sha'ban":"শাবান",
+
+        "Ramadan":"রমজান",
+
+        "Shawwal":"শাওয়াল",
+
+        "Dhu al-Qidah":
+        "জিলকদ",
+
+        "Dhu al-Hijjah":
+        "জিলহজ"
+
+    };
+
+
+    const h =
+    data.hijri;
+
+
+    document.getElementById(
+        "hijriDate"
+    ).textContent =
+
+    bnNumber(h.day)
+    +
+    " "
+    +
+    (
+        months[h.month.en]
+        ||
+        h.month.en
+    )
+    +
+    " "
+    +
+    bnNumber(h.year);
+
+
+    const g =
+    data.gregorian;
+
+
+    document.getElementById(
+        "gregorianDate"
+    ).textContent =
+
+    bnNumber(g.day)
+    +
+    " "
+    +
+    banglaMonth(
+        Number(g.month.number)-1
+    )
+    +
+    " "
+    +
+    bnNumber(g.year);
+
+
+    document.getElementById(
+        "sunrise"
+    ).textContent =
+    bnTime(
+        clean(timings.Sunrise)
+    );
+
+
+    document.getElementById(
+        "sunset"
+    ).textContent =
+    bnTime(
+        clean(timings.Sunset)
+    );
+
+}
+
+
+/* =========================================
+        PRAYER TIME DISPLAY
+========================================= */
+
+function updatePrayerTimes(){
+
+    const fajr =
+    clean(timings.Fajr);
+
+    const sunrise =
+    clean(timings.Sunrise);
+
+    const dhuhr =
+    clean(timings.Dhuhr);
+
+    const asr =
+    clean(timings.Asr);
+
+    const maghrib =
+    clean(timings.Maghrib);
+
+    const sunset =
+    clean(timings.Sunset);
+
+    const isha =
+    clean(timings.Isha);
+
+
+    setText(
+        "time-Fajr",
+        `${bnTime(fajr)}
+        – ${bnTime(sunrise)}`
+    );
+
+
+    setText(
+        "time-Dhuhr",
+        `${bnTime(dhuhr)}
+        – ${bnTime(asr)}`
+    );
+
+
+    setText(
+        "time-Asr",
+        `${bnTime(asr)}
+        – ${bnTime(sunset)}`
+    );
+
+
+    setText(
+        "time-Maghrib",
+        `${bnTime(maghrib)}
+        – ${bnTime(isha)}`
+    );
+
+
+    setText(
+        "time-Isha",
+        `${bnTime(isha)}
+        – ${bnTime(fajr)}`
+    );
+
+}
+
+
+/* =========================================
+             LIVE COUNTDOWN
+========================================= */
+
+function updateCountdown(){
+
+    if(!timings.Fajr){
+
+        return;
+
+    }
+
+
+    const now =
+    new Date();
+
+
+    const names = [
+
+        "Fajr",
+        "Dhuhr",
+        "Asr",
+        "Maghrib",
+        "Isha"
+
+    ];
+
+
+    const bengaliNames = {
+
+        Fajr:"ফজর",
+
+        Dhuhr:"যোহর",
+
+        Asr:"আসর",
+
+        Maghrib:"মাগরিব",
+
+        Isha:"ইশা"
+
+    };
+
+
+    let next = null;
+
+    let nextDate = null;
+
+    let previousDate = null;
+
+    let index = 0;
+
+
+    for(
+        let i=0;
+        i<names.length;
+        i++
+    ){
+
+        const p =
+        names[i];
+
+
+        const date =
+        prayerDate(
+            timings[p]
+        );
+
+
+        if(date > now){
+
+            next = p;
+
+            nextDate = date;
+
+            index = i;
+
+            break;
+
+        }
+
+    }
+
+
+    /* আগামীকালের ফজর */
+
+    if(!next){
+
+        next = "Fajr";
+
+        index = 0;
+
+        nextDate =
+        prayerDate(
+            timings.Fajr
+        );
+
+        nextDate.setDate(
+            nextDate.getDate()+1
+        );
+
+    }
+
+
+    /* Previous */
+
+    if(index === 0){
+
+        previousDate =
+        prayerDate(
+            timings.Isha
+        );
+
+        previousDate.setDate(
+            previousDate.getDate()-1
+        );
+
+    }
+
+    else{
+
+        previousDate =
+        prayerDate(
+            timings[
+                names[index-1]
+            ]
+        );
+
+    }
+
+
+    const remaining =
+    nextDate.getTime()
+    -
+    now.getTime();
+
+
+    if(remaining <= 0){
+
+        loadPrayerTimes();
+
+        return;
+
+    }
+
+
+    const totalSeconds =
+    Math.floor(
+        remaining / 1000
+    );
+
+
+    const hours =
+    Math.floor(
+        totalSeconds / 3600
+    );
+
+
+    const minutes =
+    Math.floor(
+        (totalSeconds % 3600)/60
+    );
+
+
+    const seconds =
+    totalSeconds % 60;
+
+
+    setText(
+        "countdown",
+
+        bnNumber(
+            String(hours)
+            .padStart(2,"0")
+        )
+        +
+        ":"
+        +
+        bnNumber(
+            String(minutes)
+            .padStart(2,"0")
+        )
+        +
+        ":"
+        +
+        bnNumber(
+            String(seconds)
+            .padStart(2,"0")
+        )
+    );
+
+
+    setText(
+        "nextPrayer",
+        bengaliNames[next]
+    );
+
+
+    setText(
+        "startTime",
+        bnTime(
+            formatTime(previousDate)
+        )
+    );
+
+
+    setText(
+        "endTime",
+        bnTime(
+            formatTime(nextDate)
+        )
+    );
+
+
+    const total =
+    nextDate - previousDate;
+
+
+    const elapsed =
+    now - previousDate;
+
+
+    const percent =
+    Math.max(
+        0,
+        Math.min(
+            100,
+            (elapsed/total)*100
+        )
+    );
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+    percent+"%";
+
+
+    setText(
+        "running",
+
+        "সময় চলছে: "
+        +
+        bnDuration(elapsed)
+        +
+        "  •  বাকি: "
+        +
+        bnDuration(remaining)
+    );
+
+
+    highlightCurrentPrayer();
+
+    checkAzan();
+
+}
+
+
+/* =========================================
+        CURRENT PRAYER
+========================================= */
+
+function highlightCurrentPrayer(){
+
+    document
+    .querySelectorAll(
+        ".prayer-row"
+    )
+    .forEach(
+        row =>
+        row.classList.remove(
+            "active"
+        )
+    );
+
+
+    const now =
+    new Date();
+
+
+    const current =
+    now.getHours()*60
+    +
+    now.getMinutes();
+
+
+    const list = [
+
+        [
+            "Fajr",
+            timings.Fajr,
+            timings.Sunrise
+        ],
+
+        [
+            "Dhuhr",
+            timings.Dhuhr,
+            timings.Asr
+        ],
+
+        [
+            "Asr",
+            timings.Asr,
+            timings.Sunset
+        ],
+
+        [
+            "Maghrib",
+            timings.Maghrib,
+            timings.Isha
+        ]
+
+    ];
+
+
+    list.forEach(
+        item=>{
+
+            const start =
+            toMinutes(
+                clean(item[1])
+            );
+
+
+            const end =
+            toMinutes(
+                clean(item[2])
+            );
+
+
+            if(
+                current >= start &&
+                current < end
+            ){
+
+                const row =
+                document.getElementById(
+                    "row-"+item[0]
+                );
+
+
+                if(row){
+
+                    row.classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /* ইশা */
+
+    const ishaStart =
+    toMinutes(
+        clean(timings.Isha)
+    );
+
+
+    if(current >= ishaStart){
+
+        document.getElementById(
+            "row-Isha"
+        ).classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+             MAKRUH TIME
+========================================= */
+
+function updateMakruh(){
+
+    if(
+        !timings.Sunrise ||
+        !timings.Dhuhr ||
+        !timings.Sunset
+    ){
+
+        return;
+
+    }
+
+
+    const sunrise =
+    prayerDate(
+        timings.Sunrise
+    );
+
+
+    const dhuhr =
+    prayerDate(
+        timings.Dhuhr
+    );
+
+
+    const sunset =
+    prayerDate(
+        timings.Sunset
+    );
+
+
+    /* ১৫ মিনিট */
+
+    const sunriseEnd =
+    new Date(
+        sunrise.getTime()
+        +
+        15*60000
+    );
+
+
+    /* যওয়াল সতর্ক interval */
+
+    const zawalStart =
+    new Date(
+        dhuhr.getTime()
+        -
+        5*60000
+    );
+
+
+    /* সূর্যাস্তের ১৫ মিনিট */
+
+    const sunsetStart =
+    new Date(
+        sunset.getTime()
+        -
+        15*60000
+    );
+
+
+    setText(
+        "makruh1",
+
+        bnTime(
+            formatTime(sunrise)
+        )
+        +
+        " – "
+        +
+        bnTime(
+            formatTime(sunriseEnd)
+        )
+    );
+
+
+    setText(
+        "makruh2",
+
+        bnTime(
+            formatTime(zawalStart)
+        )
+        +
+        " – "
+        +
+        bnTime(
+            formatTime(dhuhr)
+        )
+    );
+
+
+    setText(
+        "makruh3",
+
+        bnTime(
+            formatTime(sunsetStart)
+        )
+        +
+        " – "
+        +
+        bnTime(
+            formatTime(sunset)
+        )
+    );
+
+}
+
+
+/* =========================================
+                 JUMUAH
+========================================= */
+
+function updateJumuah(){
+
+    const today =
+    new Date();
+
+
+    if(
+        today.getDay() === 5
+    ){
+
+        setText(
+            "jumuahTime",
+
+            "জুমু'আ: "
+            +
+            bnTime(
+                clean(timings.Dhuhr)
+            )
+
+        );
+
+    }
+
+    else{
+
+        setText(
+            "jumuahTime",
+
+            "শুক্রবার: "
+            +
+            bnTime(
+                clean(timings.Dhuhr)
+            )
+            +
+            " থেকে"
+
+        );
+
+    }
+
+}
+
+
+/* =========================================
+                 AZAN
+========================================= */
+
+async function enableAzan(){
+
+    if(
+        !("Notification" in window)
+    ){
+
+        alert(
+            "আপনার Browser notification support করে না।"
+        );
+
+        return;
+
+    }
+
+
+    const permission =
+    await Notification.requestPermission();
+
+
+    if(
+        permission !== "granted"
+    ){
+
+        alert(
+            "Notification permission দিন।"
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "azanEnabled",
+        "yes"
+    );
+
+
+    if(
+        "serviceWorker"
+        in navigator
+    ){
+
+        const registration =
+        await navigator.serviceWorker.ready;
+
+
+        registration.showNotification(
+            "🕌 নূর ইসলামিক অ্যাপ",
+            {
+
+                body:
+                "আজানের notification চালু হয়েছে।",
+
+                icon:
+                "icon-192.png",
+
+                tag:
+                "azan-test"
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================
+             AZAN CHECK
+========================================= */
+
+function checkAzan(){
+
+    if(
+        localStorage.getItem(
+            "azanEnabled"
+        )
+        !==
+        "yes"
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        Notification.permission
+        !==
+        "granted"
+    ){
+
+        return;
+
+    }
+
+
+    const now =
+    new Date();
+
+
+    const current =
+    String(
+        now.getHours()
+    )
+    +
+    ":"
+    +
+    String(
+        now.getMinutes()
+    ).padStart(2,"0");
+
+
+    const prayers = [
+
+        ["Fajr","ফজর"],
+
+        ["Dhuhr","যোহর"],
+
+        ["Asr","আসর"],
+
+        ["Maghrib","মাগরিব"],
+
+        ["Isha","ইশা"]
+
+    ];
+
+
+    prayers.forEach(
+        prayer=>{
+
+            const time =
+            clean(
+                timings[
+                    prayer[0]
+                ]
+            );
+
+
+            const key =
+            now.toDateString()
+            +
+            prayer[0];
+
+
+            if(
+                time === current
+                &&
+                !notified[key]
+            ){
+
+                notified[key] =
+                true;
+
+
+                showAzan(
+                    prayer[1]
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+async function showAzan(name){
+
+    if(
+        Notification.permission
+        !==
+        "granted"
+    ){
+
+        return;
+
+    }
+
+
+    const registration =
+    await navigator.serviceWorker.ready;
+
+
+    registration.showNotification(
+        "🕌 আজানের সময়",
+        {
+
+            body:
+            name+
+            " নামাজের সময় হয়েছে।",
+
+            icon:
+            "icon-192.png",
+
+            tag:
+            "azan-"+name,
+
+            vibrate:[
+                300,
+                100,
+                300,
+                100,
+                600
+            ]
+
+        }
+    );
+
+}
+
+
+/* =========================================
+               LOCATION
+========================================= */
+
+function openLocation(){
+
+    /* calendar বন্ধ */
+
+    document
+    .getElementById(
+        "calendarPage"
+    )
+    .classList.remove(
+        "show"
+    );
+
+
+    /* home চালু */
+
+    document
+    .getElementById(
+        "homePage"
+    )
+    .style.display =
+    "block";
+
+
+    document
+    .getElementById(
+        "locationPanel"
+    )
+    .classList.add(
+        "show"
+    );
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function getGPS(){
+
+    if(
+        !navigator.geolocation
+    ){
+
+        alert(
+            "এই Browser-এ GPS নেই।"
+        );
+
+        return;
+
+    }
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        async function(position){
+
+            latitude =
+            position.coords.latitude;
+
+
+            longitude =
+            position.coords.longitude;
+
+
+            city =
+            "GPS এলাকা";
+
+
+            localStorage.setItem(
+                "latitude",
+                latitude
+            );
+
+
+            localStorage.setItem(
+                "longitude",
+                longitude
+            );
+
+
+            localStorage.setItem(
+                "city",
+                city
+            );
+
+
+            updateLocation();
+
+            await loadPrayerTimes();
+
+
+            document
+            .getElementById(
+                "locationPanel"
+            )
+            .classList.remove(
+                "show"
+            );
+
+        },
+
+        function(){
+
+            alert(
+                "GPS permission দিন।"
+            );
+
+        },
+
+        {
+
+            enableHighAccuracy:true,
+
+            timeout:10000,
+
+            maximumAge:0
+
+        }
+
+    );
+
+}
+
+
+async function saveCity(){
+
+    const input =
+    document.getElementById(
+        "cityInput"
+    );
+
+
+    const name =
+    input.value.trim();
+
+
+    if(!name){
+
+        alert(
+            "এলাকার নাম লিখুন।"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const response =
+        await fetch(
+
+        "https://nominatim.openstreetmap.org/search"
+        +
+        "?format=json"
+        +
+        "&limit=1"
+        +
+        "&accept-language=bn"
+        +
+        "&q="
+        +
+        encodeURIComponent(name)
+
+        );
+
+
+        const data =
+        await response.json();
+
+
+        if(!data.length){
+
+            alert(
+                "এলাকা পাওয়া যায়নি।"
+            );
+
+            return;
+
+        }
+
+
+        latitude =
+        Number(
+            data[0].lat
+        );
+
+
+        longitude =
+        Number(
+            data[0].lon
+        );
+
+
+        city =
+        name;
+
+
+        localStorage.setItem(
+            "latitude",
+            latitude
+        );
+
+
+        localStorage.setItem(
+            "longitude",
+            longitude
+        );
+
+
+        localStorage.setItem(
+            "city",
+            city
+        );
+
+
+        updateLocation();
+
+        await loadPrayerTimes();
+
+
+        document
+        .getElementById(
+            "locationPanel"
+        )
+        .classList.remove(
+            "show"
+        );
+
+    }
+
+    catch(error){
+
+        alert(
+            "এলাকা সেট করা যায়নি।"
+        );
+
+    }
+
+}
+
+
+function updateLocation(){
+
+    setText(
+        "locationName",
+        city
+    );
+
+}
+
+
+/* =========================================
+              PWA
+========================================= */
+
+function registerSW(){
+
+    if(
+        "serviceWorker"
+        in navigator
+    ){
+
+        navigator.serviceWorker
+        .register(
+            "sw.js"
+        )
+        .then(
+            function(){
+
+                console.log(
+                    "Service Worker চালু"
+                );
+
+            }
+        )
+        .catch(
+            function(error){
+
+                console.error(
+                    error
+                );
+
+            }
+        );
+
+    }
+
+}
+
+
+window.addEventListener(
+"beforeinstallprompt",
+function(event){
+
+    event.preventDefault();
+
+    installPrompt =
+    event;
+
+
+    document
+    .getElementById(
+        "installBox"
+    )
+    .classList.add(
+        "show"
+    );
+
+});
+
+
+async function installApp(){
+
+    if(!installPrompt){
+
+        alert(
+            "Chrome menu থেকে 'Add to Home screen' ব্যবহার করুন।"
+        );
+
+        return;
+
+    }
+
+
+    installPrompt.prompt();
+
+
+    await installPrompt.userChoice;
+
+
+    installPrompt = null;
+
+
+    document
+    .getElementById(
+        "installBox"
+    )
+    .classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =========================================
+              CALENDAR
+========================================= */
+
+let calendarYear =
+new Date().getFullYear();
+
+
+let calendarMonth =
+new Date().getMonth();
+
+
+const banglaMonths = [
+
+    "জানুয়ারি",
+    "ফেব্রুয়ারি",
+    "মার্চ",
+    "এপ্রিল",
+    "মে",
+    "জুন",
+    "জুলাই",
+    "আগস্ট",
+    "সেপ্টেম্বর",
+    "অক্টোবর",
+    "নভেম্বর",
+    "ডিসেম্বর"
+
+];
+
+
+const hijriMonths = {
+
+    "Muharram":"মুহররম",
+
+    "Safar":"সফর",
+
+    "Rabi al-Awwal":
+    "রবিউল আউয়াল",
+
+    "Rabi al-Thani":
+    "রবিউস সানি",
+
+    "Jumada al-Awwal":
+    "জমাদিউল আউয়াল",
+
+    "Jumada al-Thani":
+    "জমাদিউস সানি",
+
+    "Rajab":"রজব",
+
+    "Sha'ban":"শাবান",
+
+    "Ramadan":"রমজান",
+
+    "Shawwal":"শাওয়াল",
+
+    "Dhu al-Qidah":
+    "জিলকদ",
+
+    "Dhu al-Hijjah":
+    "জিলহজ"
+
+};
+
+
+function setupCalendar(){
+
+    const month =
+    document.getElementById(
+        "monthSelect"
+    );
+
+
+    const year =
+    document.getElementById(
+        "yearSelect"
+    );
+
+
+    month.innerHTML = "";
+
+
+    banglaMonths.forEach(
+        function(name,index){
+
+            const option =
+            document.createElement(
+                "option"
+            );
+
+
+            option.value =
+            index;
+
+
+            option.textContent =
+            name;
+
+
+            month.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    year.innerHTML = "";
+
+
+    for(
+        let y=2024;
+        y<=2035;
+        y++
+    ){
+
+        const option =
+        document.createElement(
+            "option"
+        );
+
+
+        option.value =
+        y;
+
+
+        option.textContent =
+        bnNumber(
+            String(y)
+        );
+
+
+        year.appendChild(
+            option
+        );
+
+    }
+
+
+    month.value =
+    calendarMonth;
+
+
+    year.value =
+    calendarYear;
+
+}
+
+
+function openCalendar(){
+
+    document
+    .getElementById(
+        "homePage"
+    )
+    .style.display =
+    "none";
+
+
+    document
+    .getElementById(
+        "calendarPage"
+    )
+    .classList.add(
+        "show"
+    );
+
+
+    document
+    .getElementById(
+        "homeNav"
+    )
+    .classList.remove(
+        "active"
+    );
+
+
+    document
+    .getElementById(
+        "calendarNav"
+    )
+    .classList.add(
+        "active"
+    );
+
+
+    setupCalendar();
+
+    loadCalendar();
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function closeCalendar(){
+
+    document
+    .getElementById(
+        "calendarPage"
+    )
+    .classList.remove(
+        "show"
+    );
+
+
+    document
+    .getElementById(
+        "homePage"
+    )
+    .style.display =
+    "block";
+
+
+    document
+    .getElementById(
+        "calendarNav"
+    )
+    .classList.remove(
+        "active"
+    );
+
+
+    document
+    .getElementById(
+        "homeNav"
+    )
+    .classList.add(
+        "active"
+    );
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function home(){
+
+    closeCalendar();
+
+}
+
+
+/* =========================================
+          CALENDAR CHANGE
+========================================= */
+
+function changeCalendar(){
+
+    calendarMonth =
+    Number(
+        document.getElementById(
+            "monthSelect"
+        ).value
+    );
+
+
+    calendarYear =
+    Number(
+        document.getElementById(
+            "yearSelect"
+        ).value
+    );
+
+
+    loadCalendar();
+
+}
+
+
+/* =========================================
+            LOAD CALENDAR
+========================================= */
+
+async function loadCalendar(){
+
+    const box =
+    document.getElementById(
+        "calendarDays"
+    );
+
+
+    box.innerHTML = `
+
+        <div style="
+        text-align:center;
+        padding:40px;
+        color:#078f70;
+        font-size:18px;
+        ">
+
+        ক্যালেন্ডার লোড হচ্ছে...
+
+        </div>
+
+    `;
+
+
+    try{
+
+        const month =
+        String(
+            calendarMonth+1
+        ).padStart(2,"0");
+
+
+        const url =
+        `https://api.aladhan.com/v1/calendar/${calendarYear}/${month}?latitude=${latitude}&longitude=${longitude}&method=${METHOD}&school=${SCHOOL}`;
+
+
+        const response =
+        await fetch(url);
+
+
+        const json =
+        await response.json();
+
+
+        if(
+            json.code !== 200
+        ){
+
+            throw new Error(
+                "Calendar error"
+            );
+
+        }
+
+
+        renderCalendar(
+            json.data
+        );
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+
+        box.innerHTML = `
+
+            <div style="
+            text-align:center;
+            padding:35px;
+            color:#a55;
+            ">
+
+            ক্যালেন্ডার লোড করা যায়নি।
+            <br><br>
+            ইন্টারনেট সংযোগ পরীক্ষা করুন।
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================
+            RENDER CALENDAR
+========================================= */
+
+function renderCalendar(days){
+
+    const box =
+    document.getElementById(
+        "calendarDays"
+    );
+
+
+    box.innerHTML = "";
+
+
+    const today =
+    new Date();
+
+
+    days.forEach(
+        function(day,index){
+
+            const g =
+            day.date.gregorian;
+
+
+            const h =
+            day.date.hijri;
+
+
+            const date =
+            new Date(
+                calendarYear,
+                calendarMonth,
+                index+1
+            );
+
+
+            const isToday =
+
+            today.getFullYear()
+            ===
+            calendarYear
+
+            &&
+
+            today.getMonth()
+            ===
+            calendarMonth
+
+            &&
+
+            today.getDate()
+            ===
+            index+1;
+
+
+            const t =
+            day.timings;
+
+
+            const fajr =
+            clean(t.Fajr);
+
+
+            const dhuhr =
+            clean(t.Dhuhr);
+
+
+            const asr =
+            clean(t.Asr);
+
+
+            const maghrib =
+            clean(t.Maghrib);
+
+
+            const isha =
+            clean(t.Isha);
+
+
+            const sunrise =
+            clean(t.Sunrise);
+
+
+            const sunset =
+            clean(t.Sunset);
+
+
+            /* =====================
+                 MAKRUH
+            ===================== */
+
+
+            const sunriseDate =
+            makeDate(
+                sunrise,
+                date
+            );
+
+
+            const dhuhrDate =
+            makeDate(
+                dhuhr,
+                date
+            );
+
+
+            const sunsetDate =
+            makeDate(
+                sunset,
+                date
+            );
+
+
+            const sunriseEnd =
+            new Date(
+                sunriseDate.getTime()
+                +
+                15*60000
+            );
+
+
+            const zawalStart =
+            new Date(
+                dhuhrDate.getTime()
+                -
+                5*60000
+            );
+
+
+            const sunsetStart =
+            new Date(
+                sunsetDate.getTime()
+                -
+                15*60000
+            );
+
+
+            /* =====================
+                 JUMUAH
+            ===================== */
+
+
+            const isFriday =
+            date.getDay() === 5;
+
+
+            const secondName =
+            isFriday
+            ?
+            "জুমু'আ"
+            :
+            "যোহর";
+
+
+            const card =
+            document.createElement(
+                "div"
+            );
+
+
+            card.className =
+            "calendar-day";
+
+
+            card.style.animationDelay =
+            (
+                index*0.025
+            )
+            +
+            "s";
+
+
+            card.innerHTML = `
+
+            <div class="day-head">
+
+
+                <div class="day-date">
+
+                    ${bnNumber(g.day)}
+                    ${banglaMonths[calendarMonth]},
+                    ${bnNumber(g.year)}
+                    -
+                    ${banglaWeekday(
+                        date.getDay()
+                    )}
+
+                    ${
+                        isToday
+
+                        ?
+
+                        `<span class="today-badge">
+                            আজ
+                        </span>`
+
+                        :
+
+                        ""
+
+                    }
+
+                </div>
+
+
+                <div class="day-hijri">
+
+                    ${bnNumber(h.day)}
+                    ${hijriMonths[h.month.en] || h.month.en}
+                    ${bnNumber(h.year)}
+
+                    •
+                    ${bnNumber(g.day)}
+                    ${banglaMonths[calendarMonth]}
+
+                </div>
+
+
+                <button
+                class="share-btn"
+                onclick="shareDay('${g.date}')">
+
+                    ↗
+
+                </button>
+
+
+            </div>
+
+
+            <div class="day-content">
+
+
+                <!-- FIVE PRAYER -->
+
+                <div class="calendar-prayers">
+
+
+                    <div class="cal-prayer">
+
+                        <div class="cal-name">
+                            ফজর
+                        </div>
+
+                        <div class="cal-time">
+                            ${bnTime(fajr)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="cal-prayer">
+
+                        <div class="cal-name">
+                            ${secondName}
+                        </div>
+
+                        <div class="cal-time">
+                            ${bnTime(dhuhr)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="cal-prayer">
+
+                        <div class="cal-name">
+                            আসর
+                        </div>
+
+                        <div class="cal-time">
+                            ${bnTime(asr)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="cal-prayer">
+
+                        <div class="cal-name">
+                            মাগরিব
+                        </div>
+
+                        <div class="cal-time">
+                            ${bnTime(maghrib)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="cal-prayer">
+
+                        <div class="cal-name">
+                            ইশা
+                        </div>
+
+                        <div class="cal-time">
+                            ${bnTime(isha)}
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- SUN / SAHRI -->
+
+                <div class="extra-times">
+
+
+                    <div class="extra-box">
+
+
+                        <div class="extra-item">
+
+                            <span>
+                                সূর্যোদয়
+                            </span>
+
+                            <b class="extra-time">
+
+                                ${bnTime(sunrise)}
+
+                            </b>
+
+                        </div>
+
+
+                        <div class="extra-item">
+
+                            <span>
+                                সূর্যাস্ত
+                            </span>
+
+                            <b class="extra-time">
+
+                                ${bnTime(sunset)}
+
+                            </b>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="extra-box">
+
+
+                        <div class="extra-item">
+
+                            <span>
+                                সাহরি
+                            </span>
+
+                            <b class="extra-time">
+
+                                ${bnTime(fajr)}
+
+                            </b>
+
+                        </div>
+
+
+                        <div class="extra-item">
+
+                            <span>
+                                ইফতার
+                            </span>
+
+                            <b class="extra-time">
+
+                                ${bnTime(maghrib)}
+
+                            </b>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- MAKRUH -->
+
+                <div class="
+                calendar-makruh-title
+                ">
+
+                    সালাতের নিষিদ্ধ সময়
+
+                </div>
+
+
+                <div class="calendar-makruh">
+
+
+                    <div class="cal-makruh">
+
+                        <div class="makruh-label">
+                            সকাল
+                        </div>
+
+                        <div class="makruh-range">
+
+                            ${bnTime(
+                                formatTime(
+                                    sunriseDate
+                                )
+                            )}
+
+                            –
+
+                            ${bnTime(
+                                formatTime(
+                                    sunriseEnd
+                                )
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="cal-makruh">
+
+                        <div class="makruh-label">
+                            দুপুর
+                        </div>
+
+                        <div class="makruh-range">
+
+                            ${bnTime(
+                                formatTime(
+                                    zawalStart
+                                )
+                            )}
+
+                            –
+
+                            ${bnTime(
+                                formatTime(
+                                    dhuhrDate
+                                )
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="cal-makruh">
+
+                        <div class="makruh-label">
+                            সন্ধ্যা
+                        </div>
+
+                        <div class="makruh-range">
+
+                            ${bnTime(
+                                formatTime(
+                                    sunsetStart
+                                )
+                            )}
+
+                            –
+
+                            ${bnTime(
+                                formatTime(
+                                    sunsetDate
+                                )
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            `;
+
+
+            box.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+              SHARE
+========================================= */
+
+async function shareDay(date){
+
+    const text =
+    "নূর ইসলামিক অ্যাপ\n"
+    +
+    "নামাজের সময়\n"
+    +
+    date;
+
+
+    if(
+        navigator.share
+    ){
+
+        try{
+
+            await navigator.share({
+
+                title:
+                "নূর ইসলামিক অ্যাপ",
+
+                text:text
+
+            });
+
+        }
+
+        catch(e){}
+
+    }
+
+    else{
+
+        alert(text);
+
+    }
+
+}
+
+
+/* =========================================
+              HELPERS
+========================================= */
+
+function clean(time){
+
+    return String(time)
+    .split(" ")[0]
+    .substring(0,5);
+
+}
+
+
+function toMinutes(time){
+
+    const p =
+    time.split(":");
+
+
+    return (
+        Number(p[0])*60
+        +
+        Number(p[1])
+    );
+
+}
+
+
+function prayerDate(time){
+
+    const d =
+    new Date();
+
+
+    const parts =
+    clean(time)
+    .split(":");
+
+
+    d.setHours(
+        Number(parts[0]),
+        Number(parts[1]),
+        0,
+        0
+    );
+
+
+    return d;
+
+}
+
+
+function makeDate(time,date){
+
+    const d =
+    new Date(date);
+
+
+    const parts =
+    clean(time)
+    .split(":");
+
+
+    d.setHours(
+        Number(parts[0]),
+        Number(parts[1]),
+        0,
+        0
+    );
+
+
+    return d;
+
+}
+
+
+function formatTime(date){
+
+    return (
+
+        String(
+            date.getHours()
+        ).padStart(2,"0")
+
+        +
+
+        ":"
+
+        +
+
+        String(
+            date.getMinutes()
+        ).padStart(2,"0")
+
+    );
+
+}
+
+
+function bnNumber(value){
+
+    const en =
+    "0123456789";
+
+
+    const bn =
+    "০১২৩৪৫৬৭৮৯";
+
+
+    return String(value)
+    .split("")
+    .map(
+        function(x){
+
+            const i =
+            en.indexOf(x);
+
+
+            return i >= 0
+            ? bn[i]
+            : x;
+
+        }
+    )
+    .join("");
+
+}
+
+
+function bnTime(time){
+
+    return bnNumber(
+        time
+    );
+
+}
+
+
+function bnDuration(ms){
+
+    const total =
+    Math.floor(
+        ms/1000
+    );
+
+
+    const h =
+    Math.floor(
+        total/3600
+    );
+
+
+    const m =
+    Math.floor(
+        (total%3600)/60
+    );
+
+
+    const s =
+    total%60;
+
+
+    return (
+
+        bnNumber(
+            String(h)
+            .padStart(2,"0")
+        )
+
+        +
+
+        ":"
+
+        +
+
+        bnNumber(
+            String(m)
+            .padStart(2,"0")
+        )
+
+        +
+
+        ":"
+
+        +
+
+        bnNumber(
+            String(s)
+            .padStart(2,"0")
+        )
+
+    );
+
+}
+
+
+function banglaMonth(index){
+
+    return banglaMonths[
+        index
+    ] || "";
+
+}
+
+
+function banglaWeekday(day){
+
+    const names = [
+
+        "রবিবার",
+        "সোমবার",
+        "মঙ্গলবার",
+        "বুধবার",
+        "বৃহস্পতিবার",
+        "শুক্রবার",
+        "শনিবার"
+
+    ];
+
+
+    return names[day];
+
+}
+
+
+function setText(id,text){
+
+    const el =
+    document.getElementById(id);
+
+
+    if(el){
+
+        el.textContent =
+        text;
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

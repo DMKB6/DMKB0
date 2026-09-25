@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Advanced Ripple Notepad</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#050b14;
+    --panel:rgba(255,255,255,.07);
+    --panel2:rgba(0,0,0,.22);
+    --border:rgba(255,255,255,.12);
+    --text:#fff;
+    --muted:rgba(255,255,255,.45);
+    --accent:#32c7ff;
+}
+
+body.light{
+    --bg:#edf4f8;
+    --panel:rgba(255,255,255,.75);
+    --panel2:rgba(255,255,255,.6);
+    --border:rgba(0,0,0,.12);
+    --text:#10202c;
+    --muted:rgba(16,32,44,.5);
+    --accent:#008ed3;
+}
+
+body{
+    min-height:100vh;
+    padding:15px;
+
+    font-family:Arial,sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(0,150,255,.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(60,80,255,.14),
+            transparent 35%
+        ),
+        var(--bg);
+
+    color:var(--text);
+
+    transition:.3s;
+}
+
+
+/* =========================
+   APP
+========================= */
+
+.app{
+    width:100%;
+    max-width:1150px;
+
+    height:calc(100vh - 30px);
+
+    margin:auto;
+
+    display:flex;
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+        0 0 45px rgba(0,160,255,.15);
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:290px;
+    min-width:290px;
+
+    display:flex;
+    flex-direction:column;
+
+    background:var(--panel2);
+
+    border-right:1px solid var(--border);
+}
+
+.side-top{
+    padding:18px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    font-size:23px;
+    font-weight:bold;
+
+    margin-bottom:15px;
+}
+
+.logo span{
+    color:var(--accent);
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search{
+    width:100%;
+
+    padding:12px 14px;
+
+    border:none;
+    outline:none;
+
+    border-radius:12px;
+
+    background:rgba(128,128,128,.12);
+
+    border:1px solid var(--border);
+
+    color:var(--text);
+}
+
+.search::placeholder{
+    color:var(--muted);
+}
+
+
+/* =========================
+   NEW BUTTON
+========================= */
+
+.new-btn{
+    width:100%;
+
+    margin-top:10px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:rgba(0,170,255,.18);
+
+    border:1px solid rgba(0,190,255,.35);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.25s;
+}
+
+.new-btn:hover{
+    transform:translateY(-2px);
+
+    background:rgba(0,170,255,.3);
+}
+
+
+/* =========================
+   NOTES LIST
+========================= */
+
+.notes-list{
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:10px;
+}
+
+
+/* =========================
+   NOTE ITEM
+========================= */
+
+.note-item{
+    position:relative;
+
+    padding:13px;
+
+    margin-bottom:8px;
+
+    border-radius:13px;
+
+    cursor:pointer;
+
+    border:1px solid transparent;
+
+    background:rgba(128,128,128,.07);
+
+    transition:.25s;
+
+    overflow:hidden;
+}
+
+.note-item:hover{
+    background:rgba(128,128,128,.14);
+}
+
+.note-item.active{
+    background:rgba(0,170,255,.15);
+
+    border-color:
+        rgba(0,190,255,.35);
+}
+
+
+/* =========================
+   NOTE TEXT
+========================= */
+
+.note-title{
+    padding-right:45px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.note-preview{
+    margin-top:6px;
+
+    font-size:11px;
+
+    color:var(--muted);
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.note-date{
+    margin-top:7px;
+
+    font-size:9px;
+
+    color:var(--muted);
+}
+
+
+/* =========================
+   BADGES
+========================= */
+
+.badges{
+    position:absolute;
+
+    right:42px;
+    bottom:9px;
+
+    font-size:12px;
+}
+
+
+/* =========================
+   DELETE BUTTON
+========================= */
+
+.delete-note{
+
+    position:absolute;
+
+    right:7px;
+    top:7px;
+
+    width:28px;
+    height:28px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:rgba(255,60,80,.12);
+
+    color:#ff7180;
+
+    cursor:pointer;
+
+    opacity:1;
+
+    z-index:20;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.2s;
+
+}
+
+.delete-note:hover{
+
+    background:rgba(255,60,80,.28);
+
+    transform:scale(1.08);
+
+}
+
+
+/* =========================
+   DELETE ANIMATION
+========================= */
+
+.note-item.deleting{
+
+    animation:
+        deleteNoteAnimation
+        .45s
+        ease
+        forwards;
+
+    pointer-events:none;
+}
+
+@keyframes deleteNoteAnimation{
+
+    0%{
+        opacity:1;
+
+        transform:
+            translateX(0)
+            scale(1);
+
+        max-height:120px;
+    }
+
+    50%{
+        opacity:.5;
+
+        transform:
+            translateX(25px)
+            scale(.96);
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+            translateX(120px)
+            scale(.7);
+
+        max-height:0;
+
+        margin-bottom:0;
+
+        padding-top:0;
+
+        padding-bottom:0;
+    }
+
+}
+
+
+/* =========================
+   EDITOR
+========================= */
+
+.editor{
+
+    flex:1;
+
+    min-width:0;
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+
+/* =========================
+   EDITOR HEADER
+========================= */
+
+.editor-header{
+
+    padding:15px 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.title-input{
+
+    flex:1;
+
+    min-width:0;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:var(--text);
+
+    font-size:21px;
+
+    font-weight:bold;
+}
+
+.title-input::placeholder{
+    color:var(--muted);
+}
+
+.save-status{
+
+    font-size:11px;
+
+    color:var(--accent);
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.toolbar{
+
+    padding:10px 15px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:6px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.tool{
+
+    min-width:35px;
+
+    height:34px;
+
+    padding:0 9px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:
+        rgba(128,128,128,.12);
+
+    border:
+        1px solid var(--border);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.2s;
+}
+
+.tool:hover{
+
+    background:
+        rgba(0,170,255,.2);
+}
+
+
+select{
+
+    height:34px;
+
+    border-radius:8px;
+
+    padding:0 8px;
+
+    border:
+        1px solid var(--border);
+
+    background:var(--panel2);
+
+    color:var(--text);
+
+    outline:none;
+}
+
+input[type="color"]{
+
+    width:38px;
+
+    height:34px;
+
+    padding:3px;
+
+    border-radius:8px;
+
+    border:
+        1px solid var(--border);
+
+    background:transparent;
+}
+
+
+/* =========================
+   EDITOR BODY
+========================= */
+
+.editor-body{
+
+    flex:1;
+
+    padding:15px;
+
+    min-height:0;
+}
+
+.rich-editor{
+
+    width:100%;
+
+    height:100%;
+
+    overflow-y:auto;
+
+    outline:none;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:
+        rgba(0,0,0,.15);
+
+    border:
+        1px solid var(--border);
+
+    color:var(--text);
+
+    line-height:1.7;
+
+    font-size:16px;
+}
+
+body.light .rich-editor{
+
+    background:
+        rgba(255,255,255,.45);
+}
+
+.rich-editor:empty:before{
+
+    content:
+        "Start writing your note...";
+
+    color:var(--muted);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.editor-footer{
+
+    padding:10px 18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:10px;
+
+    color:var(--muted);
+
+    border-top:
+        1px solid var(--border);
+}
+
+
+/* =========================
+   RIPPLE
+========================= */
+
+.ripple{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    transform:scale(0);
+
+    animation:
+        ripple
+        .6s
+        linear;
+
+    background:
+        rgba(255,255,255,.55);
+
+    pointer-events:none;
+
+    z-index:100;
+}
+
+@keyframes ripple{
+
+    to{
+
+        transform:scale(4);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    color:var(--muted);
+}
+
+.empty-icon{
+
+    font-size:60px;
+
+    margin-bottom:15px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:750px){
+
+    body{
+        padding:0;
+    }
+
+    .app{
+
+        height:100vh;
+
+        border-radius:0;
+    }
+
+    .sidebar{
+
+        width:85px;
+
+        min-width:85px;
+    }
+
+    .logo{
+
+        font-size:0;
+
+        text-align:center;
+    }
+
+    .logo:before{
+
+        content:"📝";
+
+        font-size:25px;
+    }
+
+    .search{
+
+        padding:10px 4px;
+
+        font-size:0;
+
+        text-align:center;
+    }
+
+    .new-btn{
+
+        font-size:0;
+
+        padding:12px 5px;
+    }
+
+    .new-btn:before{
+
+        content:"+";
+
+        font-size:23px;
+    }
+
+    .note-item{
+
+        padding:11px 6px;
+
+        text-align:center;
+    }
+
+    .note-title{
+
+        padding:0;
+
+        font-size:10px;
+    }
+
+    .note-preview,
+    .note-date{
+
+        display:none;
+    }
+
+    .badges{
+
+        position:static;
+
+        margin-top:4px;
+    }
+
+    /* Delete button mobile-এও থাকবে */
+
+    .delete-note{
+
+        width:24px;
+
+        height:24px;
+
+        right:4px;
+
+        top:4px;
+
+        font-size:11px;
+    }
+
+    .editor-header{
+
+        padding:12px;
+    }
+
+    .title-input{
+
+        font-size:17px;
+    }
+
+    .toolbar{
+
+        overflow-x:auto;
+
+        flex-wrap:nowrap;
+
+        padding:8px;
+    }
+
+    .tool{
+
+        flex-shrink:0;
+    }
+
+    .editor-body{
+
+        padding:10px;
+    }
+
+    .rich-editor{
+
+        font-size:15px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- ======================
+         SIDEBAR
+    ======================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="side-top">
+
+
+            <div class="logo">
+
+                <span>My</span> Notepad
+
+            </div>
+
+
+            <input
+                id="search"
+                class="search"
+                placeholder="Search notes..."
+            >
+
+
+            <button
+                class="new-btn"
+                onclick="createNote(event)"
+            >
+
+                ＋ New Note
+
+            </button>
+
+
+        </div>
+
+
+        <div
+            id="notesList"
+            class="notes-list"
+        ></div>
+
+
+    </aside>
+
+
+    <!-- ======================
+         EDITOR
+    ======================= -->
+
+    <main class="editor">
+
+
+        <div
+            id="editorContent"
+            style="
+                height:100%;
+                display:flex;
+                flex-direction:column;
+            "
+        >
+
+
+            <div class="empty">
+
+                <div>
+
+                    <div class="empty-icon">
+                        📝
+                    </div>
+
+                    <h2>
+                        Select a note
+                    </h2>
+
+                    <p style="margin-top:8px;">
+                        Create or select a note.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+
+<script>
+
+/* ==========================
+   DATA
+========================== */
+
+let notes =
+    JSON.parse(
+        localStorage.getItem(
+            "level3Notes"
+        )
+    ) || [];
+
+let currentNote = null;
+
+
+/* ==========================
+   LOAD
+========================== */
+
+if(notes.length){
+
+    currentNote =
+        notes[0].id;
+
+    renderNotes();
+
+    openNote(currentNote);
+
+}else{
+
+    renderNotes();
+
+}
+
+
+/* ==========================
+   CREATE NOTE
+========================== */
+
+function createNote(event){
+
+    ripple(event);
+
+
+    const note = {
+
+        id:Date.now(),
+
+        title:"New Note",
+
+        content:"",
+
+        favorite:false,
+
+        pinned:false,
+
+        updated:
+            new Date()
+            .toLocaleString()
+
+    };
+
+
+    notes.unshift(note);
+
+
+    saveAll();
+
+
+    currentNote =
+        note.id;
+
+
+    renderNotes();
+
+
+    openNote(note.id);
+
+}
+
+
+/* ==========================
+   OPEN NOTE
+========================== */
+
+function openNote(id){
+
+    currentNote =
+        id;
+
+
+    const note =
+        notes.find(
+            n => n.id === id
+        );
+
+
+    if(!note) return;
+
+
+    document.getElementById(
+        "editorContent"
+    ).innerHTML = `
+
+
+        <div class="editor-header">
+
+
+            <input
+                id="titleInput"
+                class="title-input"
+                value="${escapeHTML(
+                    note.title
+                )}"
+                placeholder="Note title..."
+            >
+
+
+            <span
+                id="saveStatus"
+                class="save-status"
+            >
+
+                Saved ✓
+
+            </span>
+
+
+        </div>
+
+
+
+        <div class="toolbar">
+
+
+            <button
+                class="tool"
+                onclick="
+                    format(
+                        'bold',
+                        event
+                    )
+                "
+            >
+
+                <b>B</b>
+
+            </button>
+
+
+            <button
+                class="tool"
+                onclick="
+                    format(
+                        'italic',
+                        event
+                    )
+                "
+            >
+
+                <i>I</i>
+
+            </button>
+
+
+            <button
+                class="tool"
+                onclick="
+                    format(
+                        'underline',
+                        event
+                    )
+                "
+            >
+
+                <u>U</u>
+
+            </button>
+
+
+            <button
+                class="tool"
+                onclick="
+                    format(
+                        'strikeThrough',
+                        event
+                    )
+                "
+            >
+
+                <s>S</s>
+
+            </button>
+
+
+            <select
+                onchange="
+                    fontSize(
+                        this.value
+                    )
+                "
+            >
+
+                <option value="3">
+                    Normal
+                </option>
+
+                <option value="1">
+                    Small
+                </option>
+
+                <option value="5">
+                    Large
+                </option>
+
+                <option value="7">
+                    Huge
+                </option>
+
+            </select>
+
+
+            <button
+                class="tool"
+                onclick="
+                    format(
+                        'justifyLeft',
+                        event
+                    )
+                "
+            >
+
+                ⬅
+
+            </button>
+
+
+            <button
+                class="tool"
+                onclick="
+                    format(
+                        'justifyCenter',
+                        event
+                    )
+                "
+            >
+
+                ↔
+
+            </button>
+
+
+            <button
+                class="tool"
+                onclick="
+                    format(
+                        'justifyRight',
+                        event
+                    )
+                "
+            >
+
+                ➡
+
+            </button>
+
+
+            <button
+                class="tool"
+                onclick="
+                    format(
+                        'insertUnorderedList',
+                        event
+                    )
+                "
+            >
+
+                • List
+
+            </button>
+
+
+            <button
+                class="tool"
+                onclick="
+                    format(
+                        'insertOrderedList',
+                        event
+                    )
+                "
+            >
+
+                1. List
+
+            </button>
+
+
+            <input
+                type="color"
+                onchange="
+                    textColor(
+                        this.value
+                    )
+                "
+                title="Text Color"
+            >
+
+
+            <button
+                class="tool"
+                onclick="
+                    toggleFavorite(
+                        event
+                    )
+                "
+            >
+
+                ⭐
+
+            </button>
+
+
+            <button
+                class="tool"
+                onclick="
+                    togglePin(
+                        event
+                    )
+                "
+            >
+
+                📌
+
+            </button>
+
+
+            <button
+                class="tool"
+                onclick="
+                    downloadNote(
+                        event
+                    )
+                "
+            >
+
+                ⬇
+
+            </button>
+
+
+            <label
+                class="tool"
+                style="
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                "
+            >
+
+                📂
+
+                <input
+                    type="file"
+                    accept=".txt"
+                    onchange="
+                        importNote(event)
+                    "
+                    style="display:none"
+                >
+
+            </label>
+
+
+            <button
+                class="tool"
+                onclick="
+                    toggleTheme(
+                        event
+                    )
+                "
+            >
+
+                🌙
+
+            </button>
+
+
+        </div>
+
+
+
+        <div class="editor-body">
+
+
+            <div
+                id="richEditor"
+                class="rich-editor"
+                contenteditable="true"
+            >
+
+                ${note.content}
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="editor-footer">
+
+
+            <span id="charCount">
+
+                0 characters
+
+            </span>
+
+
+            <span>
+
+                Auto Save ON
+
+            </span>
+
+
+        </div>
+
+    `;
+
+
+    const title =
+        document.getElementById(
+            "titleInput"
+        );
+
+
+    const editor =
+        document.getElementById(
+            "richEditor"
+        );
+
+
+    updateCount();
+
+
+    /* TITLE */
+
+    title.addEventListener(
+        "input",
+        function(){
+
+            note.title =
+                title.value ||
+                "Untitled";
+
+            updateNote();
+
+        }
+    );
+
+
+    /* CONTENT */
+
+    editor.addEventListener(
+        "input",
+        function(){
+
+            note.content =
+                editor.innerHTML;
+
+            updateNote();
+
+            updateCount();
+
+        }
+    );
+
+
+    renderNotes();
+
+}
+
+
+/* ==========================
+   UPDATE NOTE
+========================== */
+
+function updateNote(){
+
+    const note =
+        notes.find(
+            n => n.id === currentNote
+        );
+
+
+    if(!note) return;
+
+
+    note.updated =
+        new Date()
+        .toLocaleString();
+
+
+    saveAll();
+
+
+    const status =
+        document.getElementById(
+            "saveStatus"
+        );
+
+
+    if(status){
+
+        status.innerText =
+            "Saving...";
+
+
+        clearTimeout(
+            window.saveTimer
+        );
+
+
+        window.saveTimer =
+            setTimeout(
+                function(){
+
+                    status.innerText =
+                        "Saved ✓";
+
+                },
+                350
+            );
+
+    }
+
+
+    renderNotes();
+
+}
+
+
+/* ==========================
+   SAVE ALL
+========================== */
+
+function saveAll(){
+
+    localStorage.setItem(
+        "level3Notes",
+        JSON.stringify(notes)
+    );
+
+}
+
+
+/* ==========================
+   RICH TEXT
+========================== */
+
+function format(
+    command,
+    event
+){
+
+    ripple(event);
+
+
+    document.execCommand(
+        command,
+        false,
+        null
+    );
+
+
+    const editor =
+        document.getElementById(
+            "richEditor"
+        );
+
+
+    if(editor){
+
+        editor.focus();
+
+        saveEditor();
+
+    }
+
+}
+
+
+function fontSize(size){
+
+    document.execCommand(
+        "fontSize",
+        false,
+        size
+    );
+
+    saveEditor();
+
+}
+
+
+function textColor(color){
+
+    document.execCommand(
+        "foreColor",
+        false,
+        color
+    );
+
+    saveEditor();
+
+}
+
+
+function saveEditor(){
+
+    const editor =
+        document.getElementById(
+            "richEditor"
+        );
+
+
+    if(!editor) return;
+
+
+    const note =
+        notes.find(
+            n => n.id === currentNote
+        );
+
+
+    if(!note) return;
+
+
+    note.content =
+        editor.innerHTML;
+
+
+    note.updated =
+        new Date()
+        .toLocaleString();
+
+
+    saveAll();
+
+
+    updateCount();
+
+
+    renderNotes();
+
+}
+
+
+/* ==========================
+   FAVORITE
+========================== */
+
+function toggleFavorite(event){
+
+    ripple(event);
+
+
+    const note =
+        notes.find(
+            n => n.id === currentNote
+        );
+
+
+    if(!note) return;
+
+
+    note.favorite =
+        !note.favorite;
+
+
+    saveAll();
+
+
+    renderNotes();
+
+}
+
+
+/* ==========================
+   PIN
+========================== */
+
+function togglePin(event){
+
+    ripple(event);
+
+
+    const note =
+        notes.find(
+            n => n.id === currentNote
+        );
+
+
+    if(!note) return;
+
+
+    note.pinned =
+        !note.pinned;
+
+
+    notes.sort(
+        (a,b) =>
+            Number(b.pinned) -
+            Number(a.pinned)
+    );
+
+
+    saveAll();
+
+
+    renderNotes();
+
+}
+
+
+/* ==========================
+   DOWNLOAD
+========================== */
+
+function downloadNote(event){
+
+    ripple(event);
+
+
+    const note =
+        notes.find(
+            n => n.id === currentNote
+        );
+
+
+    if(!note) return;
+
+
+    const temp =
+        document.createElement(
+            "div"
+        );
+
+
+    temp.innerHTML =
+        note.content;
+
+
+    const text =
+        temp.innerText;
+
+
+    const blob =
+        new Blob(
+            [
+                note.title +
+                "\n\n" +
+                text
+            ],
+            {
+                type:
+                    "text/plain"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(
+            blob
+        );
+
+
+    const a =
+        document.createElement(
+            "a"
+        );
+
+
+    a.href =
+        url;
+
+
+    a.download =
+        (
+            note.title ||
+            "note"
+        ) +
+        ".txt";
+
+
+    a.click();
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+
+/* ==========================
+   IMPORT
+========================== */
+
+function importNote(event){
+
+    const file =
+        event.target.files[0];
+
+
+    if(!file) return;
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(e){
+
+            const note =
+                notes.find(
+                    n =>
+                        n.id ===
+                        currentNote
+                );
+
+
+            if(!note) return;
+
+
+            note.content =
+                escapeHTML(
+                    e.target.result
+                )
+                .replace(
+                    /\n/g,
+                    "<br>"
+                );
+
+
+            saveAll();
+
+
+            openNote(
+                currentNote
+            );
+
+        };
+
+
+    reader.readAsText(
+        file
+    );
+
+}
+
+
+/* ==========================
+   DELETE NOTE
+========================== */
+
+function deleteNote(
+    event,
+    id
+){
+
+    event.stopPropagation();
+
+
+    /* Ripple */
+
+    ripple(event);
+
+
+    /* Find item */
+
+    const item =
+        event.currentTarget
+        .closest(
+            ".note-item"
+        );
+
+
+    if(!item) return;
+
+
+    /* Delete Animation */
+
+    item.classList.add(
+        "deleting"
+    );
+
+
+    /* Wait */
+
+    setTimeout(
+        function(){
+
+
+            notes =
+                notes.filter(
+                    n =>
+                        n.id !== id
+                );
+
+
+            saveAll();
+
+
+            /* If current note */
+
+            if(
+                currentNote === id
+            ){
+
+                if(
+                    notes.length > 0
+                ){
+
+                    currentNote =
+                        notes[0].id;
+
+
+                    renderNotes();
+
+
+                    openNote(
+                        currentNote
+                    );
+
+                }else{
+
+                    currentNote =
+                        null;
+
+
+                    renderNotes();
+
+
+                    showEmpty();
+
+                }
+
+            }else{
+
+                renderNotes();
+
+            }
+
+
+        },
+        450
+    );
+
+}
+
+
+/* ==========================
+   RENDER NOTES
+========================== */
+
+function renderNotes(){
+
+    const list =
+        document.getElementById(
+            "notesList"
+        );
+
+
+    if(!list) return;
+
+
+    const search =
+        document.getElementById(
+            "search"
+        )
+        .value
+        .toLowerCase();
+
+
+    let filtered =
+        notes.filter(
+            note => {
+
+                const title =
+                    note.title
+                    .toLowerCase();
+
+
+                const content =
+                    stripHTML(
+                        note.content
+                    )
+                    .toLowerCase();
+
+
+                return (
+
+                    title.includes(
+                        search
+                    )
+
+                    ||
+
+                    content.includes(
+                        search
+                    )
+
+                );
+
+            }
+        );
+
+
+    list.innerHTML = "";
+
+
+    if(!filtered.length){
+
+        list.innerHTML = `
+
+            <div
+                style="
+                    text-align:center;
+                    padding:30px 5px;
+                    color:var(--muted);
+                    font-size:11px;
+                "
+            >
+
+                No notes found
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    filtered.forEach(
+        note => {
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "note-item" +
+                (
+                    note.id ===
+                    currentNote
+                    ? " active"
+                    : ""
+                );
+
+
+            item.onclick =
+                () =>
+                    openNote(
+                        note.id
+                    );
+
+
+            item.innerHTML = `
+
+                <div
+                    class="note-title"
+                >
+
+                    ${escapeHTML(
+                        note.title ||
+                        "Untitled"
+                    )}
+
+                </div>
+
+
+                <div
+                    class="note-preview"
+                >
+
+                    ${escapeHTML(
+                        stripHTML(
+                            note.content
+                        ) ||
+                        "Empty note"
+                    )}
+
+                </div>
+
+
+                <div
+                    class="note-date"
+                >
+
+                    ${note.updated}
+
+                </div>
+
+
+                <div
+                    class="badges"
+                >
+
+                    ${
+                        note.pinned
+                        ? "📌"
+                        : ""
+                    }
+
+                    ${
+                        note.favorite
+                        ? "⭐"
+                        : ""
+                    }
+
+                </div>
+
+
+                <button
+                    class="delete-note"
+                    onclick="
+                        deleteNote(
+                            event,
+                            ${note.id}
+                        )
+                    "
+                >
+
+                    ✕
+
+                </button>
+
+            `;
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================
+   SEARCH
+========================== */
+
+document
+    .getElementById(
+        "search"
+    )
+    .addEventListener(
+        "input",
+        renderNotes
+    );
+
+
+/* ==========================
+   CHARACTER COUNT
+========================== */
+
+function updateCount(){
+
+    const editor =
+        document.getElementById(
+            "richEditor"
+        );
+
+
+    const counter =
+        document.getElementById(
+            "charCount"
+        );
+
+
+    if(
+        !editor ||
+        !counter
+    ) return;
+
+
+    const length =
+        editor.innerText.length;
+
+
+    counter.innerText =
+        length +
+        (
+            length === 1
+            ? " character"
+            : " characters"
+        );
+
+}
+
+
+/* ==========================
+   THEME
+========================== */
+
+function toggleTheme(event){
+
+    ripple(event);
+
+
+    document.body
+        .classList
+        .toggle(
+            "light"
+        );
+
+
+    localStorage.setItem(
+
+        "noteTheme",
+
+        document.body
+            .classList
+            .contains("light")
+            ? "light"
+            : "dark"
+
+    );
+
+}
+
+
+if(
+    localStorage.getItem(
+        "noteTheme"
+    ) === "light"
+){
+
+    document.body
+        .classList
+        .add(
+            "light"
+        );
+
+}
+
+
+/* ==========================
+   EMPTY
+========================== */
+
+function showEmpty(){
+
+    document.getElementById(
+        "editorContent"
+    ).innerHTML = `
+
+        <div class="empty">
+
+            <div>
+
+                <div class="empty-icon">
+                    📝
+                </div>
+
+                <h2>
+                    No Notes
+                </h2>
+
+                <p
+                    style="margin-top:8px;"
+                >
+
+                    Create a new note
+                    to start.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==========================
+   HELPERS
+========================== */
+
+function stripHTML(
+    html
+){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.innerHTML =
+        html;
+
+
+    return div.innerText;
+
+}
+
+
+function escapeHTML(
+    text
+){
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ==========================
+   RIPPLE EFFECT
+========================== */
+
+function ripple(event){
+
+    const button =
+        event.currentTarget;
+
+
+    if(!button) return;
+
+
+    const circle =
+        document.createElement(
+            "span"
+        );
+
+
+    const diameter =
+        Math.max(
+            button.clientWidth,
+            button.clientHeight
+        );
+
+
+    const radius =
+        diameter / 2;
+
+
+    circle.style.width =
+        circle.style.height =
+        diameter + "px";
+
+
+    const rect =
+        button.getBoundingClientRect();
+
+
+    circle.style.left =
+        event.clientX -
+        rect.left -
+        radius +
+        "px";
+
+
+    circle.style.top =
+        event.clientY -
+        rect.top -
+        radius +
+        "px";
+
+
+    circle.classList.add(
+        "ripple"
+    );
+
+
+    const old =
+        button.querySelector(
+            ".ripple"
+        );
+
+
+    if(old){
+
+        old.remove();
+
+    }
+
+
+    button.appendChild(
+        circle
+    );
+
+}
+
+</script>
+
+</body>
+</html>
