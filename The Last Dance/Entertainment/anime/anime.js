@@ -17,9 +17,9 @@ const movies = [
 
         category: "Anime",
 
-        poster: "images/aot.jpg",
+        poster: "at.jpg",
 
-        hero: "images/aot-hero.jpg",
+        hero: "Ata.jpg",
 
         description:
             "Humanity fights for survival against terrifying Titans while uncovering the dark secrets behind their world."
@@ -39,9 +39,9 @@ const movies = [
 
         category: "Anime",
 
-        poster: "images/onepiece.jpg",
+        poster: "on.jpg",
 
-        hero: "images/onepiece-hero.jpg",
+        hero: "One.jpg",
 
         description:
             "Monkey D. Luffy and his crew travel across the Grand Line in search of the legendary One Piece treasure."
@@ -61,9 +61,9 @@ const movies = [
 
         category: "Anime",
 
-        poster: "images/naruto.jpg",
+        poster: "nar.jpg",
 
-        hero: "images/naruto-hero.jpg",
+        hero: "Na.jpg",
 
         description:
             "Naruto Uzumaki continues his journey as a powerful ninja while protecting his friends and pursuing his dream."
@@ -83,9 +83,9 @@ const movies = [
 
         category: "Anime",
 
-        poster: "images/demonslayer.jpg",
+        poster: "dem.jpg",
 
-        hero: "images/demonslayer-hero.jpg",
+        hero: "De.jpg",
 
         description:
             "Tanjiro Kamado joins the Demon Slayer Corps after tragedy strikes his family and his sister becomes a demon."
@@ -105,9 +105,9 @@ const movies = [
 
         category: "Anime",
 
-        poster: "images/deathnote.jpg",
+        poster: "deth.jpg",
 
-        hero: "images/deathnote-hero.jpg",
+        hero: "Dea.jpg",
 
         description:
             "A mysterious notebook gives Light Yagami the power to determine people's fate, leading to a dangerous battle of minds."
