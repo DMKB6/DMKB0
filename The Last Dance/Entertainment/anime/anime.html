@@ -5,14 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MovieZone - Home</title>
+    <title>MovieZone - Anime</title>
 
-    <link rel="stylesheet" href="anime.css">
+    <link rel="stylesheet" href="movie.css">
 </head>
 
 <body>
 
-    <!-- Hero Section -->
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo">
+            <div class="logo-icon">🎬</div>
+            <span>MovieZone</span>
+        </div>
+
+        <div class="search-box">
+
+            <span class="search-icon">🔍</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search anime..."
+                autocomplete="off"
+            >
+
+            <button id="searchBtn">
+                Search
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO BANNER -->
     <section class="hero" id="hero">
 
         <div class="hero-overlay"></div>
@@ -20,41 +48,71 @@
         <div class="hero-content">
 
             <div class="hero-badge">
-                🔥 TRENDING NOW
+                🔥 TRENDING ANIME
             </div>
 
             <h1 id="heroTitle">
-                House of the Dragon
+                Attack on Titan
             </h1>
 
             <div class="hero-info">
-                <span>🎬 2026</span>
+
+                <span id="heroYear">🎬 2013</span>
+
                 <span>•</span>
-                <span>Fantasy</span>
+
+                <span id="heroGenre">
+                    Action
+                </span>
+
                 <span>•</span>
-                <span>English</span>
+
+                <span id="heroLanguage">
+                    Japanese
+                </span>
+
             </div>
 
             <p id="heroDescription">
-                A legendary story of dragons, power, family and the struggle
-                for the Iron Throne.
+                Humanity fights for survival against terrifying Titans
+                while uncovering the secrets behind their world.
             </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    class="play-btn"
+                    id="heroPlay"
+                >
+                    ▶ Watch Anime
+                </button>
+
+                <button
+                    class="info-btn"
+                    id="heroInfo"
+                >
+                    ⓘ More Info
+                </button>
+
+            </div>
 
         </div>
 
-        <!-- Slider Dots -->
-        <div class="slider-dots" id="sliderDots"></div>
+        <div
+            class="slider-dots"
+            id="sliderDots"
+        ></div>
 
     </section>
 
 
-    <!-- Movies -->
+    <!-- ANIME -->
     <section class="section">
 
         <div class="section-heading">
 
             <h2>
-                Movies
+                🔥 Top Anime
             </h2>
 
             <button class="see-all">
@@ -63,18 +121,24 @@
 
         </div>
 
-        <div class="movie-row" id="trendingMovies"></div>
+        <div
+            class="movie-row"
+            id="trendingMovies"
+        ></div>
 
     </section>
 
 
-    <!-- No Results -->
-    <div class="no-results" id="noResults">
+    <!-- NO RESULTS -->
+    <div
+        class="no-results"
+        id="noResults"
+    >
 
-        <div>🎬</div>
+        <div>⛩️</div>
 
         <h3>
-            No Movies Found
+            No Anime Found
         </h3>
 
         <p>
@@ -84,19 +148,25 @@
     </div>
 
 
-    <!-- Movie Modal -->
-    <div class="modal" id="movieModal">
+    <!-- MODAL -->
+    <div
+        class="modal"
+        id="movieModal"
+    >
 
         <div class="modal-box">
 
-            <button class="close-modal" id="closeModal">
+            <button
+                class="close-modal"
+                id="closeModal"
+            >
                 ×
             </button>
 
             <img
                 id="modalPoster"
                 src=""
-                alt="Movie"
+                alt="Anime"
             >
 
             <div class="modal-content">
@@ -105,26 +175,26 @@
                     class="modal-language"
                     id="modalLanguage"
                 >
-                    English
+                    Japanese
                 </span>
 
                 <h2 id="modalTitle">
-                    Movie Title
+                    Anime Title
                 </h2>
 
                 <div
                     class="modal-meta"
                     id="modalMeta"
                 >
-                    2026 • Fantasy
+                    2013 • Action
                 </div>
 
                 <p id="modalDescription">
-                    Movie description.
+                    Anime description.
                 </p>
 
                 <button class="modal-play">
-                    ▶ Play Movie
+                    ▶ Watch Anime
                 </button>
 
             </div>
@@ -134,10 +204,10 @@
     </div>
 
 
-    <!-- Bottom Navigation -->
+    <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
 
-        <button class="nav-item active">
+        <button class="nav-item">
 
             <span>🎬</span>
 
@@ -148,7 +218,7 @@
         </button>
 
 
-        <button class="nav-item">
+        <button class="nav-item active">
 
             <span>⛩️</span>
 
@@ -183,8 +253,7 @@
     </nav>
 
 
-    <!-- JavaScript -->
-    <script src="anime.js"></script>
+    <script src="movie.js"></script>
 
 </body>
 
