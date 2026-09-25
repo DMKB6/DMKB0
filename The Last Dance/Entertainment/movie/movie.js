@@ -11,7 +11,7 @@ const movies = [
         genre: "Fantasy",
         language: "English",
         category: "Hollywood",
-        poster: "images/movie1.jpg",
+        poster: "house.jpg",
         description:
             "A powerful fantasy story filled with dragons, royal families, ambition and a struggle for the Iron Throne."
     },
