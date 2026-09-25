@@ -1,67 +1,116 @@
 /* =================================
-   MOVIE DATA
+   ANIME DATA
 ================================= */
 
 const movies = [
 
     {
         id: 1,
-        title: "House of the Dragon",
-        year: "2022",
-        genre: "Fantasy",
-        language: "English",
-        category: "Hollywood",
-        poster: "images/movie1.jpg",
+
+        title: "Attack on Titan",
+
+        year: "2013",
+
+        genre: "Action",
+
+        language: "Japanese",
+
+        category: "Anime",
+
+        poster: "images/aot.jpg",
+
+        hero: "images/aot-hero.jpg",
+
         description:
-            "A powerful fantasy story filled with dragons, royal families, ambition and a struggle for the Iron Throne."
+            "Humanity fights for survival against terrifying Titans while uncovering the dark secrets behind their world."
     },
+
 
     {
         id: 2,
-        title: "The Gentlemen",
-        year: "2019",
-        genre: "Crime",
-        language: "English",
-        category: "Hollywood",
-        poster: "images/movie2.jpg",
+
+        title: "One Piece",
+
+        year: "1999",
+
+        genre: "Adventure",
+
+        language: "Japanese",
+
+        category: "Anime",
+
+        poster: "images/onepiece.jpg",
+
+        hero: "images/onepiece-hero.jpg",
+
         description:
-            "A stylish crime story involving powerful businessmen, dangerous criminals and a complicated underground empire."
+            "Monkey D. Luffy and his crew travel across the Grand Line in search of the legendary One Piece treasure."
     },
+
 
     {
         id: 3,
-        title: "Our Sticky Love",
-        year: "2026",
-        genre: "Romance",
-        language: "Korean",
-        category: "Drama",
-        poster: "images/movie3.jpg",
+
+        title: "Naruto: Shippuden",
+
+        year: "2007",
+
+        genre: "Action",
+
+        language: "Japanese",
+
+        category: "Anime",
+
+        poster: "images/naruto.jpg",
+
+        hero: "images/naruto-hero.jpg",
+
         description:
-            "A sweet romantic story about two people whose lives become unexpectedly connected through love and friendship."
+            "Naruto Uzumaki continues his journey as a powerful ninja while protecting his friends and pursuing his dream."
     },
+
 
     {
         id: 4,
-        title: "Legend of the Blue Sea",
-        year: "2016",
-        genre: "Romance",
-        language: "Korean",
-        category: "Drama",
-        poster: "images/movie4.jpg",
+
+        title: "Demon Slayer",
+
+        year: "2019",
+
+        genre: "Fantasy",
+
+        language: "Japanese",
+
+        category: "Anime",
+
+        poster: "images/demonslayer.jpg",
+
+        hero: "images/demonslayer-hero.jpg",
+
         description:
-            "A fantasy romance about a mermaid and a clever con artist whose lives become connected across time."
+            "Tanjiro Kamado joins the Demon Slayer Corps after tragedy strikes his family and his sister becomes a demon."
     },
+
 
     {
         id: 5,
-        title: "See You at Work Tomorrow",
-        year: "2026",
-        genre: "Romance",
-        language: "Korean",
-        category: "Drama",
-        poster: "images/movie5.jpg",
+
+        title: "Death Note",
+
+        year: "2006",
+
+        genre: "Psychological",
+
+        language: "Japanese",
+
+        category: "Anime",
+
+        poster: "images/deathnote.jpg",
+
+        hero: "images/deathnote-hero.jpg",
+
         description:
-            "A workplace romance filled with friendship, emotions and unexpected moments between coworkers."
+            "A mysterious notebook gives Light Yagami the power to determine people's fate, leading to a dangerous battle of minds."
     }
 
 ];
@@ -71,39 +120,7 @@ const movies = [
    HERO SLIDER
 ================================= */
 
-const heroSlides = [
-
-    {
-        title: "House of the Dragon",
-        year: "2022",
-        genre: "Fantasy",
-        language: "English",
-        image: "images/hero1.jpg",
-        description:
-            "A powerful fantasy story filled with dragons, royal families, ambition and a struggle for the Iron Throne."
-    },
-
-    {
-        title: "The Gentlemen",
-        year: "2019",
-        genre: "Crime",
-        language: "English",
-        image: "images/hero2.jpg",
-        description:
-            "A stylish crime story involving powerful businessmen, dangerous criminals and a complicated underground empire."
-    },
-
-    {
-        title: "Legend of the Blue Sea",
-        year: "2016",
-        genre: "Romance",
-        language: "Korean",
-        image: "images/hero3.jpg",
-        description:
-            "A fantasy romance about a mermaid and a clever con artist whose lives become connected across time."
-    }
-
-];
+const heroSlides = movies;
 
 let currentSlide = 0;
 
@@ -118,8 +135,23 @@ const hero =
 const heroTitle =
     document.getElementById("heroTitle");
 
+const heroYear =
+    document.getElementById("heroYear");
+
+const heroGenre =
+    document.getElementById("heroGenre");
+
+const heroLanguage =
+    document.getElementById("heroLanguage");
+
 const heroDescription =
     document.getElementById("heroDescription");
+
+const heroPlay =
+    document.getElementById("heroPlay");
+
+const heroInfo =
+    document.getElementById("heroInfo");
 
 const sliderDots =
     document.getElementById("sliderDots");
@@ -131,43 +163,35 @@ const sliderDots =
 
 function showSlide(index) {
 
-    const slide =
+    const movie =
         heroSlides[index];
 
-    if (!slide) return;
+    if (!movie) return;
 
 
-    /* Background */
-
-    if (hero) {
-
-        hero.style.backgroundImage =
-            `url("${slide.image}")`;
-
-    }
+    hero.style.backgroundImage =
+        `url("${movie.hero}")`;
 
 
-    /* Title */
-
-    if (heroTitle) {
-
-        heroTitle.textContent =
-            slide.title;
-
-    }
+    heroTitle.textContent =
+        movie.title;
 
 
-    /* Description */
-
-    if (heroDescription) {
-
-        heroDescription.textContent =
-            slide.description;
-
-    }
+    heroYear.textContent =
+        `🎬 ${movie.year}`;
 
 
-    /* Active Dot */
+    heroGenre.textContent =
+        movie.genre;
+
+
+    heroLanguage.textContent =
+        movie.language;
+
+
+    heroDescription.textContent =
+        movie.description;
+
 
     document
         .querySelectorAll(".slider-dot")
@@ -192,15 +216,13 @@ if (sliderDots) {
     sliderDots.innerHTML = "";
 
     heroSlides.forEach(
-        (slide, index) => {
+        (movie, index) => {
 
             const dot =
                 document.createElement("div");
 
-            dot.classList.add(
-                "slider-dot"
-            );
-
+            dot.className =
+                "slider-dot";
 
             if (index === 0) {
 
@@ -209,7 +231,6 @@ if (sliderDots) {
                 );
 
             }
-
 
             dot.addEventListener(
                 "click",
@@ -225,7 +246,6 @@ if (sliderDots) {
                 }
             );
 
-
             sliderDots.appendChild(dot);
 
         }
@@ -235,14 +255,14 @@ if (sliderDots) {
 
 
 /* =================================
-   FIRST HERO SLIDE
+   FIRST SLIDE
 ================================= */
 
 showSlide(0);
 
 
 /* =================================
-   AUTO HERO SLIDER
+   AUTO SLIDER
 ================================= */
 
 if (heroSlides.length > 1) {
@@ -268,14 +288,13 @@ if (heroSlides.length > 1) {
 
 
 /* =================================
-   MOVIE CARD
+   ANIME CARD
 ================================= */
 
 function createMovieCard(movie) {
 
     const card =
         document.createElement("div");
-
 
     card.className =
         "movie-card";
@@ -304,7 +323,7 @@ function createMovieCard(movie) {
 
         <button
             class="movie-play"
-            aria-label="Play ${movie.title}"
+            aria-label="Watch ${movie.title}"
         >
             ▶
         </button>
@@ -336,9 +355,7 @@ function createMovieCard(movie) {
     `;
 
 
-    /* =================================
-       CARD CLICK
-    ================================= */
+    /* CARD CLICK */
 
     card.addEventListener(
         "click",
@@ -350,9 +367,7 @@ function createMovieCard(movie) {
     );
 
 
-    /* =================================
-       PLAY BUTTON
-    ================================= */
+    /* PLAY BUTTON */
 
     const playButton =
         card.querySelector(
@@ -360,20 +375,16 @@ function createMovieCard(movie) {
         );
 
 
-    if (playButton) {
+    playButton.addEventListener(
+        "click",
+        event => {
 
-        playButton.addEventListener(
-            "click",
-            event => {
+            event.stopPropagation();
 
-                event.stopPropagation();
+            openMovie(movie);
 
-                openMovie(movie);
-
-            }
-        );
-
-    }
+        }
+    );
 
 
     return card;
@@ -392,7 +403,7 @@ const movieContainer =
 
 
 /* =================================
-   RENDER MOVIES
+   RENDER
 ================================= */
 
 function renderMovies(
@@ -401,9 +412,7 @@ function renderMovies(
 
     if (!movieContainer) return;
 
-
     movieContainer.innerHTML = "";
-
 
     list.forEach(movie => {
 
@@ -413,99 +422,12 @@ function renderMovies(
 
     });
 
-
     checkResults(list);
 
 }
 
 
-/* =================================
-   INITIAL MOVIES
-================================= */
-
 renderMovies();
-
-
-/* =================================
-   CATEGORY FILTER
-================================= */
-
-const categoryButtons =
-    document.querySelectorAll(
-        ".category"
-    );
-
-
-if (categoryButtons.length > 0) {
-
-    categoryButtons.forEach(
-        button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    categoryButtons.forEach(
-                        btn => {
-
-                            btn.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    const category =
-                        button.dataset.category;
-
-
-                    if (
-                        category ===
-                        "All"
-                    ) {
-
-                        renderMovies(
-                            movies
-                        );
-
-                        return;
-
-                    }
-
-
-                    const filtered =
-                        movies.filter(
-                            movie => {
-
-                                return (
-                                    movie.category ===
-                                        category ||
-
-                                    movie.genre ===
-                                        category
-                                );
-
-                            }
-                        );
-
-
-                    renderMovies(
-                        filtered
-                    );
-
-                }
-            );
-
-        }
-    );
-
-}
 
 
 /* =================================
@@ -536,7 +458,7 @@ function performSearch() {
 
     if (!query) {
 
-        renderMovies();
+        renderMovies(movies);
 
         return;
 
@@ -544,37 +466,35 @@ function performSearch() {
 
 
     const results =
-        movies.filter(
-            movie => {
+        movies.filter(movie => {
 
-                return (
+            return (
 
-                    movie.title
-                        .toLowerCase()
-                        .includes(query)
+                movie.title
+                    .toLowerCase()
+                    .includes(query)
 
-                    ||
+                ||
 
-                    movie.category
-                        .toLowerCase()
-                        .includes(query)
+                movie.genre
+                    .toLowerCase()
+                    .includes(query)
 
-                    ||
+                ||
 
-                    movie.genre
-                        .toLowerCase()
-                        .includes(query)
+                movie.language
+                    .toLowerCase()
+                    .includes(query)
 
-                    ||
+                ||
 
-                    movie.language
-                        .toLowerCase()
-                        .includes(query)
+                movie.category
+                    .toLowerCase()
+                    .includes(query)
 
-                );
+            );
 
-            }
-        );
+        });
 
 
     renderMovies(results);
@@ -582,9 +502,7 @@ function performSearch() {
 }
 
 
-/* =================================
-   SEARCH BUTTON
-================================= */
+/* SEARCH BUTTON */
 
 if (searchBtn) {
 
@@ -596,9 +514,7 @@ if (searchBtn) {
 }
 
 
-/* =================================
-   SEARCH INPUT
-================================= */
+/* LIVE SEARCH */
 
 if (searchInput) {
 
@@ -613,8 +529,7 @@ if (searchInput) {
         event => {
 
             if (
-                event.key ===
-                "Enter"
+                event.key === "Enter"
             ) {
 
                 performSearch();
@@ -658,7 +573,7 @@ function checkResults(list) {
 
 
 /* =================================
-   MOVIE MODAL
+   MODAL
 ================================= */
 
 const modal =
@@ -698,7 +613,7 @@ const modalDescription =
 
 
 /* =================================
-   OPEN MOVIE
+   OPEN ANIME
 ================================= */
 
 function openMovie(movie) {
@@ -706,50 +621,33 @@ function openMovie(movie) {
     if (!modal) return;
 
 
-    if (modalPoster) {
-
-        modalPoster.src =
-            movie.poster;
-
-        modalPoster.alt =
-            movie.title;
-
-    }
+    modalPoster.src =
+        movie.poster;
 
 
-    if (modalTitle) {
-
-        modalTitle.textContent =
-            movie.title;
-
-    }
+    modalPoster.alt =
+        movie.title;
 
 
-    if (modalLanguage) {
-
-        modalLanguage.textContent =
-            movie.language;
-
-    }
+    modalTitle.textContent =
+        movie.title;
 
 
-    if (modalMeta) {
-
-        modalMeta.textContent =
-            `${movie.year} • ${movie.genre}`;
-
-    }
+    modalLanguage.textContent =
+        movie.language;
 
 
-    if (modalDescription) {
-
-        modalDescription.textContent =
-            movie.description;
-
-    }
+    modalMeta.textContent =
+        `${movie.year} • ${movie.genre}`;
 
 
-    modal.classList.add("show");
+    modalDescription.textContent =
+        movie.description;
+
+
+    modal.classList.add(
+        "show"
+    );
 
 
     document.body.style.overflow =
@@ -759,7 +657,7 @@ function openMovie(movie) {
 
 
 /* =================================
-   CLOSE MOVIE
+   CLOSE MODAL
 ================================= */
 
 function closeMovie() {
@@ -778,10 +676,6 @@ function closeMovie() {
 }
 
 
-/* =================================
-   CLOSE BUTTON
-================================= */
-
 if (closeModal) {
 
     closeModal.addEventListener(
@@ -792,9 +686,7 @@ if (closeModal) {
 }
 
 
-/* =================================
-   CLICK OUTSIDE MODAL
-================================= */
+/* CLICK OUTSIDE */
 
 if (modal) {
 
@@ -803,8 +695,7 @@ if (modal) {
         event => {
 
             if (
-                event.target ===
-                modal
+                event.target === modal
             ) {
 
                 closeMovie();
@@ -817,17 +708,14 @@ if (modal) {
 }
 
 
-/* =================================
-   ESCAPE KEY
-================================= */
+/* ESCAPE */
 
 document.addEventListener(
     "keydown",
     event => {
 
         if (
-            event.key ===
-            "Escape"
+            event.key === "Escape"
         ) {
 
             closeMovie();
@@ -839,14 +727,8 @@ document.addEventListener(
 
 
 /* =================================
-   HERO PLAY BUTTON
+   HERO PLAY
 ================================= */
-
-const heroPlay =
-    document.getElementById(
-        "heroPlay"
-    );
-
 
 if (heroPlay) {
 
@@ -855,12 +737,36 @@ if (heroPlay) {
         () => {
 
             const movie =
-                movies.find(
-                    item =>
-                        item.title ===
-                        heroTitle.textContent
-                );
+                heroSlides[
+                    currentSlide
+                ];
 
+            if (movie) {
+
+                openMovie(movie);
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =================================
+   HERO INFO
+================================= */
+
+if (heroInfo) {
+
+    heroInfo.addEventListener(
+        "click",
+        () => {
+
+            const movie =
+                heroSlides[
+                    currentSlide
+                ];
 
             if (movie) {
 
@@ -910,7 +816,7 @@ navItems.forEach(item => {
 
 
 /* =================================
-   MOUSE DRAG MOVIE ROW
+   MOVIE ROW DRAG
 ================================= */
 
 document
@@ -918,11 +824,11 @@ document
     .forEach(row => {
 
         let isDown = false;
+
         let startX = 0;
+
         let scrollLeft = 0;
 
-
-        /* MOUSE DOWN */
 
         row.addEventListener(
             "mousedown",
@@ -930,11 +836,9 @@ document
 
                 isDown = true;
 
-
                 startX =
                     event.pageX -
                     row.offsetLeft;
-
 
                 scrollLeft =
                     row.scrollLeft;
@@ -942,8 +846,6 @@ document
             }
         );
 
-
-        /* MOUSE LEAVE */
 
         row.addEventListener(
             "mouseleave",
@@ -955,8 +857,6 @@ document
         );
 
 
-        /* MOUSE UP */
-
         row.addEventListener(
             "mouseup",
             () => {
@@ -967,14 +867,11 @@ document
         );
 
 
-        /* MOUSE MOVE */
-
         row.addEventListener(
             "mousemove",
             event => {
 
                 if (!isDown) return;
-
 
                 event.preventDefault();
 
