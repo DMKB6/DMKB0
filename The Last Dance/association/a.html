@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#031b29">
+
+<title>Neon Login</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#020f18;
+    color:#fff;
+    position:relative;
+}
+
+/* ===== BACKGROUND GLOW ===== */
+
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(55px);
+    opacity:.5;
+    z-index:0;
+}
+
+body::before{
+    width:70vw;
+    height:25vw;
+    min-width:320px;
+    background:#00eaff;
+    left:-20vw;
+    top:8vh;
+    animation:bgMove1 7s ease-in-out infinite alternate;
+}
+
+body::after{
+    width:65vw;
+    height:25vw;
+    min-width:300px;
+    background:#007f9c;
+    right:-20vw;
+    bottom:5vh;
+    animation:bgMove2 8s ease-in-out infinite alternate;
+}
+
+@keyframes bgMove1{
+    to{
+        transform:translate(100px,40px) scale(1.12);
+    }
+}
+
+@keyframes bgMove2{
+    to{
+        transform:translate(-90px,-35px) scale(1.12);
+    }
+}
+
+/* ===== PARTICLES ===== */
+
+.particle{
+    position:fixed;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#00eaff;
+    box-shadow:0 0 10px #00eaff;
+    opacity:0;
+    z-index:1;
+    animation:particle 5s linear infinite;
+}
+
+.p1{
+    left:8%;
+    top:70%;
+}
+
+.p2{
+    left:18%;
+    top:20%;
+    animation-delay:1s;
+}
+
+.p3{
+    left:77%;
+    top:25%;
+    animation-delay:2s;
+}
+
+.p4{
+    left:88%;
+    top:70%;
+    animation-delay:3s;
+}
+
+.p5{
+    left:52%;
+    top:8%;
+    animation-delay:4s;
+}
+
+@keyframes particle{
+    0%{
+        transform:translateY(50px);
+        opacity:0;
+    }
+
+    30%,70%{
+        opacity:.9;
+    }
+
+    100%{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+
+/* ===== MAIN FRAME ===== */
+
+.card{
+    width:min(760px,calc(100vw - 32px));
+    height:390px;
+    position:relative;
+    display:flex;
+    overflow:hidden;
+
+    border:2px solid #00eaff;
+    border-radius:4px;
+
+    background:rgba(2,20,31,.94);
+
+    box-shadow:
+        0 0 10px #00eaff,
+        0 0 35px rgba(0,234,255,.55);
+
+    z-index:2;
+    isolation:isolate;
+
+    animation:cardIn .8s ease both;
+}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:scale(.9) translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+/* ===== LOGIN AREA ===== */
+
+.login{
+    width:52%;
+    height:100%;
+    padding:55px 48px;
+    position:relative;
+    z-index:4;
+    transition:.65s ease;
+}
+
+.login h2{
+    text-align:center;
+    font-size:27px;
+    margin-bottom:35px;
+    letter-spacing:.5px;
+}
+
+/* INPUT */
+
+.input-box{
+    position:relative;
+    margin:25px 0;
+}
+
+.input-box input{
+    width:100%;
+    height:38px;
+
+    padding:8px 28px 7px 2px;
+
+    background:transparent;
+
+    border:0;
+    border-bottom:1px solid rgba(255,255,255,.7);
+
+    outline:none;
+
+    color:#fff;
+    font-size:13px;
+}
+
+.input-box input:focus{
+    border-bottom-color:#00eaff;
+    box-shadow:0 7px 14px -12px #00eaff;
+}
+
+.input-box label{
+    position:absolute;
+    left:2px;
+    top:12px;
+
+    font-size:12px;
+    color:#d7e0e4;
+
+    pointer-events:none;
+
+    transition:.25s;
+}
+
+.input-box input:focus + label,
+.input-box input:not(:placeholder-shown) + label{
+    top:-9px;
+    font-size:9px;
+    color:#00eaff;
+}
+
+.icon{
+    position:absolute;
+    right:2px;
+    top:10px;
+
+    font-size:13px;
+    opacity:.9;
+}
+
+/* ===== BUTTON ===== */
+
+.login-btn{
+    width:100%;
+    height:42px;
+
+    border:0;
+    border-radius:25px;
+
+    cursor:pointer;
+
+    color:#fff;
+    font-size:13px;
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00aeca,
+            #00efff,
+            #008ca5
+        );
+
+    background-size:200% 100%;
+
+    box-shadow:
+        0 0 15px rgba(0,234,255,.7);
+
+    animation:buttonFlow 2.2s linear infinite;
+
+    transition:.25s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 25px #00eaff;
+}
+
+.login-btn:active{
+    transform:scale(.97);
+}
+
+@keyframes buttonFlow{
+    to{
+        background-position:200% 0;
+    }
+}
+
+/* ===== SIGN UP TEXT ===== */
+
+.signup{
+    text-align:center;
+    margin-top:18px;
+
+    font-size:10px;
+    color:#d9dfe2;
+}
+
+.signup a{
+    color:#00eaff;
+
+    font-weight:bold;
+
+    text-decoration:none;
+
+    cursor:pointer;
+}
+
+.signup a:hover{
+    text-shadow:0 0 9px #00eaff;
+}
+
+/* ===== WELCOME PANEL ===== */
+
+.welcome{
+    position:absolute;
+
+    right:0;
+    top:0;
+
+    width:58%;
+    height:100%;
+
+    z-index:3;
+
+    background:
+        linear-gradient(
+            135deg,
+            #08b9d0,
+            #02eff0
+        );
+
+    clip-path:
+        polygon(
+            27% 0,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:
+        40px
+        35px
+        40px
+        120px;
+
+    text-align:center;
+
+    transition:
+        .75s cubic-bezier(.65,0,.25,1);
+
+    overflow:hidden;
+}
+
+/* SHINE */
+
+.welcome::before{
+    content:"";
+
+    position:absolute;
+
+    width:35%;
+    height:160%;
+
+    top:-30%;
+    left:-60%;
+
+    transform:rotate(20deg);
+
+    background:rgba(255,255,255,.24);
+
+    filter:blur(5px);
+
+    animation:shine 4s linear infinite;
+}
+
+@keyframes shine{
+    0%{
+        left:-70%;
+    }
+
+    55%,100%{
+        left:150%;
+    }
+}
+
+.welcome-content{
+    width:min(250px,100%);
+
+    position:relative;
+
+    z-index:2;
+}
+
+.welcome h1{
+    font-size:34px;
+
+    line-height:1.02;
+
+    letter-spacing:1px;
+
+    margin-bottom:18px;
+
+    text-shadow:
+        0 3px 12px rgba(0,0,0,.3);
+}
+
+.welcome p{
+    font-size:12px;
+
+    line-height:1.65;
+}
+
+/* ===== SIGN UP STATE ===== */
+
+.card.signup-mode .welcome{
+    transform:translateX(-82%);
+}
+
+.card.signup-mode .welcome h1{
+    font-size:31px;
+}
+
+.card.switching{
+    animation:switchGlow .8s ease;
+}
+
+@keyframes switchGlow{
+
+    0%,100%{
+        box-shadow:
+            0 0 10px #00eaff,
+            0 0 35px rgba(0,234,255,.55);
+    }
+
+    50%{
+        box-shadow:
+            0 0 20px #fff,
+            0 0 65px #00eaff;
+    }
+}
+
+/* ================================================= */
+/* ================= MOBILE ======================== */
+/* ================================================= */
+
+@media(max-width:600px){
+
+    body{
+        padding:16px;
+        overflow:auto;
+    }
+
+    .card{
+
+        width:min(
+            390px,
+            100%
+        );
+
+        height:620px;
+
+        min-height:620px;
+
+        display:block;
+
+        border-radius:10px;
+    }
+
+    /* LOGIN */
+
+    .login{
+
+        width:100%;
+
+        height:390px;
+
+        padding:
+            52px
+            32px
+            25px;
+    }
+
+    .login h2{
+
+        font-size:26px;
+
+        margin-bottom:38px;
+    }
+
+    .input-box{
+        margin:26px 0;
+    }
+
+    /* WELCOME */
+
+    .welcome{
+
+        width:100%;
+
+        height:250px;
+
+        top:auto;
+        bottom:0;
+        right:0;
+
+        clip-path:
+            polygon(
+                0 30%,
+                100% 0,
+                100% 100%,
+                0 100%
+            );
+
+        padding:
+            78px
+            28px
+            24px;
+
+        align-items:center;
+    }
+
+    .welcome-content{
+
+        width:min(
+            270px,
+            100%
+        );
+    }
+
+    .welcome h1{
+
+        font-size:28px;
+
+        margin-bottom:10px;
+    }
+
+    .welcome p{
+
+        font-size:10px;
+
+        line-height:1.55;
+    }
+
+    /* MOBILE SIGNUP ANIMATION */
+
+    .card.signup-mode .welcome{
+
+        transform:translateY(0);
+
+        animation:
+            mobileWelcome
+            1s ease both;
+    }
+
+    .card.signup-mode .login{
+
+        animation:
+            mobileLogin
+            1s ease both;
+    }
+
+    @keyframes mobileWelcome{
+
+        0%{
+            transform:translateY(100%);
+            opacity:0;
+        }
+
+        45%{
+            transform:translateY(-8%);
+            opacity:1;
+        }
+
+        70%{
+            transform:translateY(3%);
+        }
+
+        100%{
+            transform:translateY(0);
+        }
+    }
+
+    @keyframes mobileLogin{
+
+        0%{
+            transform:translateY(0);
+        }
+
+        35%{
+            transform:translateY(-12px);
+        }
+
+        100%{
+            transform:translateY(0);
+        }
+    }
+}
+
+/* ===== EXTRA SMALL PHONE ===== */
+
+@media(max-width:350px){
+
+    body{
+        padding:10px;
+    }
+
+    .card{
+
+        height:570px;
+
+        min-height:570px;
+    }
+
+    .login{
+
+        height:355px;
+
+        padding:
+            42px
+            25px
+            20px;
+    }
+
+    .welcome{
+
+        height:215px;
+
+        padding-top:65px;
+    }
+
+    .welcome h1{
+        font-size:24px;
+    }
+
+    .welcome p{
+        font-size:9px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PARTICLES -->
+
+<div class="particle p1"></div>
+<div class="particle p2"></div>
+<div class="particle p3"></div>
+<div class="particle p4"></div>
+<div class="particle p5"></div>
+
+
+<!-- MAIN CARD -->
+
+<div class="card" id="card">
+
+    <!-- LOGIN -->
+
+    <section class="login">
+
+        <h2 id="formTitle">
+            Login
+        </h2>
+
+
+        <!-- USERNAME -->
+
+        <div class="input-box">
+
+            <span class="icon">
+                ♟
+            </span>
+
+            <input
+                type="text"
+                id="username"
+                placeholder=" "
+                autocomplete="username"
+            >
+
+            <label>
+                Username
+            </label>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="input-box">
+
+            <span class="icon">
+                🔒
+            </span>
+
+            <input
+                type="password"
+                id="password"
+                placeholder=" "
+                autocomplete="current-password"
+            >
+
+            <label>
+                Password
+            </label>
+
+        </div>
+
+
+        <!-- BUTTON -->
+
+        <button
+            class="login-btn"
+            id="mainBtn"
+            onclick="mainAction()"
+        >
+            Login
+        </button>
+
+
+        <!-- SIGNUP -->
+
+        <div class="signup">
+
+            <span id="question">
+                Don't have an account?
+            </span>
+
+            <a
+                href="#"
+                id="switchBtn"
+                onclick="switchForm(event)"
+            >
+                Sign up
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <div class="welcome-content">
+
+            <h1 id="welcomeTitle">
+                WELCOME<br>
+                BACK!
+            </h1>
+
+            <p id="welcomeText">
+                We're happy to have you with us back again!
+                If you need anything, we're here to help.
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+const card =
+    document.getElementById("card");
+
+const formTitle =
+    document.getElementById("formTitle");
+
+const mainBtn =
+    document.getElementById("mainBtn");
+
+const switchBtn =
+    document.getElementById("switchBtn");
+
+const question =
+    document.getElementById("question");
+
+const welcomeTitle =
+    document.getElementById("welcomeTitle");
+
+const welcomeText =
+    document.getElementById("welcomeText");
+
+
+let signupMode = false;
+
+
+/* ===== SWITCH LOGIN / SIGNUP ===== */
+
+function switchForm(event){
+
+    event.preventDefault();
+
+    signupMode = !signupMode;
+
+    /* restart animation */
+
+    card.classList.remove("switching");
+
+    void card.offsetWidth;
+
+    card.classList.add("switching");
+
+
+    if(signupMode){
+
+        formTitle.textContent =
+            "Sign Up";
+
+        mainBtn.textContent =
+            "Sign Up";
+
+        question.textContent =
+            "Already have an account? ";
+
+        switchBtn.textContent =
+            "Login";
+
+
+        welcomeTitle.innerHTML =
+            "JOIN<br>US!";
+
+        welcomeText.textContent =
+            "Create your account and become part of our amazing community.";
+
+        card.classList.add("signup-mode");
+
+    }
+
+    else{
+
+        formTitle.textContent =
+            "Login";
+
+        mainBtn.textContent =
+            "Login";
+
+        question.textContent =
+            "Don't have an account? ";
+
+        switchBtn.textContent =
+            "Sign up";
+
+
+        welcomeTitle.innerHTML =
+            "WELCOME<br>BACK!";
+
+        welcomeText.textContent =
+            "We're happy to have you with us back again! If you need anything, we're here to help.";
+
+        card.classList.remove("signup-mode");
+    }
+
+}
+
+
+/* ===== LOGIN / SIGNUP BUTTON ===== */
+
+function mainAction(){
+
+    const username =
+        document.getElementById("username")
+        .value
+        .trim();
+
+    const password =
+        document.getElementById("password")
+        .value
+        .trim();
+
+
+    if(!username || !password){
+
+        alert(
+            "Please enter Username and Password."
+        );
+
+        return;
+    }
+
+
+    if(signupMode){
+
+        alert(
+            "Sign Up successful!"
+        );
+
+    }
+
+    else{
+
+        alert(
+            "Login successful!"
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
