@@ -40,10 +40,10 @@ const movies = [
 
         category: "Hollywood",
 
-        poster: "images/movie2.jpg",
+        poster: "the.jpg",
 
         hero:
-            "images/hero2.jpg",
+            "The.jpg",
 
         description:
             "A stylish crime story involving powerful businessmen, dangerous criminals and a complicated underground empire."
@@ -63,10 +63,10 @@ const movies = [
 
         category: "Drama",
 
-        poster: "images/movie3.jpg",
+        poster: "our.jpg",
 
         hero:
-            "images/hero3.jpg",
+            "Ourr.jpg",
 
         description:
             "A sweet romantic story about two people whose lives become unexpectedly connected through love and friendship."
@@ -86,10 +86,10 @@ const movies = [
 
         category: "Drama",
 
-        poster: "images/movie4.jpg",
+        poster: "leg.jpg",
 
         hero:
-            "images/hero4.jpg",
+            "Le.jpg",
 
         description:
             "A fantasy romance about a mermaid and a clever con artist whose lives become connected across time."
@@ -109,10 +109,10 @@ const movies = [
 
         category: "Drama",
 
-        poster: "images/movie5.jpg",
+        poster: "se.jpg",
 
         hero:
-            "images/hero5.jpg",
+            "See.jpg",
 
         description:
             "A workplace romance filled with friendship, emotions and unexpected moments between coworkers."
