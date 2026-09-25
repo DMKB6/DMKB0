@@ -6,60 +6,114 @@ const movies = [
 
     {
         id: 1,
+
         title: "House of the Dragon",
+
         year: "2022",
+
         genre: "Fantasy",
+
         language: "English",
+
         category: "Hollywood",
-        poster: "house.jpg",
+
+        poster: "images/movie1.jpg",
+
+        hero:
+            "images/hero1.jpg",
+
         description:
             "A powerful fantasy story filled with dragons, royal families, ambition and a struggle for the Iron Throne."
     },
 
+
     {
         id: 2,
+
         title: "The Gentlemen",
+
         year: "2019",
+
         genre: "Crime",
+
         language: "English",
+
         category: "Hollywood",
+
         poster: "images/movie2.jpg",
+
+        hero:
+            "images/hero2.jpg",
+
         description:
             "A stylish crime story involving powerful businessmen, dangerous criminals and a complicated underground empire."
     },
 
+
     {
         id: 3,
+
         title: "Our Sticky Love",
+
         year: "2026",
+
         genre: "Romance",
+
         language: "Korean",
+
         category: "Drama",
+
         poster: "images/movie3.jpg",
+
+        hero:
+            "images/hero3.jpg",
+
         description:
             "A sweet romantic story about two people whose lives become unexpectedly connected through love and friendship."
     },
 
+
     {
         id: 4,
+
         title: "Legend of the Blue Sea",
+
         year: "2016",
+
         genre: "Romance",
+
         language: "Korean",
+
         category: "Drama",
+
         poster: "images/movie4.jpg",
+
+        hero:
+            "images/hero4.jpg",
+
         description:
             "A fantasy romance about a mermaid and a clever con artist whose lives become connected across time."
     },
 
+
     {
         id: 5,
+
         title: "See You at Work Tomorrow",
+
         year: "2026",
+
         genre: "Romance",
+
         language: "Korean",
+
         category: "Drama",
+
         poster: "images/movie5.jpg",
+
+        hero:
+            "images/hero5.jpg",
+
         description:
             "A workplace romance filled with friendship, emotions and unexpected moments between coworkers."
     }
@@ -68,42 +122,15 @@ const movies = [
 
 
 /* =================================
-   HERO SLIDER
+   HERO SLIDES
 ================================= */
 
-const heroSlides = [
+const heroSlides = movies;
 
-    {
-        title: "House of the Dragon",
-        year: "2022",
-        genre: "Fantasy",
-        language: "English",
-        image: "images/hero1.jpg",
-        description:
-            "A powerful fantasy story filled with dragons, royal families, ambition and a struggle for the Iron Throne."
-    },
 
-    {
-        title: "The Gentlemen",
-        year: "2019",
-        genre: "Crime",
-        language: "English",
-        image: "images/hero2.jpg",
-        description:
-            "A stylish crime story involving powerful businessmen, dangerous criminals and a complicated underground empire."
-    },
-
-    {
-        title: "Legend of the Blue Sea",
-        year: "2016",
-        genre: "Romance",
-        language: "Korean",
-        image: "images/hero3.jpg",
-        description:
-            "A fantasy romance about a mermaid and a clever con artist whose lives become connected across time."
-    }
-
-];
+/* =================================
+   CURRENT SLIDE
+================================= */
 
 let currentSlide = 0;
 
@@ -118,8 +145,23 @@ const hero =
 const heroTitle =
     document.getElementById("heroTitle");
 
+const heroYear =
+    document.getElementById("heroYear");
+
+const heroGenre =
+    document.getElementById("heroGenre");
+
+const heroLanguage =
+    document.getElementById("heroLanguage");
+
 const heroDescription =
     document.getElementById("heroDescription");
+
+const heroPlay =
+    document.getElementById("heroPlay");
+
+const heroInfo =
+    document.getElementById("heroInfo");
 
 const sliderDots =
     document.getElementById("sliderDots");
@@ -131,43 +173,71 @@ const sliderDots =
 
 function showSlide(index) {
 
-    const slide =
+    const movie =
         heroSlides[index];
 
-    if (!slide) return;
+    if (!movie) return;
 
 
-    /* Background */
+    /* ================================
+       HERO BACKGROUND
+    ================================= */
 
     if (hero) {
 
         hero.style.backgroundImage =
-            `url("${slide.image}")`;
+            `url("${movie.hero}")`;
 
     }
 
 
-    /* Title */
+    /* ================================
+       HERO TEXT
+    ================================= */
 
     if (heroTitle) {
 
         heroTitle.textContent =
-            slide.title;
+            movie.title;
 
     }
 
 
-    /* Description */
+    if (heroYear) {
+
+        heroYear.textContent =
+            `🎬 ${movie.year}`;
+
+    }
+
+
+    if (heroGenre) {
+
+        heroGenre.textContent =
+            movie.genre;
+
+    }
+
+
+    if (heroLanguage) {
+
+        heroLanguage.textContent =
+            movie.language;
+
+    }
+
 
     if (heroDescription) {
 
         heroDescription.textContent =
-            slide.description;
+            movie.description;
 
     }
 
 
-    /* Active Dot */
+    /* ================================
+       DOTS
+    ================================= */
 
     document
         .querySelectorAll(".slider-dot")
@@ -191,15 +261,16 @@ if (sliderDots) {
 
     sliderDots.innerHTML = "";
 
+
     heroSlides.forEach(
-        (slide, index) => {
+        (movie, index) => {
 
             const dot =
                 document.createElement("div");
 
-            dot.classList.add(
-                "slider-dot"
-            );
+
+            dot.className =
+                "slider-dot";
 
 
             if (index === 0) {
@@ -235,14 +306,14 @@ if (sliderDots) {
 
 
 /* =================================
-   FIRST HERO SLIDE
+   FIRST SLIDE
 ================================= */
 
 showSlide(0);
 
 
 /* =================================
-   AUTO HERO SLIDER
+   AUTO SLIDER
 ================================= */
 
 if (heroSlides.length > 1) {
@@ -336,9 +407,7 @@ function createMovieCard(movie) {
     `;
 
 
-    /* =================================
-       CARD CLICK
-    ================================= */
+    /* CARD CLICK */
 
     card.addEventListener(
         "click",
@@ -350,9 +419,7 @@ function createMovieCard(movie) {
     );
 
 
-    /* =================================
-       PLAY BUTTON
-    ================================= */
+    /* PLAY BUTTON */
 
     const playButton =
         card.querySelector(
@@ -427,88 +494,6 @@ renderMovies();
 
 
 /* =================================
-   CATEGORY FILTER
-================================= */
-
-const categoryButtons =
-    document.querySelectorAll(
-        ".category"
-    );
-
-
-if (categoryButtons.length > 0) {
-
-    categoryButtons.forEach(
-        button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    categoryButtons.forEach(
-                        btn => {
-
-                            btn.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    const category =
-                        button.dataset.category;
-
-
-                    if (
-                        category ===
-                        "All"
-                    ) {
-
-                        renderMovies(
-                            movies
-                        );
-
-                        return;
-
-                    }
-
-
-                    const filtered =
-                        movies.filter(
-                            movie => {
-
-                                return (
-                                    movie.category ===
-                                        category ||
-
-                                    movie.genre ===
-                                        category
-                                );
-
-                            }
-                        );
-
-
-                    renderMovies(
-                        filtered
-                    );
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-/* =================================
    SEARCH
 ================================= */
 
@@ -536,7 +521,9 @@ function performSearch() {
 
     if (!query) {
 
-        renderMovies();
+        renderMovies(
+            movies
+        );
 
         return;
 
@@ -582,9 +569,7 @@ function performSearch() {
 }
 
 
-/* =================================
-   SEARCH BUTTON
-================================= */
+/* SEARCH BUTTON */
 
 if (searchBtn) {
 
@@ -596,9 +581,7 @@ if (searchBtn) {
 }
 
 
-/* =================================
-   SEARCH INPUT
-================================= */
+/* SEARCH INPUT */
 
 if (searchInput) {
 
@@ -613,8 +596,7 @@ if (searchInput) {
         event => {
 
             if (
-                event.key ===
-                "Enter"
+                event.key === "Enter"
             ) {
 
                 performSearch();
@@ -749,7 +731,9 @@ function openMovie(movie) {
     }
 
 
-    modal.classList.add("show");
+    modal.classList.add(
+        "show"
+    );
 
 
     document.body.style.overflow =
@@ -759,7 +743,7 @@ function openMovie(movie) {
 
 
 /* =================================
-   CLOSE MOVIE
+   CLOSE MODAL
 ================================= */
 
 function closeMovie() {
@@ -778,10 +762,6 @@ function closeMovie() {
 }
 
 
-/* =================================
-   CLOSE BUTTON
-================================= */
-
 if (closeModal) {
 
     closeModal.addEventListener(
@@ -792,9 +772,7 @@ if (closeModal) {
 }
 
 
-/* =================================
-   CLICK OUTSIDE MODAL
-================================= */
+/* CLICK OUTSIDE */
 
 if (modal) {
 
@@ -803,8 +781,7 @@ if (modal) {
         event => {
 
             if (
-                event.target ===
-                modal
+                event.target === modal
             ) {
 
                 closeMovie();
@@ -817,17 +794,14 @@ if (modal) {
 }
 
 
-/* =================================
-   ESCAPE KEY
-================================= */
+/* ESCAPE */
 
 document.addEventListener(
     "keydown",
     event => {
 
         if (
-            event.key ===
-            "Escape"
+            event.key === "Escape"
         ) {
 
             closeMovie();
@@ -839,14 +813,8 @@ document.addEventListener(
 
 
 /* =================================
-   HERO PLAY BUTTON
+   HERO PLAY
 ================================= */
-
-const heroPlay =
-    document.getElementById(
-        "heroPlay"
-    );
-
 
 if (heroPlay) {
 
@@ -855,11 +823,37 @@ if (heroPlay) {
         () => {
 
             const movie =
-                movies.find(
-                    item =>
-                        item.title ===
-                        heroTitle.textContent
-                );
+                heroSlides[
+                    currentSlide
+                ];
+
+
+            if (movie) {
+
+                openMovie(movie);
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =================================
+   HERO INFO
+================================= */
+
+if (heroInfo) {
+
+    heroInfo.addEventListener(
+        "click",
+        () => {
+
+            const movie =
+                heroSlides[
+                    currentSlide
+                ];
 
 
             if (movie) {
@@ -910,7 +904,7 @@ navItems.forEach(item => {
 
 
 /* =================================
-   MOUSE DRAG MOVIE ROW
+   MOVIE ROW DRAG
 ================================= */
 
 document
@@ -918,11 +912,11 @@ document
     .forEach(row => {
 
         let isDown = false;
+
         let startX = 0;
+
         let scrollLeft = 0;
 
-
-        /* MOUSE DOWN */
 
         row.addEventListener(
             "mousedown",
@@ -930,11 +924,9 @@ document
 
                 isDown = true;
 
-
                 startX =
                     event.pageX -
                     row.offsetLeft;
-
 
                 scrollLeft =
                     row.scrollLeft;
@@ -942,8 +934,6 @@ document
             }
         );
 
-
-        /* MOUSE LEAVE */
 
         row.addEventListener(
             "mouseleave",
@@ -955,8 +945,6 @@ document
         );
 
 
-        /* MOUSE UP */
-
         row.addEventListener(
             "mouseup",
             () => {
@@ -967,14 +955,11 @@ document
         );
 
 
-        /* MOUSE MOVE */
-
         row.addEventListener(
             "mousemove",
             event => {
 
                 if (!isDown) return;
-
 
                 event.preventDefault();
 
