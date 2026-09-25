@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FF Friend List</title>
+
+    <link rel="stylesheet" href="ff.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>🎮 FF Friend List</h1>
+            <p>Search & view player details</p>
+        </header>
+
+        <!-- Search -->
+        <div class="search-box">
+            <span>🔍</span>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search name or FF ID..."
+            >
+        </div>
+
+        <!-- Friend List -->
+        <div id="friendList"></div>
+
+        <div id="noResult" class="no-result">
+            No friend found 😕
+        </div>
+
+    </div>
+
+
+    <!-- Details Popup -->
+    <div id="detailsModal" class="modal">
+
+        <div class="modal-box">
+
+            <button class="close-btn" onclick="closeDetails()">×</button>
+
+            <div class="profile">
+                <img id="detailImage" src="" alt="Profile">
+
+                <h2 id="detailName"></h2>
+                <p id="detailUsername"></p>
+            </div>
+
+            <div class="details">
+
+                <div class="detail-row">
+                    <span>🆔 FF UID</span>
+                    <strong id="detailUID"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>🏆 Level</span>
+                    <strong id="detailLevel"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>🔥 Likes</span>
+                    <strong id="detailLikes"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>🛡️ Guild</span>
+                    <strong id="detailGuild"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>🌍 Region</span>
+                    <strong id="detailRegion"></strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="ff.js"></script>
+
+</body>
+</html>

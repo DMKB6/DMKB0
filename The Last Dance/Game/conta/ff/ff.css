@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b0f14;
+    color: white;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    padding: 20px 14px;
+}
+
+/* Header */
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+header p {
+    color: #8993a4;
+    font-size: 13px;
+}
+
+
+/* Search */
+
+.search-box {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: #151b23;
+    border: 1px solid #252d38;
+    border-radius: 12px;
+
+    padding: 0 14px;
+    margin-bottom: 14px;
+}
+
+.search-box span {
+    font-size: 17px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: white;
+
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #687383;
+}
+
+
+/* Friend List */
+
+#friendList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+/* Slim Friend Box */
+
+.friend-box {
+    width: 100%;
+    min-height: 62px;
+
+    display: flex;
+    align-items: center;
+
+    background: #131922;
+    border: 1px solid #242d39;
+    border-radius: 11px;
+
+    padding: 8px 11px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.friend-box:hover {
+    transform: translateY(-1px);
+    border-color: #3d4a5c;
+}
+
+.friend-box:active {
+    transform: scale(0.98);
+}
+
+
+/* Number */
+
+.friend-number {
+    width: 28px;
+    color: #687383;
+    font-size: 12px;
+    text-align: center;
+}
+
+
+/* Profile */
+
+.friend-img {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    margin: 0 11px 0 5px;
+
+    border: 2px solid #293442;
+}
+
+
+/* Info */
+
+.friend-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.friend-name {
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    margin-bottom: 4px;
+}
+
+.friend-uid {
+    font-size: 11px;
+    color: #7f8998;
+}
+
+
+/* Arrow */
+
+.arrow {
+    font-size: 20px;
+    color: #596575;
+}
+
+
+/* No Result */
+
+.no-result {
+    display: none;
+    text-align: center;
+    color: #737e8e;
+    padding: 30px 0;
+    font-size: 14px;
+}
+
+
+/* Modal */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.72);
+
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+
+    z-index: 999;
+
+    padding: 12px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+
+/* Modal Box */
+
+.modal-box {
+    width: 100%;
+    max-width: 500px;
+
+    background: #141a22;
+
+    border: 1px solid #293341;
+    border-radius: 18px 18px 12px 12px;
+
+    padding: 25px 18px 20px;
+
+    position: relative;
+
+    animation: popup 0.25s ease;
+}
+
+@keyframes popup {
+
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* Close */
+
+.close-btn {
+    position: absolute;
+    right: 13px;
+    top: 10px;
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #242c37;
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+
+/* Profile */
+
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile img {
+    width: 75px;
+    height: 75px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid #303b49;
+
+    margin-bottom: 9px;
+}
+
+.profile h2 {
+    font-size: 19px;
+    margin-bottom: 4px;
+}
+
+.profile p {
+    color: #7d8897;
+    font-size: 12px;
+}
+
+
+/* Details */
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #0e131a;
+
+    border: 1px solid #202934;
+
+    border-radius: 9px;
+
+    padding: 12px 13px;
+
+    font-size: 13px;
+}
+
+.detail-row span {
+    color: #8a95a4;
+}
+
+.detail-row strong {
+    color: white;
+    font-size: 13px;
+}
+
+
+/* Desktop */
+
+@media (min-width: 700px) {
+
+    .container {
+        padding-top: 35px;
+    }
+
+    .modal {
+        align-items: center;
+    }
+
+    .modal-box {
+        border-radius: 18px;
+    }
+
+}
