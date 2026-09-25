@@ -40,7 +40,7 @@ const movies = [
 
         category: "Hollywood",
 
-        poster: "the.jpg",
+        poster: "thee.jpg",
 
         hero:
             "The.jpg",
