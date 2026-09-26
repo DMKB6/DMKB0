@@ -6,7 +6,7 @@ const contacts = [
 
     {
         name: "Hanan Al Bannah",
-        profile: "Banna.JPG",
+        profile: "Banna.jpg",
 
         call: "01706026736",
         whatsapp: "01706026736",
@@ -24,7 +24,7 @@ const contacts = [
 
     {
         name: "Shahariar",
-        profile: "Sharai.JPG",
+        profile: "Sharai.jpg",
 
         call: "01790872494",
         whatsapp: "01790872494",
@@ -56,7 +56,7 @@ const contacts = [
 */
     {
         name: "Sibgatullah Sohan",
-        profile: "Sibga.JPG",
+        profile: "Sibga.jpg",
 
         call: "01631384360",
         whatsapp: "01631384360"
@@ -259,7 +259,7 @@ const contacts = [
 
     {
         name: "Tanvir",
-        profile: "Tanvir.JPG",
+        profile: "Tanvi.jpg",
 
         call: "01819036458",
         whatsapp: "01819036458"
