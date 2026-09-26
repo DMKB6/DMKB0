@@ -309,7 +309,7 @@ const contacts = [
 
     {
         name: "Hasibujjaman",
-        profile: "Hasibujjaman.JPG",
+        profile: "hasi.jpg",
 
         call: "01570279644",
         whatsapp: "01757674263"
