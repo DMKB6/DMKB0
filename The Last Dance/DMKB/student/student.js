@@ -6,7 +6,7 @@ const contacts = [
 
     {
         name: "Hanan Al Bannah",
-        profile: "images/person1.jpg",
+        profile: "Banna.JPG",
 
         call: "01706026736",
         whatsapp: "01706026736",
@@ -15,7 +15,7 @@ const contacts = [
 
     {
         name: "Abidur Rahman",
-        profile: "images/person2.jpg",
+        profile: "abid.jpg",
 
         call: "01925811325",
         whatsapp: "01925811325",
@@ -24,7 +24,7 @@ const contacts = [
 
     {
         name: "Shahariar",
-        profile: "images/person3.jpg",
+        profile: "Sharai.JPG",
 
         call: "01790872494",
         whatsapp: "01790872494",
@@ -56,7 +56,7 @@ const contacts = [
 */
     {
         name: "Sibgatullah Sohan",
-        profile: "images/person5.jpg",
+        profile: "Sibga.JPG",
 
         call: "01631384360",
         whatsapp: "01631384360"
@@ -64,7 +64,7 @@ const contacts = [
 
     {
         name: "Tamim Iqbal",
-        profile: "images/person6.jpg",
+        profile: "tamim.jpeg",
 
         call: "01835868277",
         whatsapp: "01835868277"
@@ -72,7 +72,7 @@ const contacts = [
 
     {
         name: "Asif Ikram",
-        profile: "images/person7.jpg",
+        profile: "asif.png",
 
         call: "01604358812",
         whatsapp: "01604358812",
@@ -81,7 +81,7 @@ const contacts = [
 
     {
         name: "Abdul Khalek",
-        profile: "images/person8.jpg",
+        profile: "a.khalek.jpg",
 
         call: "01346566876",
         whatsapp: "01747540789"
@@ -89,14 +89,14 @@ const contacts = [
 
     {
         name: "Arman Asif",
-        profile: "images/person9.jpg",
+        profile: "Arman.JPG",
 
         call: "01910441536"
     },
 
     {
         name: "Saadat",
-        profile: "images/person10.jpg",
+        profile: "sadat.jpeg",
 
         call: "01987545415",
         whatsapp: "01987545415",
@@ -105,7 +105,7 @@ const contacts = [
 
     {
         name: "Hujaifa",
-        profile: "images/person11.jpg",
+        profile: "Hujaifa.jpg",
 
         call: "01857737086",
         whatsapp: "01345572504"
@@ -113,7 +113,7 @@ const contacts = [
 
     {
         name: "Mahdi Hasan",
-        profile: "images/person12.jpg",
+        profile: "Mahadi.jpg",
 
         call: "01909742115",
         whatsapp: "01909742115",
@@ -122,7 +122,7 @@ const contacts = [
 
     {
         name: "Muhitur Rahman",
-        profile: "images/person13.jpg",
+        profile: "Muhit.jpg",
 
         call: "01833449196",
         whatsapp: "01618666955",
@@ -131,7 +131,7 @@ const contacts = [
 
     {
         name: "Tamim Bin Sayed",
-        profile: "images/person14.jpg",
+        profile: "Tamim bin.jpg",
 
         call: "01978894952",
         whatsapp: "01978894952",
@@ -140,7 +140,7 @@ const contacts = [
 
     {
         name: "Mahbubullah Musa",
-        profile: "images/person15.jpg",
+        profile: "musa.jpg",
 
         call: "01870503619",
         whatsapp: "01870503619",
@@ -149,16 +149,16 @@ const contacts = [
 
     {
         name: "Jubayer Ahmed",
-        profile: "images/person16.jpg",
+        profile: "Jubu.JPG",
 
-        call: "017***********",
-        whatsapp: "017***********",
-        telegram: "017***********"
+        call: "01789013628",
+        whatsapp: "01789013628",
+        telegram: "01789013628"
     },
 
     {
         name: "Taki",
-        profile: "images/person17.jpg",
+        profile: "Taki.jpg",
 
         call: "01677185757",
         whatsapp: "01677185757"
@@ -166,7 +166,7 @@ const contacts = [
 
     {
         name: "Jahidul Islam Sujon",
-        profile: "images/person18.jpg",
+        profile: "Sujon.jpg",
 
         call: "01943464407",
         whatsapp: "01943464407",
@@ -175,7 +175,7 @@ const contacts = [
 
     {
         name: "AL-Amin",
-        profile: "images/person19.jpg",
+        profile: "Al amin.jpg",
 
         call: "01410733175",
         whatsapp: "01849969318"
@@ -183,7 +183,7 @@ const contacts = [
 
     {
         name: "Habibullah Esa",
-        profile: "images/person20.jpg",
+        profile: "esa.png",
 
         call: "01746804733",
         whatsapp: "01746804733",
@@ -200,7 +200,7 @@ const contacts = [
 
     {
         name: "Mudabbir",
-        profile: "images/person22.jpg",
+        profile: "Mudabbir.png",
 
         call: "01973674145",
         whatsapp: "01973674145"
@@ -208,7 +208,7 @@ const contacts = [
 
     {
         name: "Mir Rafi",
-        profile: "images/person23.jpg",
+        profile: "Mir Rafi.jpg",
 
         call: "01754038553",
         whatsapp: "01754038553",
@@ -217,7 +217,7 @@ const contacts = [
 
     {
         name: "Eyahiya",
-        profile: "images/person24.jpg",
+        profile: "Eyahiya.png",
 
         call: "01730983367",
         whatsapp: "01730983367"
@@ -242,7 +242,7 @@ const contacts = [
 
     {
         name: "Mahmudul Amin",
-        profile: "images/person27.jpg",
+        profile: "mahdi sy.png",
 
         call: "01703472143",
         whatsapp: "01603220353",
@@ -259,7 +259,7 @@ const contacts = [
 
     {
         name: "Tanvir",
-        profile: "images/person29.jpg",
+        profile: "Tanvir.JPG",
 
         call: "01819036458",
         whatsapp: "01819036458"
@@ -275,7 +275,7 @@ const contacts = [
 
     {
         name: "Yeazuddin Ahmed",
-        profile: "images/person31.jpg",
+        profile: "yeaz uddin.png",
 
         call: "01861686952",
         whatsapp: "01735019250",
@@ -284,7 +284,7 @@ const contacts = [
 
     {
         name: "Mahdi Mobarok",
-        profile: "images/person32.jpg",
+        profile: "mahdi moba.jpg",
 
         call: "01327482121",
         whatsapp: "01327482121",
@@ -293,7 +293,7 @@ const contacts = [
 
     {
         name: "Rafiul Islam",
-        profile: "images/person33.jpg",
+        profile: "Rafiul.jpg",
 
         call: "01966387600",
         whatsapp: "01966387600"
@@ -301,7 +301,7 @@ const contacts = [
 
     {
         name: "Tahsinul Islam",
-        profile: "images/person34.jpg",
+        profile: "tahsin.jpg",
 
         call: "01731087151",
         whatsapp: "01731087151"
@@ -309,7 +309,7 @@ const contacts = [
 
     {
         name: "Hasibujjaman",
-        profile: "images/person35.jpg",
+        profile: "Hasibujjaman.JPG",
 
         call: "01570279644",
         whatsapp: "01757674263"
