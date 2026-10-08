@@ -1,0 +1,397 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+
+    background:
+        radial-gradient(circle at 20% 20%, #32106b 0%, transparent 30%),
+        radial-gradient(circle at 80% 80%, #071d52 0%, transparent 30%),
+        #050509;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
+.bg-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+    opacity: .25;
+
+    pointer-events: none;
+}
+
+.glow1 {
+    background: #ff006e;
+    top: -120px;
+    left: -100px;
+}
+
+.glow2 {
+    background: #5b00ff;
+    bottom: -120px;
+    right: -100px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+
+    padding: 45px 20px 25px;
+}
+
+.logo {
+    font-size: clamp(25px, 5vw, 42px);
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    background: linear-gradient(
+        90deg,
+        #ff1744,
+        #ff9100,
+        #ffea00,
+        #ff1744
+    );
+
+    background-size: 300%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: gradientMove 5s linear infinite;
+}
+
+.logo span {
+    -webkit-text-fill-color: initial;
+}
+
+header p {
+    margin-top: 10px;
+
+    color: #aaa;
+
+    letter-spacing: 4px;
+    font-size: 12px;
+}
+
+
+/* =========================
+   TOURNAMENT CONTAINER
+========================= */
+
+.tournament-container {
+    position: relative;
+    z-index: 2;
+
+    width: min(850px, 92%);
+
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+
+    padding: 15px 0 40px;
+}
+
+
+/* =========================
+   TOURNAMENT CARD
+========================= */
+
+.tournament-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 105px;
+
+    padding: 18px 22px;
+
+    text-decoration: none;
+    color: white;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.025)
+        );
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.4);
+
+    overflow: hidden;
+
+    transition:
+        transform .3s ease,
+        border .3s ease,
+        box-shadow .3s ease;
+}
+
+
+/* Hover */
+
+.tournament-card:hover {
+    transform: translateY(-5px) scale(1.015);
+
+    border-color: rgba(255, 60, 80, .7);
+
+    box-shadow:
+        0 15px 45px rgba(255, 30, 70, .2);
+}
+
+
+/* Shine */
+
+.tournament-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.08),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: .7s;
+}
+
+.tournament-card:hover::before {
+    left: 130%;
+}
+
+
+/* =========================
+   NUMBER
+========================= */
+
+.number {
+    width: 65px;
+    height: 65px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    font-size: 24px;
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff1744,
+            #8e00ff
+        );
+
+    box-shadow:
+        0 0 25px rgba(255, 23, 68, .25);
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.tournament-info {
+    margin-left: 20px;
+
+    flex: 1;
+}
+
+.tournament-info h2 {
+    font-size: 22px;
+
+    margin-bottom: 7px;
+}
+
+.tournament-info p {
+    color: #9c9c9c;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   ARROW
+========================= */
+
+.arrow {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.07);
+
+    color: white;
+
+    font-size: 30px;
+
+    transition: .3s;
+}
+
+.tournament-card:hover .arrow {
+    background: #ff1744;
+
+    transform: translateX(5px);
+}
+
+
+/* =========================
+   1ST TOURNAMENT
+========================= */
+
+.tournament-card.first {
+    border-color: rgba(255, 193, 7, .3);
+}
+
+.tournament-card.first .number {
+    background:
+        linear-gradient(
+            135deg,
+            #ffb300,
+            #ff6f00
+        );
+
+    box-shadow:
+        0 0 30px rgba(255, 174, 0, .3);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+
+    padding: 10px 20px 30px;
+
+    color: #666;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 300%;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    header {
+        padding-top: 30px;
+    }
+
+    .tournament-container {
+        width: 94%;
+        gap: 12px;
+    }
+
+    .tournament-card {
+        min-height: 88px;
+        padding: 13px;
+        border-radius: 15px;
+    }
+
+    .number {
+        width: 52px;
+        height: 52px;
+
+        border-radius: 13px;
+
+        font-size: 19px;
+    }
+
+    .tournament-info {
+        margin-left: 13px;
+    }
+
+    .tournament-info h2 {
+        font-size: 17px;
+    }
+
+    .tournament-info p {
+        font-size: 11px;
+    }
+
+    .arrow {
+        width: 35px;
+        height: 35px;
+
+        font-size: 24px;
+    }
+
+}
