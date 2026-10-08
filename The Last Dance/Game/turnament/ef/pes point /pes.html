@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PES POINT • Championship</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    color:#fff;
+    background:
+        radial-gradient(circle at 50% 0%,#14305c 0%,transparent 32%),
+        radial-gradient(circle at 0% 50%,#071b38 0%,transparent 35%),
+        radial-gradient(circle at 100% 80%,#10284b 0%,transparent 35%),
+        #02050b;
+    overflow-x:hidden;
+}
+
+/* ================= PARTICLES ================= */
+
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:#65cfff;
+    border-radius:50%;
+    box-shadow:0 0 12px #65cfff;
+    animation:floatParticle linear infinite;
+    opacity:.6;
+}
+
+@keyframes floatParticle{
+    from{
+        transform:translateY(110vh) scale(.5);
+    }
+    to{
+        transform:translateY(-10vh) scale(1.4);
+    }
+}
+
+/* ================= NAV ================= */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+    background:rgba(2,7,15,.82);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(83,190,255,.18);
+}
+
+nav a{
+    color:#9eb7d2;
+    text-decoration:none;
+    font-family:'Orbitron',sans-serif;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#fff;
+    text-shadow:0 0 15px #39c6ff;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    position:relative;
+    z-index:1;
+    min-height:650px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    overflow:hidden;
+}
+
+.hero:before{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:700px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(22,144,255,.18),transparent 65%);
+    animation:pulse 4s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(.9);opacity:.6}
+    50%{transform:scale(1.15);opacity:1}
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.small-title{
+    color:#4ccaff;
+    font-family:'Orbitron',sans-serif;
+    font-size:13px;
+    letter-spacing:5px;
+    margin-bottom:18px;
+    animation:fadeDown 1s ease;
+}
+
+.hero h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(42px,9vw,100px);
+    font-weight:900;
+    line-height:.95;
+    letter-spacing:4px;
+    background:linear-gradient(180deg,#fff,#72d8ff 50%,#207cff);
+    -webkit-background-clip:text;
+    color:transparent;
+    text-shadow:0 0 40px rgba(49,173,255,.2);
+    animation:titleIn 1.2s ease;
+}
+
+.hero h1 span{
+    display:block;
+    font-size:.37em;
+    letter-spacing:9px;
+    margin-top:22px;
+    background:linear-gradient(90deg,#fff,#4acaff,#fff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero-line{
+    width:280px;
+    height:2px;
+    margin:35px auto;
+    background:linear-gradient(90deg,transparent,#38c7ff,transparent);
+    box-shadow:0 0 20px #38c7ff;
+}
+
+.hero-sub{
+    color:#90a9c2;
+    letter-spacing:3px;
+    font-size:12px;
+}
+
+@keyframes titleIn{
+    from{
+        opacity:0;
+        transform:scale(.7) translateY(40px);
+        filter:blur(15px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+        filter:none;
+    }
+}
+
+@keyframes fadeDown{
+    from{opacity:0;transform:translateY(-20px)}
+    to{opacity:1;transform:none}
+}
+
+/* ================= SECTION ================= */
+
+section{
+    position:relative;
+    z-index:2;
+    width:min(1250px,92%);
+    margin:0 auto 120px;
+}
+
+.section-head{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-head .tag{
+    font-family:'Orbitron',sans-serif;
+    color:#43caff;
+    font-size:11px;
+    letter-spacing:4px;
+}
+
+.section-head h2{
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(25px,5vw,45px);
+    margin-top:12px;
+}
+
+.section-head p{
+    color:#728aa5;
+    margin-top:10px;
+    font-size:13px;
+}
+
+/* ================= GROUPS ================= */
+
+.groups{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:28px;
+}
+
+.group{
+    position:relative;
+    padding:2px;
+    border-radius:22px;
+    background:linear-gradient(135deg,rgba(71,202,255,.55),transparent 35%,rgba(95,88,255,.4));
+    overflow:hidden;
+    transition:.4s;
+}
+
+.group:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 60px rgba(0,150,255,.18);
+}
+
+.group-inner{
+    background:linear-gradient(145deg,#081321,#040912);
+    border-radius:20px;
+    padding:25px;
+}
+
+.group-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:22px;
+}
+
+.group-title h3{
+    font-family:'Orbitron',sans-serif;
+    font-size:20px;
+}
+
+.group-title span{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border-radius:10px;
+    background:#0b2842;
+    color:#52cfff;
+    font-family:'Orbitron',sans-serif;
+    font-weight:800;
+}
+
+.player{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px;
+    margin-top:11px;
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:14px;
+    overflow:hidden;
+    transition:.35s;
+}
+
+.player:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:3px;
+    height:100%;
+    background:#35c5ff;
+    box-shadow:0 0 15px #35c5ff;
+}
+
+.player:hover{
+    transform:translateX(7px);
+    background:rgba(42,176,255,.08);
+    border-color:rgba(60,202,255,.3);
+}
+
+.club-logo{
+    width:48px;
+    height:48px;
+    flex-shrink:0;
+    border-radius:13px;
+    display:grid;
+    place-items:center;
+    font-family:'Orbitron',sans-serif;
+    font-size:12px;
+    font-weight:900;
+    background:linear-gradient(145deg,#122c48,#07101d);
+    border:1px solid rgba(93,204,255,.25);
+    box-shadow:inset 0 0 20px rgba(41,170,255,.08);
+}
+
+.player-info{
+    flex:1;
+}
+
+.player-name{
+    font-weight:700;
+    font-size:14px;
+}
+
+.club-name{
+    color:#6f9bbd;
+    font-size:11px;
+    margin-top:3px;
+}
+
+.player-number{
+    color:#334e68;
+    font-family:'Orbitron',sans-serif;
+    font-weight:800;
+}
+
+/* ================= BRACKET ================= */
+
+.bracket-wrapper{
+    overflow-x:auto;
+    padding:15px 5px 30px;
+}
+
+.bracket{
+    min-width:1050px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+    gap:45px;
+    align-items:center;
+}
+
+.round{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    min-height:650px;
+}
+
+.round-title{
+    text-align:center;
+    font-family:'Orbitron',sans-serif;
+    font-size:12px;
+    letter-spacing:2px;
+    color:#4bcaff;
+    margin-bottom:22px;
+}
+
+.match{
+    position:relative;
+    background:linear-gradient(145deg,#0a1728,#050a12);
+    border:1px solid rgba(75,194,255,.18);
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    transition:.35s;
+}
+
+.match:hover{
+    transform:scale(1.025);
+    border-color:rgba(70,200,255,.5);
+    box-shadow:0 0 30px rgba(30,160,255,.13);
+}
+
+.team{
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.team:last-child{
+    border-bottom:none;
+}
+
+.team-name{
+    color:#b7cbe0;
+    font-size:12px;
+}
+
+.score{
+    min-width:25px;
+    text-align:center;
+    color:#54cfff;
+    font-family:'Orbitron',sans-serif;
+    font-weight:800;
+}
+
+.empty{
+    color:#334c65;
+    font-style:italic;
+}
+
+.qf .match{
+    margin-bottom:55px;
+}
+
+.sf .match{
+    margin-bottom:145px;
+}
+
+.final-round{
+    justify-content:center;
+}
+
+.final-round .match{
+    border-color:rgba(255,211,77,.35);
+    box-shadow:0 0 30px rgba(255,205,50,.08);
+}
+
+/* ================= FINAL ================= */
+
+.final-section{
+    text-align:center;
+}
+
+.final-card{
+    max-width:650px;
+    margin:auto;
+    padding:45px 25px;
+    border-radius:28px;
+    background:
+        radial-gradient(circle at center,rgba(255,190,35,.08),transparent 55%),
+        linear-gradient(145deg,#0b1727,#04080e);
+    border:1px solid rgba(255,205,70,.25);
+    box-shadow:0 0 80px rgba(255,191,37,.06);
+}
+
+.final-label{
+    color:#ffd45a;
+    font-family:'Orbitron',sans-serif;
+    font-size:11px;
+    letter-spacing:5px;
+}
+
+.final-vs{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:35px;
+    margin:35px 0;
+}
+
+.final-team{
+    width:170px;
+}
+
+.final-team .big-logo{
+    width:90px;
+    height:90px;
+    margin:auto;
+    display:grid;
+    place-items:center;
+    border-radius:25px;
+    background:linear-gradient(145deg,#182f49,#060c15);
+    border:1px solid rgba(255,255,255,.1);
+    font-family:'Orbitron',sans-serif;
+    font-weight:900;
+    color:#607c96;
+}
+
+.final-team p{
+    margin-top:14px;
+    color:#728da8;
+    font-size:12px;
+}
+
+.vs{
+    font-family:'Orbitron',sans-serif;
+    color:#ffd34c;
+    font-weight:900;
+    font-size:20px;
+}
+
+/* ================= TROPHY ================= */
+
+.trophy-area{
+    position:relative;
+    text-align:center;
+    padding:90px 20px;
+    border-radius:35px;
+    background:
+        radial-gradient(circle at center,rgba(255,194,40,.12),transparent 50%),
+        linear-gradient(145deg,#0a1625,#03070d);
+    border:1px solid rgba(255,205,65,.22);
+    overflow:hidden;
+}
+
+.trophy-glow{
+    position:absolute;
+    width:300px;
+    height:300px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(255,205,55,.15),transparent 65%);
+    animation:trophyGlow 3s infinite;
+}
+
+@keyframes trophyGlow{
+    0%,100%{transform:translate(-50%,-50%) scale(.8)}
+    50%{transform:translate(-50%,-50%) scale(1.2)}
+}
+
+.trophy{
+    position:relative;
+    z-index:2;
+    font-size:110px;
+    filter:drop-shadow(0 0 30px rgba(255,207,54,.55));
+    animation:trophyFloat 3s ease-in-out infinite;
+}
+
+@keyframes trophyFloat{
+    0%,100%{transform:translateY(0) rotate(-2deg)}
+    50%{transform:translateY(-15px) rotate(2deg)}
+}
+
+.champion-label{
+    position:relative;
+    z-index:2;
+    font-family:'Orbitron',sans-serif;
+    color:#ffd65a;
+    font-size:13px;
+    letter-spacing:6px;
+    margin-top:20px;
+}
+
+.champion-name{
+    position:relative;
+    z-index:2;
+    margin-top:15px;
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(28px,6vw,55px);
+    color:#fff;
+}
+
+.champion-name span{
+    color:#4dcaff;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    position:relative;
+    z-index:2;
+    padding:45px 20px;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,.06);
+    color:#4c6680;
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+footer strong{
+    color:#51caff;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px){
+
+    nav{
+        gap:14px;
+        padding:0 10px;
+        overflow-x:auto;
+        justify-content:flex-start;
+    }
+
+    nav a{
+        white-space:nowrap;
+        font-size:9px;
+    }
+
+    .hero{
+        min-height:560px;
+    }
+
+    .groups{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        margin-bottom:85px;
+    }
+
+    .final-vs{
+        gap:10px;
+    }
+
+    .final-team{
+        width:120px;
+    }
+
+    .final-team .big-logo{
+        width:70px;
+        height:70px;
+    }
+}
+
+/* ================= REVEAL ================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
+
+<!-- NAVIGATION -->
+<nav>
+    <a href="#groups">GROUPS</a>
+    <a href="#knockout">KNOCKOUT</a>
+    <a href="#final">FINAL</a>
+    <a href="#champion">CHAMPION</a>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            PES POINT PRESENTS
+        </div>
+
+        <h1>
+            PES POINT
+            <span>CHAMPIONSHIP</span>
+        </h1>
+
+        <div class="hero-line"></div>
+
+        <div class="hero-sub">
+            12 PLAYERS • 12 CLUBS • 1 CHAMPION
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= GROUP STAGE ================= -->
+
+<section id="groups" class="reveal">
+
+    <div class="section-head">
+
+        <div class="tag">01 • GROUP STAGE</div>
+
+        <h2>THE GROUPS</h2>
+
+        <p>Four groups. Twelve players. The journey begins here.</p>
+
+    </div>
+
+
+    <div class="groups">
+
+        <!-- GROUP A -->
+
+        <div class="group">
+
+            <div class="group-inner">
+
+                <div class="group-title">
+                    <h3>GROUP A</h3>
+                    <span>A</span>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">FCB</div>
+                    <div class="player-info">
+                        <div class="player-name">Rafiul</div>
+                        <div class="club-name">Barcelona</div>
+                    </div>
+                    <div class="player-number">01</div>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">MUN</div>
+                    <div class="player-info">
+                        <div class="player-name">Asif</div>
+                        <div class="club-name">Manchester United</div>
+                    </div>
+                    <div class="player-number">02</div>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">SAN</div>
+                    <div class="player-info">
+                        <div class="player-name">Hasan</div>
+                        <div class="club-name">Santos</div>
+                    </div>
+                    <div class="player-number">03</div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- GROUP B -->
+
+        <div class="group">
+
+            <div class="group-inner">
+
+                <div class="group-title">
+                    <h3>GROUP B</h3>
+                    <span>B</span>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">ARS</div>
+                    <div class="player-info">
+                        <div class="player-name">Taki</div>
+                        <div class="club-name">Arsenal</div>
+                    </div>
+                    <div class="player-number">01</div>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">INT</div>
+                    <div class="player-info">
+                        <div class="player-name">Mahmudul Amin</div>
+                        <div class="club-name">Inter Milan</div>
+                    </div>
+                    <div class="player-number">02</div>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">AJA</div>
+                    <div class="player-info">
+                        <div class="player-name">Mudabbir</div>
+                        <div class="club-name">Ajax</div>
+                    </div>
+                    <div class="player-number">03</div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- GROUP C -->
+
+        <div class="group">
+
+            <div class="group-inner">
+
+                <div class="group-title">
+                    <h3>GROUP C</h3>
+                    <span>C</span>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">SLB</div>
+                    <div class="player-info">
+                        <div class="player-name">Sujon</div>
+                        <div class="club-name">Benfica</div>
+                    </div>
+                    <div class="player-number">01</div>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">HIL</div>
+                    <div class="player-info">
+                        <div class="player-name">Junayed</div>
+                        <div class="club-name">Al Hilal</div>
+                    </div>
+                    <div class="player-number">02</div>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">PSG</div>
+                    <div class="player-info">
+                        <div class="player-name">Mahdi Hasan</div>
+                        <div class="club-name">PSG</div>
+                    </div>
+                    <div class="player-number">03</div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- GROUP D -->
+
+        <div class="group">
+
+            <div class="group-inner">
+
+                <div class="group-title">
+                    <h3>GROUP D</h3>
+                    <span>D</span>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">BVB</div>
+                    <div class="player-info">
+                        <div class="player-name">Al Amin</div>
+                        <div class="club-name">Dortmund</div>
+                    </div>
+                    <div class="player-number">01</div>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">ACM</div>
+                    <div class="player-info">
+                        <div class="player-name">Tamim Iqbal</div>
+                        <div class="club-name">AC Milan</div>
+                    </div>
+                    <div class="player-number">02</div>
+                </div>
+
+                <div class="player">
+                    <div class="club-logo">NSS</div>
+                    <div class="player-info">
+                        <div class="player-name">Sharaiar</div>
+                        <div class="club-name">Al Nassr</div>
+                    </div>
+                    <div class="player-number">03</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= KNOCKOUT ================= -->
+
+<section id="knockout" class="reveal">
+
+    <div class="section-head">
+
+        <div class="tag">02 • ROAD TO GLORY</div>
+
+        <h2>KNOCKOUT STAGE</h2>
+
+        <p>Every match brings one step closer to the trophy.</p>
+
+    </div>
+
+
+    <div class="bracket-wrapper">
+
+        <div class="bracket">
+
+
+            <!-- QUARTER FINAL -->
+
+            <div class="round qf">
+
+                <div class="round-title">
+                    QUARTER FINAL
+                </div>
+
+                <div class="match">
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                </div>
+
+
+                <div class="match">
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                </div>
+
+
+                <div class="match">
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                </div>
+
+
+                <div class="match">
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEMI FINAL -->
+
+            <div class="round sf">
+
+                <div class="round-title">
+                    SEMI FINAL
+                </div>
+
+                <div class="match">
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                </div>
+
+
+                <div class="match">
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FINAL -->
+
+            <div class="round final-round">
+
+                <div class="round-title">
+                    GRAND FINAL
+                </div>
+
+                <div class="match">
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                    <div class="team">
+                        <span class="team-name empty">TBD</span>
+                        <span class="score">–</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHAMPION -->
+
+            <div class="round final-round">
+
+                <div class="round-title">
+                    CHAMPION
+                </div>
+
+                <div class="match">
+
+                    <div class="team">
+
+                        <span class="team-name empty">
+                            TBD
+                        </span>
+
+                        <span class="score">🏆</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= GRAND FINAL ================= -->
+
+<section id="final" class="final-section reveal">
+
+    <div class="section-head">
+
+        <div class="tag">03 • THE LAST BATTLE</div>
+
+        <h2>GRAND FINAL</h2>
+
+        <p>Only two remain. One will become champion.</p>
+
+    </div>
+
+
+    <div class="final-card">
+
+        <div class="final-label">
+            PES POINT FINAL
+        </div>
+
+
+        <div class="final-vs">
+
+            <div class="final-team">
+
+                <div class="big-logo">
+                    TBD
+                </div>
+
+                <p>FINALIST 01</p>
+
+            </div>
+
+
+            <div class="vs">
+                VS
+            </div>
+
+
+            <div class="final-team">
+
+                <div class="big-logo">
+                    TBD
+                </div>
+
+                <p>FINALIST 02</p>
+
+            </div>
+
+        </div>
+
+
+        <div style="
+            color:#536e88;
+            font-size:11px;
+            letter-spacing:2px;
+        ">
+            SCORE & RESULT
+        </div>
+
+        <div style="
+            font-family:Orbitron;
+            font-size:35px;
+            margin-top:10px;
+            color:#607991;
+        ">
+            – : –
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CHAMPION ================= -->
+
+<section id="champion" class="reveal">
+
+    <div class="section-head">
+
+        <div class="tag">04 • THE CROWN</div>
+
+        <h2>CHAMPION</h2>
+
+    </div>
+
+
+    <div class="trophy-area">
+
+        <div class="trophy-glow"></div>
+
+        <div class="trophy">
+            🏆
+        </div>
+
+        <div class="champion-label">
+            PES POINT CHAMPION
+        </div>
+
+        <div class="champion-name">
+            <span>TBD</span>
+        </div>
+
+        <div style="
+            position:relative;
+            z-index:2;
+            color:#647d96;
+            margin-top:10px;
+            font-size:12px;
+            letter-spacing:2px;
+        ">
+            THE CHAMPION WILL BE CROWNED HERE
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <strong>PES POINT</strong>
+    &nbsp; • &nbsp;
+    CHAMPIONSHIP
+
+    <br><br>
+
+    12 PLAYERS • 12 CLUBS • 1 TROPHY
+
+</footer>
+
+
+<script>
+
+/* ================= PARTICLES ================= */
+
+const particles = document.getElementById("particles");
+
+for(let i=0;i<55;i++){
+
+    const p = document.createElement("div");
+
+    p.className = "particle";
+
+    p.style.left = Math.random()*100 + "%";
+
+    p.style.animationDuration =
+        (Math.random()*10 + 8) + "s";
+
+    p.style.animationDelay =
+        (Math.random()*8) + "s";
+
+    p.style.opacity =
+        Math.random()*.7 + .2;
+
+    particles.appendChild(p);
+}
+
+
+/* ================= SCROLL REVEAL ================= */
+
+const reveals =
+document.querySelectorAll(".reveal");
+
+const observer =
+new IntersectionObserver(
+(entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("active");
+
+        }
+
+    });
+
+},
+{
+    threshold:.12
+});
+
+
+reveals.forEach(
+el=>observer.observe(el)
+);
+
+
+/* ================= CARD STAGGER ================= */
+
+document
+.querySelectorAll(".player")
+.forEach((card,index)=>{
+
+    card.style.animation =
+        `cardIn .6s ease ${index*.08}s both`;
+
+});
+
+
+const style =
+document.createElement("style");
+
+style.innerHTML = `
+
+@keyframes cardIn{
+
+    from{
+        opacity:0;
+        transform:translateX(-25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+`;
+
+document.head.appendChild(style);
+
+
+/* ================= NAV ACTIVE EFFECT ================= */
+
+document.querySelectorAll("nav a")
+.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        document
+        .querySelectorAll("nav a")
+        .forEach(x=>x.style.color="");
+
+        link.style.color="#51caff";
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
