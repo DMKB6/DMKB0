@@ -7,7 +7,7 @@ const friends = [
 
     {
         name: "সিবগাতুল্লাহ সোহান",
-        birthday: "9 November",
+        birthday: "30 July",
         image: "images/sibgatullah-sohan.jpg"
     },
 
@@ -19,7 +19,7 @@ const friends = [
 
     {
         name: "আবিদুর রহমান",
-        birthday: "2 November",
+        birthday: "11 February",
         image: "images/abidur-rahman.jpg"
     },
 
@@ -37,7 +37,7 @@ const friends = [
 
     {
         name: "আসিফ ইকরাম",
-        birthday: "6 December",
+        birthday: "27 May",
         image: "images/asif-ikram.jpg"
     },
 
@@ -49,7 +49,7 @@ const friends = [
 
     {
         name: "আরমান আসিফ",
-        birthday: "8 December",
+        birthday: "3 December",
         image: "images/arman-asif.jpg"
     },
 
@@ -127,7 +127,7 @@ const friends = [
 
     {
         name: "জুবায়ের আহমেদ",
-        birthday: "1 January",
+        birthday: "16 July",
         image: "images/zubair-ahmed.jpg"
     },
 
@@ -151,7 +151,7 @@ const friends = [
 
     {
         name: "রাফিউল ইসলাম",
-        birthday: "1 January",
+        birthday: "4 January",
         image: "images/rafiul-islam.jpg"
     },
 
@@ -159,10 +159,35 @@ const friends = [
         name: "মাহদি বিন মোবারক",
         birthday: "9 December",
         image: "images/mahdi-bin-mobarak.jpg"
+    },
+
+    /* নতুন বন্ধু */
+
+    {
+        name: "তামিম বিন সাঈদ",
+        birthday: "26 July",
+        image: "images/tamim-bin-saeed.jpg"
+    },
+
+    {
+        name: "মীর রাফি",
+        birthday: "10 September",
+        image: "images/mir-rafi.jpg"
+    },
+
+    {
+        name: "আব্দুল্লাহ ইয়ামেন",
+        birthday: "19 September",
+        image: "images/abdullah-yamen.jpg"
+    },
+
+    {
+        name: "তাহসিন",
+        birthday: "20 December",
+        image: "images/tahsin.jpg"
     }
 
 ];
-
 
 
 /* =====================================================
@@ -170,7 +195,6 @@ const friends = [
 ===================================================== */
 
 const monthNames = [
-
     "January",
     "February",
     "March",
@@ -183,9 +207,7 @@ const monthNames = [
     "October",
     "November",
     "December"
-
 ];
-
 
 
 /* =====================================================
@@ -194,11 +216,9 @@ const monthNames = [
 
 let lastOrder = "";
 
-let lastDay =
-    new Date().toDateString();
+let lastDay = new Date().toDateString();
 
 let birthdayCelebrated = {};
-
 
 
 /* =====================================================
@@ -207,24 +227,17 @@ let birthdayCelebrated = {};
 
 function getBirthdayInfo(birthday) {
 
-    const parts =
-        birthday.trim().split(/\s+/);
+    const parts = birthday.trim().split(/\s+/);
 
-    const day =
-        parseInt(parts[0], 10);
+    const day = parseInt(parts[0], 10);
 
-    const month =
-        monthNames.indexOf(parts[1]);
+    const month = monthNames.indexOf(parts[1]);
 
     return {
-
         day: day,
         month: month
-
     };
-
 }
-
 
 
 /* =====================================================
@@ -233,72 +246,36 @@ function getBirthdayInfo(birthday) {
 
 function getNextBirthday(birthday) {
 
-    const info =
-        getBirthdayInfo(birthday);
+    const info = getBirthdayInfo(birthday);
 
-    const now =
-        new Date();
+    const now = new Date();
 
-    let year =
-        now.getFullYear();
+    let year = now.getFullYear();
 
-    let nextBirthday =
-        new Date(
-            year,
-            info.month,
-            info.day,
-            0,
-            0,
-            0,
-            0
-        );
-
-
-    /*
-       আজকের birthday হলে
-       আজকের date-টাই রাখবে
-    */
-
-    const todayMonth =
-        now.getMonth();
-
-    const todayDay =
-        now.getDate();
-
+    let nextBirthday = new Date(
+        year,
+        info.month,
+        info.day,
+        0, 0, 0, 0
+    );
 
     const isToday =
-        todayMonth === info.month &&
-        todayDay === info.day;
+        now.getMonth() === info.month &&
+        now.getDate() === info.day;
 
+    if (nextBirthday < now && !isToday) {
 
-    /*
-       আজ birthday না হলে এবং
-       birthday পার হয়ে গেলে পরের বছর
-    */
-
-    if (
-        nextBirthday < now &&
-        !isToday
-    ) {
-
-        nextBirthday =
-            new Date(
-                year + 1,
-                info.month,
-                info.day,
-                0,
-                0,
-                0,
-                0
-            );
+        nextBirthday = new Date(
+            year + 1,
+            info.month,
+            info.day,
+            0, 0, 0, 0
+        );
 
     }
 
-
     return nextBirthday;
-
 }
-
 
 
 /* =====================================================
@@ -308,219 +285,107 @@ function getNextBirthday(birthday) {
 
 function formatDate(date) {
 
-    return date.toLocaleDateString(
-        "bn-BD",
-        {
-            day: "numeric",
-            month: "long"
-        }
-    );
+    return date.toLocaleDateString("bn-BD", {
+        day: "numeric",
+        month: "long"
+    });
 
 }
-
 
 
 /* =====================================================
    CREATE BIRTHDAY CARD
 ===================================================== */
 
-function createCard(
-    friend,
-    index,
-    isNext
-) {
+function createCard(friend, index, isNext) {
 
-    const birthday =
-        getNextBirthday(
-            friend.birthday
-        );
+    const birthday = getNextBirthday(friend.birthday);
 
+    const card = document.createElement("div");
 
-    const card =
-        document.createElement(
-            "div"
-        );
+    card.className = "birthday-card";
 
+    const info = getBirthdayInfo(friend.birthday);
 
-    card.className =
-        "birthday-card";
-
-
-    /*
-       আজ birthday হলে
-       birthday class
-    */
-
-    const info =
-        getBirthdayInfo(
-            friend.birthday
-        );
-
-    const now =
-        new Date();
-
+    const now = new Date();
 
     if (
         now.getMonth() === info.month &&
         now.getDate() === info.day
     ) {
 
-        card.classList.add(
-            "birthday-today"
-        );
+        card.classList.add("birthday-today");
 
     }
-
-
-    /*
-       Next birthday card
-    */
 
     if (isNext) {
 
-        card.classList.add(
-            "next-birthday"
-        );
+        card.classList.add("next-birthday");
 
     }
 
+    card.dataset.birthday = birthday.getTime();
 
-    /*
-       Birthday timestamp
-    */
-
-    card.dataset.birthday =
-        birthday.getTime();
-
-    card.dataset.friendName =
-        friend.name;
-
-
-    /*
-       Card HTML
-    */
+    card.dataset.friendName = friend.name;
 
     card.innerHTML = `
 
         <div class="card-number">
-
-            ${String(index + 1)
-                .padStart(2, "0")}
-
+            ${String(index + 1).padStart(2, "0")}
         </div>
-
 
         ${
             isNext
-
-            ?
-
-            `
-
-                <div class="next-badge">
-
-                    ⭐ NEXT BIRTHDAY
-
-                </div>
-
-            `
-
-            :
-
-            ""
-
+                ? `<div class="next-badge">⭐ NEXT BIRTHDAY</div>`
+                : ""
         }
-
 
         <div class="avatar">
 
             <img
                 src="${friend.image}"
                 alt="${friend.name}"
-                onerror="
-                    this.src='images/default.jpg'
-                "
+                onerror="this.onerror=null; this.src='images/default.jpg';"
             >
 
         </div>
 
-
         <h2 class="friend-name">
-
             ${friend.name}
-
         </h2>
 
-
         <p class="birthday-date">
-
             🎂 ${formatDate(birthday)}
-
         </p>
-
 
         <div class="countdown">
 
             <div class="time-box">
-
-                <span class="time-number days">
-                    00
-                </span>
-
-                <span class="time-label">
-                    দিন
-                </span>
-
+                <span class="time-number days">00</span>
+                <span class="time-label">দিন</span>
             </div>
 
-
             <div class="time-box">
-
-                <span class="time-number hours">
-                    00
-                </span>
-
-                <span class="time-label">
-                    ঘণ্টা
-                </span>
-
+                <span class="time-number hours">00</span>
+                <span class="time-label">ঘণ্টা</span>
             </div>
 
-
             <div class="time-box">
-
-                <span class="time-number minutes">
-                    00
-                </span>
-
-                <span class="time-label">
-                    মিনিট
-                </span>
-
+                <span class="time-number minutes">00</span>
+                <span class="time-label">মিনিট</span>
             </div>
 
-
             <div class="time-box">
-
-                <span class="time-number seconds">
-                    00
-                </span>
-
-                <span class="time-label">
-                    সেকেন্ড
-                </span>
-
+                <span class="time-number seconds">00</span>
+                <span class="time-label">সেকেন্ড</span>
             </div>
 
         </div>
 
     `;
 
-
     return card;
-
 }
-
 
 
 /* =====================================================
@@ -529,27 +394,17 @@ function createCard(
 
 function getSortedFriends() {
 
-    return [...friends].sort(
-        (a, b) => {
+    return [...friends].sort((a, b) => {
 
-            const dateA =
-                getNextBirthday(
-                    a.birthday
-                );
+        const dateA = getNextBirthday(a.birthday);
 
-            const dateB =
-                getNextBirthday(
-                    b.birthday
-                );
+        const dateB = getNextBirthday(b.birthday);
 
+        return dateA - dateB;
 
-            return dateA - dateB;
-
-        }
-    );
+    });
 
 }
-
 
 
 /* =====================================================
@@ -558,35 +413,15 @@ function getSortedFriends() {
 
 function renderBirthdays() {
 
-    const list =
-        document.getElementById(
-            "birthdayList"
-        );
-
+    const list = document.getElementById("birthdayList");
 
     if (!list) return;
 
+    const sortedFriends = getSortedFriends();
 
-    const sortedFriends =
-        getSortedFriends();
-
-
-    /*
-       Order check
-    */
-
-    const newOrder =
-        sortedFriends
-            .map(
-                friend =>
-                    friend.name
-            )
-            .join("|");
-
-
-    /*
-       Order একই হলে নতুন card বানাবে না
-    */
+    const newOrder = sortedFriends
+        .map(friend => friend.name)
+        .join("|");
 
     if (
         newOrder === lastOrder &&
@@ -597,174 +432,74 @@ function renderBirthdays() {
 
     }
 
-
-    lastOrder =
-        newOrder;
-
+    lastOrder = newOrder;
 
     list.innerHTML = "";
 
+    sortedFriends.forEach((friend, index) => {
 
-    /*
-       সবচেয়ে কাছের birthday সবার আগে
-    */
+        const card = createCard(
+            friend,
+            index,
+            index === 0
+        );
 
-    sortedFriends.forEach(
-        (friend, index) => {
+        list.appendChild(card);
 
-            const card =
-                createCard(
-                    friend,
-                    index,
-                    index === 0
-                );
-
-
-            list.appendChild(card);
-
-        }
-    );
+    });
 
 }
 
 
-
 /* =====================================================
    UPDATE COUNTDOWN
-   Birthday-এর দিন সারাদিন Happy Birthday
 ===================================================== */
 
 function updateCountdown() {
 
-    const now =
-        new Date();
+    const now = new Date();
 
-    const nowTime =
-        now.getTime();
+    const nowTime = now.getTime();
 
-
-    const cards =
-        document.querySelectorAll(
-            ".birthday-card"
-        );
-
+    const cards = document.querySelectorAll(".birthday-card");
 
     cards.forEach(card => {
 
-        let birthday =
-            Number(
-                card.dataset.birthday
-            );
+        const friendName = card.dataset.friendName;
 
-
-        const friendName =
-            card.dataset.friendName;
-
-
-        /*
-           Friend data
-        */
-
-        const friend =
-            friends.find(
-                item =>
-                    item.name ===
-                    friendName
-            );
-
+        const friend = friends.find(
+            item => item.name === friendName
+        );
 
         if (!friend) return;
 
-
-        /*
-           =========================================
-           আজ birthday কিনা
-           =========================================
-        */
-
-        const info =
-            getBirthdayInfo(
-                friend.birthday
-            );
-
+        const info = getBirthdayInfo(friend.birthday);
 
         const isBirthdayToday =
-            now.getMonth() ===
-            info.month &&
+            now.getMonth() === info.month &&
+            now.getDate() === info.day;
 
-            now.getDate() ===
-            info.day;
-
-
-
-        /*
-           =========================================
-           BIRTHDAY TODAY
-           =========================================
-        */
+        /* Birthday Today */
 
         if (isBirthdayToday) {
 
-            /*
-               Birthday class
-            */
+            card.classList.add("birthday-today");
 
-            card.classList.add(
-                "birthday-today"
-            );
-
-
-            /*
-               Countdown hide
-            */
-
-            const countdown =
-                card.querySelector(
-                    ".countdown"
-                );
-
+            const countdown = card.querySelector(".countdown");
 
             if (countdown) {
-
-                countdown.style.display =
-                    "none";
-
+                countdown.style.display = "none";
             }
 
-
-            /*
-               Happy Birthday
-            */
-
-            let happyBirthday =
-                card.querySelector(
-                    ".happy-birthday"
-                );
-
-
-            /*
-               আগে না থাকলে তৈরি করবে
-            */
+            let happyBirthday = card.querySelector(".happy-birthday");
 
             if (!happyBirthday) {
 
-                happyBirthday =
-                    document.createElement(
-                        "div"
-                    );
+                happyBirthday = document.createElement("div");
 
+                happyBirthday.className = "happy-birthday";
 
-                happyBirthday.className =
-                    "happy-birthday";
-
-
-                happyBirthday.innerHTML =
-                    "🎉🎂 Happy Birthday! 🎂🎉";
-
-
-                /*
-                   Countdown-এর আগে বসাবে
-                */
+                happyBirthday.innerHTML = "🎉🎂 Happy Birthday! 🎂🎉";
 
                 if (countdown) {
 
@@ -775,334 +510,97 @@ function updateCountdown() {
 
                 } else {
 
-                    card.appendChild(
-                        happyBirthday
-                    );
+                    card.appendChild(happyBirthday);
 
                 }
 
             }
 
-
-            /*
-               Birthday date ঠিক রাখবে
-            */
-
-            const dateElement =
-                card.querySelector(
-                    ".birthday-date"
-                );
-
+            const dateElement = card.querySelector(".birthday-date");
 
             if (dateElement) {
-
-                dateElement.innerHTML =
-                    `🎂 ${formatDate(now)}`;
-
+                dateElement.innerHTML = `🎂 ${formatDate(now)}`;
             }
 
-
-            /*
-               =====================================
-               CONFETTI
-               বছরে একবার
-               =====================================
-            */
-
             const celebrationKey =
-                friendName +
-                "-" +
-                now.getFullYear();
+                friendName + "-" + now.getFullYear();
 
+            if (!birthdayCelebrated[celebrationKey]) {
 
-            if (
-                !birthdayCelebrated[
-                    celebrationKey
-                ]
-            ) {
-
-                birthdayCelebrated[
-                    celebrationKey
-                ] = true;
-
+                birthdayCelebrated[celebrationKey] = true;
 
                 createConfetti();
 
             }
 
-
-            /*
-               Birthday day-তে
-               countdown আর চলবে না
-            */
-
             return;
 
         }
 
+        /* Birthday শেষ হলে Countdown */
 
+        card.classList.remove("birthday-today");
 
-        /*
-           =========================================
-           Birthday শেষ → Countdown
-           =========================================
-        */
-
-        card.classList.remove(
-            "birthday-today"
-        );
-
-
-        /*
-           Happy Birthday remove
-        */
-
-        const happyBirthday =
-            card.querySelector(
-                ".happy-birthday"
-            );
-
+        const happyBirthday = card.querySelector(".happy-birthday");
 
         if (happyBirthday) {
-
             happyBirthday.remove();
-
         }
 
-
-        /*
-           Countdown আবার show
-        */
-
-        const countdown =
-            card.querySelector(
-                ".countdown"
-            );
-
+        const countdown = card.querySelector(".countdown");
 
         if (countdown) {
-
-            countdown.style.display =
-                "grid";
-
+            countdown.style.display = "grid";
         }
 
+        const nextBirthday = getNextBirthday(friend.birthday);
 
-        /*
-           =========================================
-           পরের birthday বের করা
-           =========================================
-        */
+        card.dataset.birthday = nextBirthday.getTime();
 
-        const nextBirthday =
-            getNextBirthday(
-                friend.birthday
-            );
+        const difference = nextBirthday.getTime() - nowTime;
 
+        const days = Math.floor(
+            difference / (1000 * 60 * 60 * 24)
+        );
 
-        card.dataset.birthday =
-            nextBirthday.getTime();
+        const hours = Math.floor(
+            (difference % (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
 
+        const minutes = Math.floor(
+            (difference % (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
 
-        birthday =
-            nextBirthday.getTime();
+        const seconds = Math.floor(
+            (difference % (1000 * 60)) / 1000
+        );
 
-
-        /*
-           =========================================
-           Countdown difference
-           =========================================
-        */
-
-        const difference =
-            birthday -
-            nowTime;
-
-
-        /*
-           =========================================
-           DAYS
-           =========================================
-        */
-
-        const days =
-            Math.floor(
-
-                difference /
-
-                (
-                    1000 *
-                    60 *
-                    60 *
-                    24
-                )
-
-            );
-
-
-        /*
-           =========================================
-           HOURS
-           =========================================
-        */
-
-        const hours =
-            Math.floor(
-
-                (
-                    difference %
-
-                    (
-                        1000 *
-                        60 *
-                        60 *
-                        24
-                    )
-
-                )
-
-                /
-
-                (
-                    1000 *
-                    60 *
-                    60
-                )
-
-            );
-
-
-        /*
-           =========================================
-           MINUTES
-           =========================================
-        */
-
-        const minutes =
-            Math.floor(
-
-                (
-                    difference %
-
-                    (
-                        1000 *
-                        60 *
-                        60
-                    )
-
-                )
-
-                /
-
-                (
-                    1000 *
-                    60
-                )
-
-            );
-
-
-        /*
-           =========================================
-           SECONDS
-           =========================================
-        */
-
-        const seconds =
-            Math.floor(
-
-                (
-                    difference %
-
-                    (
-                        1000 *
-                        60
-                    )
-
-                )
-
-                /
-
-                1000
-
-            );
-
-
-        /*
-           =========================================
-           HTML ELEMENTS
-           =========================================
-        */
-
-        const daysElement =
-            card.querySelector(
-                ".days"
-            );
-
-
-        const hoursElement =
-            card.querySelector(
-                ".hours"
-            );
-
-
-        const minutesElement =
-            card.querySelector(
-                ".minutes"
-            );
-
-
-        const secondsElement =
-            card.querySelector(
-                ".seconds"
-            );
-
-
-        /*
-           =========================================
-           UPDATE NUMBERS
-           =========================================
-        */
+        const daysElement = card.querySelector(".days");
+        const hoursElement = card.querySelector(".hours");
+        const minutesElement = card.querySelector(".minutes");
+        const secondsElement = card.querySelector(".seconds");
 
         if (daysElement) {
-
-            daysElement.textContent =
-                String(days)
-                    .padStart(2, "0");
-
+            daysElement.textContent = String(days).padStart(2, "0");
         }
-
 
         if (hoursElement) {
-
-            hoursElement.textContent =
-                String(hours)
-                    .padStart(2, "0");
-
+            hoursElement.textContent = String(hours).padStart(2, "0");
         }
-
 
         if (minutesElement) {
-
-            minutesElement.textContent =
-                String(minutes)
-                    .padStart(2, "0");
-
+            minutesElement.textContent = String(minutes).padStart(2, "0");
         }
 
-
         if (secondsElement) {
-
-            secondsElement.textContent =
-                String(seconds)
-                    .padStart(2, "0");
-
+            secondsElement.textContent = String(seconds).padStart(2, "0");
         }
 
     });
 
 }
-
 
 
 /* =====================================================
@@ -1111,35 +609,22 @@ function updateCountdown() {
 
 function showTodayDate() {
 
-    const today =
-        new Date();
+    const today = new Date();
 
-
-    const element =
-        document.getElementById(
-            "todayDate"
-        );
-
+    const element = document.getElementById("todayDate");
 
     if (!element) return;
 
-
     element.textContent =
-
         "📅 আজ: " +
-
-        today.toLocaleDateString(
-            "bn-BD",
-            {
-                weekday: "long",
-                day: "numeric",
-                month: "long",
-                year: "numeric"
-            }
-        );
+        today.toLocaleDateString("bn-BD", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
 
 }
-
 
 
 /* =====================================================
@@ -1148,46 +633,23 @@ function showTodayDate() {
 
 function checkNewDay() {
 
-    const today =
-        new Date();
+    const today = new Date();
 
+    const todayString = today.toDateString();
 
-    const todayString =
-        today.toDateString();
+    if (todayString !== lastDay) {
 
-
-    /*
-       দিন পরিবর্তন হয়েছে
-    */
-
-    if (
-        todayString !== lastDay
-    ) {
-
-        lastDay =
-            todayString;
-
-
-        /*
-           Birthday আবার calculate
-        */
+        lastDay = todayString;
 
         lastOrder = "";
-
 
         renderBirthdays();
 
     }
 
-
-    /*
-       আজকের date update
-    */
-
     showTodayDate();
 
 }
-
 
 
 /* =====================================================
@@ -1196,88 +658,40 @@ function checkNewDay() {
 
 function createConfetti() {
 
-    const container =
-        document.getElementById(
-            "confetti"
-        );
-
+    const container = document.getElementById("confetti");
 
     if (!container) return;
 
+    for (let i = 0; i < 70; i++) {
 
-    for (
-        let i = 0;
-        i < 70;
-        i++
-    ) {
+        const piece = document.createElement("div");
 
-        const piece =
-            document.createElement(
-                "div"
-            );
+        piece.className = "confetti";
 
+        piece.style.left = Math.random() * 100 + "vw";
 
-        piece.className =
-            "confetti";
+        piece.style.width = Math.random() * 8 + 5 + "px";
 
-
-        piece.style.left =
-            Math.random() * 100 +
-            "vw";
-
-
-        piece.style.width =
-            Math.random() * 8 +
-            5 +
-            "px";
-
-
-        piece.style.height =
-            Math.random() * 12 +
-            8 +
-            "px";
-
+        piece.style.height = Math.random() * 12 + 8 + "px";
 
         piece.style.background =
-
-            `hsl(
-                ${Math.random() * 360},
-                90%,
-                60%
-            )`;
-
+            `hsl(${Math.random() * 360}, 90%, 60%)`;
 
         piece.style.animationDuration =
-
-            Math.random() * 2 +
-            3 +
-            "s";
-
+            Math.random() * 2 + 3 + "s";
 
         piece.style.animationDelay =
+            Math.random() * 0.5 + "s";
 
-            Math.random() * 0.5 +
-            "s";
+        container.appendChild(piece);
 
-
-        container.appendChild(
-            piece
-        );
-
-
-        setTimeout(
-            () => {
-
-                piece.remove();
-
-            },
-            6000
-        );
+        setTimeout(() => {
+            piece.remove();
+        }, 6000);
 
     }
 
 }
-
 
 
 /* =====================================================
@@ -1291,33 +705,19 @@ showTodayDate();
 updateCountdown();
 
 
+/* প্রতি ১ সেকেন্ডে Countdown Update */
 
-/* =====================================================
-   COUNTDOWN
-   প্রতি ১ সেকেন্ডে update
-===================================================== */
+setInterval(() => {
 
-setInterval(
-    () => {
+    updateCountdown();
 
-        updateCountdown();
-
-    }, 
-    1000
-);
+}, 1000);
 
 
+/* প্রতি ১০ সেকেন্ডে Date Check */
 
-/* =====================================================
-   DATE CHECK
-   প্রতি ১০ সেকেন্ডে check
-===================================================== */
+setInterval(() => {
 
-setInterval(
-    () => {
+    checkNewDay();
 
-        checkNewDay();
-
-    },
-    10000
-);
+}, 10000);
