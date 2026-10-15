@@ -1,38 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Our Contacts</title>
+    <meta name="theme-color" content="#07111f">
+    <title>Our Contacts | Friends & Members</title>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Font Awesome Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
+    <!-- Main CSS -->
     <link rel="stylesheet" href="student.css">
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="background-effects" aria-hidden="true">
+        <span class="bg-orb orb-one"></span>
+        <span class="bg-orb orb-two"></span>
+    </div>
 
-        <header>
+    <main class="container">
+
+        <header class="page-header">
             <div class="header-icon">
                 <i class="fa-solid fa-address-book"></i>
             </div>
 
             <h1>Our Contacts</h1>
-            <p>Friends & Members</p>
+            <p>Friends &amp; Members</p>
+            <div class="header-line"></div>
         </header>
 
-        <div id="contactList" class="contact-list"></div>
+        <!-- Search -->
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
 
-    </div>
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search friends..."
+                autocomplete="off"
+                aria-label="Search contacts"
+            >
 
+            <i class="fa-solid fa-users search-end-icon"></i>
+        </div>
+
+        <!-- Contact cards are rendered by student.js -->
+        <section
+            id="contactList"
+            class="contact-list"
+            aria-label="Friends and members"
+        ></section>
+
+        <p id="emptyMessage" class="empty-message" hidden>
+            <i class="fa-solid fa-user-slash"></i>
+            No contacts found.
+        </p>
+
+        <footer class="page-footer">
+            <span class="footer-heart">
+                <i class="fa-solid fa-heart"></i>
+            </span>
+            <span>Friends Forever</span>
+        </footer>
+
+    </main>
+
+    <!-- Main JavaScript -->
     <script src="student.js"></script>
 
 </body>
-
 </html>
