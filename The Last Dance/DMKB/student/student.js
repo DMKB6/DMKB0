@@ -127,6 +127,7 @@ const contacts = [
     {
         name: "Jahidul Islam Sujon",
         profile: "Sujon.jpg",
+       profile2:"Sujon2.jpg",
         call: "01943464407",
         whatsapp: "01943464407",
         telegram: "01943464407"
