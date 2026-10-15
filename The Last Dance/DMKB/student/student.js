@@ -127,7 +127,7 @@ const contacts = [
     {
         name: "Jahidul Islam Sujon",
         profile: "Sujon.jpg",
-       profile2:"Sujon2.jpg",
+        profile2: "Sujon2.jpg",
         call: "01943464407",
         whatsapp: "01943464407",
         telegram: "01943464407"
@@ -244,7 +244,7 @@ const contacts = [
 
 
 /* =====================================================
-   INTERNATIONAL NUMBER
+   BANGLADESH PHONE NUMBERS
 ===================================================== */
 
 function internationalNumber(number) {
@@ -267,7 +267,7 @@ function internationalNumber(number) {
 function createButton(type, number) {
     if (!number) return "";
 
-    if (number.includes("*")) {
+    if (String(number).includes("*")) {
         return `
             <span class="contact-btn">
                 <i class="fa-solid fa-lock"></i>
@@ -277,6 +277,7 @@ function createButton(type, number) {
     }
 
     const intl = internationalNumber(number);
+
     let link = "";
     let icon = "";
     let className = "";
@@ -390,6 +391,7 @@ function launchDragon(card) {
         spark.style.setProperty("--ss", `${3 + Math.random() * 5}px`);
         spark.style.setProperty("--dx", `${Math.random() * 120 - 60}px`);
         spark.style.setProperty("--dy", `${-30 - Math.random() * 90}px`);
+
         spark.style.setProperty(
             "--spark-color",
             colors[Math.floor(Math.random() * colors.length)]
@@ -405,23 +407,29 @@ function launchDragon(card) {
 
 
 /* =====================================================
-   CREATE CONTACT CARDS
+   CREATE CONTACT CARD
 ===================================================== */
 
 function createContactCard(person, index) {
-    const card = document.createElement("div");
+    const card = document.createElement("article");
     card.className = "contact-card";
     card.style.animationDelay = `${Math.min(index * 0.04, 0.5)}s`;
 
+    /* PROFILE */
+
     const profile = document.createElement("div");
     profile.className = "profile";
-    profile.title = "Click to change profile picture";
-    profile.style.cursor = "pointer";
+    profile.title = person.profile2
+        ? "Click to change picture"
+        : "Profile picture";
 
     const img = document.createElement("img");
-    img.src = person.profile;
     img.alt = person.name;
+    img.width = 65;
+    img.height = 65;
     img.loading = "lazy";
+    img.decoding = "async";
+    img.src = person.profile;
 
     const fallback = document.createElement("i");
     fallback.className = "fa-solid fa-user";
@@ -438,6 +446,8 @@ function createContactCard(person, index) {
     });
 
     profile.append(img, fallback);
+
+    /* NAME AND BUTTONS */
 
     const info = document.createElement("div");
     info.className = "info";
@@ -462,6 +472,8 @@ function createContactCard(person, index) {
     info.append(name, buttons);
     card.append(profile, info);
 
+    /* SECOND PROFILE IMAGE */
+
     let showingSecond = false;
     let switching = false;
 
@@ -474,19 +486,32 @@ function createContactCard(person, index) {
             ? person.profile
             : person.profile2;
 
+        // Check the next image before changing the current image.
+        const imageCheck = new Image();
+
         switching = true;
         profile.classList.add("switching");
 
-        setTimeout(() => {
+        imageCheck.onload = () => {
             img.src = nextImage;
             showingSecond = !showingSecond;
-        }, 160);
+            img.style.display = "block";
+            fallback.style.display = "none";
 
-        setTimeout(() => {
             profile.classList.remove("switching");
             switching = false;
-        }, 330);
+        };
+
+        imageCheck.onerror = () => {
+            profile.classList.remove("switching");
+            switching = false;
+            console.warn("Profile image not found:", nextImage);
+        };
+
+        imageCheck.src = nextImage;
     });
+
+    /* CLICK CARD FOR DRAGON */
 
     card.addEventListener("click", event => {
         if (event.target.closest("a")) return;
@@ -500,7 +525,7 @@ function createContactCard(person, index) {
 
 
 /* =====================================================
-   SEARCH + RENDER
+   SEARCH + RENDER CONTACTS
 ===================================================== */
 
 const contactList = document.getElementById("contactList");
