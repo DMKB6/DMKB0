@@ -1,15 +1,8 @@
-/* =====================================================
-   OUR CONTACTS — COMPACT DARK NEON DESIGN
-===================================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 :root {
     --bg: #07111f;
-    --card: #0d1a2a;
-    --card-light: #112239;
     --cyan: #48dcff;
-    --blue: #168bff;
     --text: #eef7ff;
     --muted: #91a8bf;
     --border: #243c55;
@@ -38,14 +31,11 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-button,
-input {
+button, input {
     font: inherit;
 }
 
-/* =====================================================
-   BACKGROUND
-===================================================== */
+/* BACKGROUND */
 
 .background-effects {
     position: fixed;
@@ -76,9 +66,7 @@ input {
     background: #00e5ff;
 }
 
-/* =====================================================
-   PAGE LAYOUT
-===================================================== */
+/* PAGE */
 
 .container {
     width: 100%;
@@ -87,9 +75,7 @@ input {
     padding: 25px 18px;
 }
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* HEADER */
 
 .page-header {
     text-align: center;
@@ -116,7 +102,7 @@ input {
     font-weight: 800;
     letter-spacing: 0.5px;
     line-height: 1.3;
-    background: linear-gradient(90deg, #ffffff, #48dcff, #a5b9ff);
+    background: linear-gradient(90deg, #fff, #48dcff, #a5b9ff);
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
@@ -137,9 +123,7 @@ input {
     background: linear-gradient(90deg, transparent, var(--cyan), transparent);
 }
 
-/* =====================================================
-   SEARCH BOX
-===================================================== */
+/* SEARCH */
 
 .search-box {
     width: 100%;
@@ -182,57 +166,40 @@ input {
     color: #7188a0;
 }
 
-.search-box input::-webkit-search-cancel-button {
-    cursor: pointer;
-}
-
 .search-end-icon {
     opacity: 0.55;
 }
 
-/* =====================================================
-   CONTACT GRID
-===================================================== */
+/* CONTACT GRID */
 
 .contact-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 13px;
     align-items: start;
+    gap: 13px;
 }
 
-/* =====================================================
-   COMPACT CONTACT CARD
-===================================================== */
+/* CONTACT CARD */
 
 .contact-card {
     min-width: 0;
     position: relative;
     isolation: isolate;
     overflow: hidden;
-
     display: flex;
     align-items: center;
     gap: 12px;
-
     padding: 12px;
     border: 1px solid var(--border);
     border-radius: 15px;
-
     background: linear-gradient(
         145deg,
         rgba(17, 34, 54, 0.97),
         rgba(9, 20, 34, 0.98)
     );
-
     box-shadow: 0 4px 12px #00000014;
-
     animation: cardEnter 0.4s ease both;
-
-    transition:
-        border-color 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
 }
 
 .contact-card:hover {
@@ -243,14 +210,10 @@ input {
 
 .contact-card.dragon-active {
     border-color: var(--cyan);
-    box-shadow:
-        0 0 15px #00cfff24,
-        inset 0 0 10px #00cfff08;
+    box-shadow: 0 0 15px #00cfff24, inset 0 0 10px #00cfff08;
 }
 
-/* =====================================================
-   PROFILE IMAGE
-===================================================== */
+/* PROFILE IMAGE — FIXED SQUARE SIZE */
 
 .profile {
     width: 65px;
@@ -258,24 +221,15 @@ input {
     flex: 0 0 65px;
     position: relative;
     z-index: 2;
-
     display: grid;
     place-items: center;
-
     padding: 3px;
     border-radius: 50%;
+    overflow: hidden;
     cursor: pointer;
-
-    background: linear-gradient(
-        145deg,
-        #48dcff,
-        #167cff 60%,
-        #987bff
-    );
-
+    background: linear-gradient(145deg, #48dcff, #167cff 60%, #987bff);
     box-shadow: 0 0 12px #00cfff18;
-
-    transition: box-shadow 0.25s ease;
+    transition: box-shadow 0.25s;
 }
 
 .profile:hover {
@@ -286,13 +240,16 @@ input {
     display: block;
     width: 100%;
     height: 100%;
+    min-width: 0;
+    min-height: 0;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
+    object-position: center;
     border: 2px solid #0b1727;
     border-radius: 50%;
-
-    transition:
-        transform 0.28s ease,
-        opacity 0.2s ease;
+    transition: transform 0.28s ease, opacity 0.2s ease;
 }
 
 .profile.switching img {
@@ -305,33 +262,11 @@ input {
     font-size: 22px;
 }
 
-.profile::after {
-    content: "↻";
-    position: absolute;
-    right: -2px;
-    bottom: -1px;
-
-    width: 19px;
-    height: 19px;
-
-    display: grid;
-    place-items: center;
-
-    border: 1px solid #48dcff85;
-    border-radius: 50%;
-
-    background: #071321;
-    color: var(--cyan);
-    font-size: 13px;
-    line-height: 1;
-
-    box-shadow: 0 0 8px #00cfff18;
-    pointer-events: none;
+.profile img[hidden] {
+    display: none;
 }
 
-/* =====================================================
-   CONTACT INFORMATION
-===================================================== */
+/* CONTACT INFO */
 
 .info {
     flex: 1;
@@ -340,18 +275,14 @@ input {
 
 .info h2 {
     margin: 0 0 9px;
-
     color: var(--text);
     font-size: 13px;
     font-weight: 600;
     line-height: 1.45;
-
     overflow-wrap: anywhere;
 }
 
-/* =====================================================
-   BUTTONS
-===================================================== */
+/* BUTTONS */
 
 .buttons {
     display: flex;
@@ -363,28 +294,20 @@ input {
 .contact-btn {
     min-height: 29px;
     padding: 6px 8px;
-
     display: inline-flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
-
     border: 1px solid #2a415a;
     border-radius: 7px;
-
     background: #101f32;
     color: #dcecff;
-
     font-size: 10px;
     font-weight: 500;
     line-height: 1.2;
     text-decoration: none;
     white-space: nowrap;
-
-    transition:
-        color 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
 }
 
 .contact-btn i {
@@ -419,7 +342,7 @@ input {
 
 .contact-btn.x:hover {
     color: white;
-    border-color: #aaaaaa;
+    border-color: #aaa;
 }
 
 .contact-btn.imo:hover {
@@ -437,25 +360,18 @@ input {
     border-color: #ff4b82;
 }
 
-/* =====================================================
-   DRAGON ANIMATION
-===================================================== */
+/* DRAGON ANIMATION */
 
 .dragon-fx {
     position: absolute;
     z-index: 20;
-
     left: 35%;
     top: 50%;
-
     font-size: 35px;
     line-height: 1;
-
     pointer-events: none;
     user-select: none;
-
     filter: drop-shadow(0 0 6px #ff8b35);
-
     animation: dragonFly 1.65s cubic-bezier(.2, .7, .25, 1) forwards;
 }
 
@@ -464,22 +380,18 @@ input {
         opacity: 0;
         transform: translate(-10%, 0) scale(0.25) rotate(-20deg);
     }
-
     15% {
         opacity: 1;
         transform: translate(0, -15px) scale(0.85) rotate(8deg);
     }
-
     45% {
         opacity: 1;
         transform: translate(30px, -50px) scale(1.15) rotate(-10deg);
     }
-
     75% {
         opacity: 0.9;
         transform: translate(65px, -90px) scale(0.9) rotate(12deg);
     }
-
     100% {
         opacity: 0;
         transform: translate(100px, -125px) scale(0.4) rotate(25deg);
@@ -489,17 +401,13 @@ input {
 .dragon-spark {
     position: absolute;
     z-index: 19;
-
     left: var(--sx);
     top: var(--sy);
-
     width: var(--ss);
     height: var(--ss);
-
     border-radius: 50%;
     background: var(--spark-color);
     box-shadow: 0 0 8px var(--spark-color);
-
     pointer-events: none;
     animation: sparkFly 0.9s ease-out forwards;
 }
@@ -509,16 +417,13 @@ input {
         opacity: 1;
         transform: translate(0, 0) scale(1);
     }
-
     to {
         opacity: 0;
         transform: translate(var(--dx), var(--dy)) scale(0.1);
     }
 }
 
-/* =====================================================
-   EMPTY SEARCH RESULT
-===================================================== */
+/* EMPTY RESULT */
 
 .empty-message {
     padding: 25px 10px;
@@ -532,18 +437,14 @@ input {
     color: var(--cyan);
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* FOOTER */
 
 .page-footer {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 7px;
-
     padding: 25px 0 5px;
-
     color: #8298ae;
     font-size: 11px;
     letter-spacing: 0.7px;
@@ -553,16 +454,13 @@ input {
     color: #ff6b9d;
 }
 
-/* =====================================================
-   ANIMATIONS
-===================================================== */
+/* PAGE ANIMATIONS */
 
 @keyframes headerEnter {
     from {
         opacity: 0;
         transform: translateY(-10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -574,16 +472,13 @@ input {
         opacity: 0;
         transform: translateY(7px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* =====================================================
-   TABLET / MOBILE
-===================================================== */
+/* MOBILE */
 
 @media (max-width: 650px) {
     .container {
@@ -610,10 +505,6 @@ input {
     .info h2 {
         font-size: 13px;
         margin-bottom: 7px;
-    }
-
-    .buttons {
-        gap: 5px;
     }
 
     .contact-btn {
@@ -654,7 +545,6 @@ input {
     }
 }
 
-/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
     .contact-card,
     .page-header,
