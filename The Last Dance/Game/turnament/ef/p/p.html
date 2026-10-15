@@ -1,1303 +1,569 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050816">
+<title>PES POINT | Elite Championship</title>
 
-<title>PES POINT • Championship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap');
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root{
+  --bg:#050816;
+  --panel:#0b1224;
+  --cyan:#42dcff;
+  --blue:#4285ff;
+  --gold:#ffd66b;
+  --muted:#8da3c4;
 }
-
-html{
-    scroll-behavior:smooth;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
 body{
-    font-family:'Poppins',sans-serif;
-    color:#fff;
-    background:
-        radial-gradient(circle at 50% 0%,#14305c 0%,transparent 32%),
-        radial-gradient(circle at 0% 50%,#071b38 0%,transparent 35%),
-        radial-gradient(circle at 100% 80%,#10284b 0%,transparent 35%),
-        #02050b;
-    overflow-x:hidden;
+  font-family:Poppins,sans-serif;color:#f5f8ff;
+  background:
+    radial-gradient(ellipse at 50% 0%,#152b55 0%,transparent 38%),
+    radial-gradient(ellipse at 0% 65%,#10213e 0%,transparent 32%),
+    #050816;
+  overflow-x:hidden;
 }
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:#42dcff;color:#05101e}
 
-/* ================= PARTICLES ================= */
-
-.particles{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:0;
-}
-
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .particle{
-    position:absolute;
-    width:3px;
-    height:3px;
-    background:#65cfff;
-    border-radius:50%;
-    box-shadow:0 0 12px #65cfff;
-    animation:floatParticle linear infinite;
-    opacity:.6;
+  position:absolute;width:3px;height:3px;border-radius:50%;
+  background:var(--cyan);box-shadow:0 0 12px var(--cyan);
+  animation:rise linear infinite;opacity:.45;
 }
-
-@keyframes floatParticle{
-    from{
-        transform:translateY(110vh) scale(.5);
-    }
-    to{
-        transform:translateY(-10vh) scale(1.4);
-    }
+@keyframes rise{
+  from{transform:translateY(105vh) scale(.5)}
+  to{transform:translateY(-10vh) scale(1.5)}
 }
-
-/* ================= NAV ================= */
 
 nav{
-    position:sticky;
-    top:0;
-    z-index:100;
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:30px;
-    background:rgba(2,7,15,.82);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid rgba(83,190,255,.18);
+  position:sticky;top:0;z-index:50;min-height:68px;
+  display:flex;align-items:center;justify-content:center;gap:30px;
+  padding:12px 18px;background:rgba(5,8,22,.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #28446b;
 }
-
 nav a{
-    color:#9eb7d2;
-    text-decoration:none;
-    font-family:'Orbitron',sans-serif;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:1.5px;
-    transition:.3s;
+  font:700 10px Orbitron,sans-serif;letter-spacing:1.3px;
+  color:#a6b8d4;transition:.25s;white-space:nowrap;
 }
-
-nav a:hover{
-    color:#fff;
-    text-shadow:0 0 15px #39c6ff;
-}
-
-/* ================= HERO ================= */
+nav a:hover,nav a.active{color:var(--cyan);text-shadow:0 0 14px #42dcff80}
 
 .hero{
-    position:relative;
-    z-index:1;
-    min-height:650px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    overflow:hidden;
+  position:relative;z-index:1;min-height:590px;
+  display:grid;place-items:center;text-align:center;padding:75px 18px;
+  overflow:hidden;
 }
-
-.hero:before{
-    content:"";
-    position:absolute;
-    width:700px;
-    height:700px;
-    border-radius:50%;
-    background:radial-gradient(circle,rgba(22,144,255,.18),transparent 65%);
-    animation:pulse 4s infinite;
+.hero:before,.hero:after{
+  content:"";position:absolute;border:1px solid #48caff16;
+  border-radius:50%;pointer-events:none;
 }
-
-@keyframes pulse{
-    0%,100%{transform:scale(.9);opacity:.6}
-    50%{transform:scale(1.15);opacity:1}
+.hero:before{width:440px;height:440px;animation:orbit 22s linear infinite}
+.hero:after{width:590px;height:590px;animation:orbit 30s linear infinite reverse}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.hero-content{position:relative;z-index:2}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  color:var(--cyan);font:700 11px Orbitron,sans-serif;letter-spacing:4px;
 }
-
-.hero-content{
-    position:relative;
-    z-index:2;
-}
-
-.small-title{
-    color:#4ccaff;
-    font-family:'Orbitron',sans-serif;
-    font-size:13px;
-    letter-spacing:5px;
-    margin-bottom:18px;
-    animation:fadeDown 1s ease;
-}
-
+.live-dot{width:7px;height:7px;background:#56ffb1;border-radius:50%;box-shadow:0 0 12px #56ffb1}
 .hero h1{
-    font-family:'Orbitron',sans-serif;
-    font-size:clamp(42px,9vw,100px);
-    font-weight:900;
-    line-height:.95;
-    letter-spacing:4px;
-    background:linear-gradient(180deg,#fff,#72d8ff 50%,#207cff);
-    -webkit-background-clip:text;
-    color:transparent;
-    text-shadow:0 0 40px rgba(49,173,255,.2);
-    animation:titleIn 1.2s ease;
+  margin-top:27px;font:900 clamp(39px,9vw,92px)/1.05 Orbitron,sans-serif;
+  letter-spacing:-2px;
+  background:linear-gradient(180deg,#fff 8%,#9be9ff 53%,#4a87ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 22px #278eff22);
+  animation:appear 1s ease both;
 }
-
-.hero h1 span{
-    display:block;
-    font-size:.37em;
-    letter-spacing:9px;
-    margin-top:22px;
-    background:linear-gradient(90deg,#fff,#4acaff,#fff);
-    -webkit-background-clip:text;
-    color:transparent;
+.hero h1 span{display:block;font-size:.36em;letter-spacing:clamp(4px,2vw,12px);margin-top:20px}
+@keyframes appear{
+  from{opacity:0;transform:translateY(22px) scale(.95);filter:blur(9px)}
+  to{opacity:1;transform:none;filter:none}
 }
-
 .hero-line{
-    width:280px;
-    height:2px;
-    margin:35px auto;
-    background:linear-gradient(90deg,transparent,#38c7ff,transparent);
-    box-shadow:0 0 20px #38c7ff;
+  height:2px;width:min(300px,80%);margin:32px auto;
+  background:linear-gradient(90deg,transparent,var(--cyan),#6588ff,transparent);
+  box-shadow:0 0 18px #42dcff60;
+}
+.hero p{font-size:12px;color:#93aac8;letter-spacing:2px}
+.hero-stats{
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:35px;
+}
+.stat{
+  min-width:105px;padding:13px 18px;border:1px solid #ffffff15;
+  background:#ffffff06;border-radius:13px;
+}
+.stat strong{display:block;font:800 20px Orbitron,sans-serif;color:#fff}
+.stat span{font-size:9px;letter-spacing:1.5px;color:var(--muted)}
+
+section{position:relative;z-index:1;width:min(1180px,92%);margin:0 auto 105px}
+.section-head{text-align:center;margin-bottom:36px}
+.section-head .tag{font:700 10px Orbitron,sans-serif;color:var(--cyan);letter-spacing:4px}
+.section-head h2{font:800 clamp(25px,5vw,39px) Orbitron,sans-serif;margin-top:13px}
+.section-head p{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.8}
+.section-head h2:after{
+  content:"";display:block;width:55px;height:3px;margin:17px auto 0;
+  background:linear-gradient(90deg,var(--cyan),#7e80ff);border-radius:5px;
 }
 
-.hero-sub{
-    color:#90a9c2;
-    letter-spacing:3px;
-    font-size:12px;
-}
-
-@keyframes titleIn{
-    from{
-        opacity:0;
-        transform:scale(.7) translateY(40px);
-        filter:blur(15px);
-    }
-    to{
-        opacity:1;
-        transform:none;
-        filter:none;
-    }
-}
-
-@keyframes fadeDown{
-    from{opacity:0;transform:translateY(-20px)}
-    to{opacity:1;transform:none}
-}
-
-/* ================= SECTION ================= */
-
-section{
-    position:relative;
-    z-index:2;
-    width:min(1250px,92%);
-    margin:0 auto 120px;
-}
-
-.section-head{
-    text-align:center;
-    margin-bottom:45px;
-}
-
-.section-head .tag{
-    font-family:'Orbitron',sans-serif;
-    color:#43caff;
-    font-size:11px;
-    letter-spacing:4px;
-}
-
-.section-head h2{
-    font-family:'Orbitron',sans-serif;
-    font-size:clamp(25px,5vw,45px);
-    margin-top:12px;
-}
-
-.section-head p{
-    color:#728aa5;
-    margin-top:10px;
-    font-size:13px;
-}
-
-/* ================= GROUPS ================= */
-
-.groups{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:28px;
-}
-
+/* GROUPS */
+.groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .group{
-    position:relative;
-    padding:2px;
-    border-radius:22px;
-    background:linear-gradient(135deg,rgba(71,202,255,.55),transparent 35%,rgba(95,88,255,.4));
-    overflow:hidden;
-    transition:.4s;
+  --accent:#42dcff;--accent2:#4285ff;
+  position:relative;padding:1px;border-radius:23px;overflow:hidden;
+  background:linear-gradient(135deg,var(--accent),#ffffff08 45%,var(--accent2));
+  transition:transform .35s,box-shadow .35s;
 }
-
-.group:hover{
-    transform:translateY(-8px);
-    box-shadow:0 20px 60px rgba(0,150,255,.18);
-}
-
+.group[data-group="B"]{--accent:#62f5ca;--accent2:#16a68d}
+.group[data-group="C"]{--accent:#d0a1ff;--accent2:#8058ff}
+.group[data-group="D"]{--accent:#ffd27b;--accent2:#ff8a45}
+.group:hover{transform:translateY(-5px);box-shadow:0 18px 45px color-mix(in srgb,var(--accent) 14%,transparent)}
 .group-inner{
-    background:linear-gradient(145deg,#081321,#040912);
-    border-radius:20px;
-    padding:25px;
+  height:100%;border-radius:22px;padding:23px;
+  background:radial-gradient(ellipse at top right,color-mix(in srgb,var(--accent) 10%,transparent),transparent 55%),#080f20;
 }
-
-.group-title{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:22px;
+.group-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.group-title h3{font:800 19px Orbitron,sans-serif;letter-spacing:1px}
+.group-letter{
+  width:43px;height:43px;display:grid;place-items:center;border-radius:13px;
+  background:color-mix(in srgb,var(--accent) 12%,#07101e);
+  border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  color:var(--accent);font:900 20px Orbitron,sans-serif;
 }
-
-.group-title h3{
-    font-family:'Orbitron',sans-serif;
-    font-size:20px;
-}
-
-.group-title span{
-    width:38px;
-    height:38px;
-    display:grid;
-    place-items:center;
-    border-radius:10px;
-    background:#0b2842;
-    color:#52cfff;
-    font-family:'Orbitron',sans-serif;
-    font-weight:800;
-}
-
+.group-caption{font-size:10px;color:#8499b8;margin-bottom:19px}
 .player{
-    position:relative;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:16px;
-    margin-top:11px;
-    background:rgba(255,255,255,.025);
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:14px;
-    overflow:hidden;
-    transition:.35s;
+  display:flex;align-items:center;gap:13px;position:relative;
+  padding:13px;margin-top:10px;border-radius:14px;
+  background:#ffffff04;border:1px solid #ffffff0b;overflow:hidden;
+  transition:background .3s,border-color .3s,transform .3s;
 }
-
 .player:before{
-    content:"";
-    position:absolute;
-    left:0;
-    top:0;
-    width:3px;
-    height:100%;
-    background:#35c5ff;
-    box-shadow:0 0 15px #35c5ff;
+  content:"";position:absolute;left:0;top:15%;height:70%;width:3px;
+  background:var(--accent);box-shadow:0 0 10px var(--accent);
 }
-
-.player:hover{
-    transform:translateX(7px);
-    background:rgba(42,176,255,.08);
-    border-color:rgba(60,202,255,.3);
-}
-
+.player:hover{transform:translateX(4px);background:#ffffff0a;border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
 .club-logo{
-    width:48px;
-    height:48px;
-    flex-shrink:0;
-    border-radius:13px;
-    display:grid;
-    place-items:center;
-    font-family:'Orbitron',sans-serif;
-    font-size:12px;
-    font-weight:900;
-    background:linear-gradient(145deg,#122c48,#07101d);
-    border:1px solid rgba(93,204,255,.25);
-    box-shadow:inset 0 0 20px rgba(41,170,255,.08);
+  width:47px;height:47px;flex-shrink:0;display:grid;place-items:center;
+  border-radius:13px;background:linear-gradient(145deg,#182b47,#09101f);
+  border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+  font:900 11px Orbitron,sans-serif;color:var(--accent);
+  box-shadow:inset 0 0 15px #ffffff05;
+}
+.player-info{flex:1;min-width:0}
+.player-name{font-size:13px;font-weight:700;overflow-wrap:anywhere}
+.club-name{font-size:10px;color:#90a8c8;margin-top:4px}
+.player-number{font:800 11px Orbitron,sans-serif;color:#526884}
+.club-tag{
+  display:inline-block;margin-top:5px;padding:3px 7px;border-radius:5px;
+  color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,transparent);
+  font:700 8px Orbitron,sans-serif;letter-spacing:.7px;
 }
 
-.player-info{
-    flex:1;
-}
-
-.player-name{
-    font-weight:700;
-    font-size:14px;
-}
-
-.club-name{
-    color:#6f9bbd;
-    font-size:11px;
-    margin-top:3px;
-}
-
-.player-number{
-    color:#334e68;
-    font-family:'Orbitron',sans-serif;
-    font-weight:800;
-}
-
-/* ================= BRACKET ================= */
-
+/* KNOCKOUT */
 .bracket-wrapper{
-    overflow-x:auto;
-    padding:15px 5px 30px;
+  overflow-x:auto;padding:8px 5px 24px;
+  scrollbar-color:#315a83 #080f20;scrollbar-width:thin;
 }
-
 .bracket{
-    min-width:1050px;
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr 1fr;
-    gap:45px;
-    align-items:center;
+  min-width:850px;display:grid;grid-template-columns:1.1fr 1fr 1fr .9fr;
+  gap:25px;align-items:stretch;
 }
-
-.round{
-    display:flex;
-    flex-direction:column;
-    justify-content:space-around;
-    min-height:650px;
-}
-
+.round{display:flex;flex-direction:column;gap:16px;justify-content:space-around}
 .round-title{
-    text-align:center;
-    font-family:'Orbitron',sans-serif;
-    font-size:12px;
-    letter-spacing:2px;
-    color:#4bcaff;
-    margin-bottom:22px;
+  text-align:center;font:700 10px Orbitron,sans-serif;letter-spacing:1.5px;
+  color:var(--cyan);margin-bottom:6px;
 }
-
 .match{
-    position:relative;
-    background:linear-gradient(145deg,#0a1728,#050a12);
-    border:1px solid rgba(75,194,255,.18);
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
-    transition:.35s;
+  background:linear-gradient(145deg,#111d34,#080e1b);
+  border:1px solid #4d9dca2b;border-radius:13px;overflow:hidden;
+  transition:.3s;box-shadow:0 8px 25px #0002;
 }
-
-.match:hover{
-    transform:scale(1.025);
-    border-color:rgba(70,200,255,.5);
-    box-shadow:0 0 30px rgba(30,160,255,.13);
-}
-
+.match:hover{border-color:#42dcff80;box-shadow:0 0 22px #42dcff12}
 .team{
-    height:48px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 14px;
-    border-bottom:1px solid rgba(255,255,255,.05);
+  min-height:43px;padding:9px 11px;display:flex;align-items:center;
+  justify-content:space-between;gap:8px;
+}
+.team+.team{border-top:1px solid #ffffff0a}
+.team-name{font-size:10px;color:#d0dcee;overflow-wrap:anywhere}
+.team-name.empty{color:#526782;font-style:italic}
+.score{min-width:20px;text-align:center;color:var(--cyan);font:800 11px Orbitron,sans-serif}
+.round.sf{padding:65px 0}
+.round.final-round{justify-content:center}
+.round.final-round .match{border-color:#ffd66b50}
+.round.final-round .round-title{color:var(--gold)}
+.champion-slot{
+  text-align:center;padding:18px 8px;border:1px solid #ffd66b55;
+  border-radius:15px;background:linear-gradient(145deg,#332916,#0a1020);
+  color:var(--gold);font:800 11px Orbitron,sans-serif;
 }
 
-.team:last-child{
-    border-bottom:none;
-}
-
-.team-name{
-    color:#b7cbe0;
-    font-size:12px;
-}
-
-.score{
-    min-width:25px;
-    text-align:center;
-    color:#54cfff;
-    font-family:'Orbitron',sans-serif;
-    font-weight:800;
-}
-
-.empty{
-    color:#334c65;
-    font-style:italic;
-}
-
-.qf .match{
-    margin-bottom:55px;
-}
-
-.sf .match{
-    margin-bottom:145px;
-}
-
-.final-round{
-    justify-content:center;
-}
-
-.final-round .match{
-    border-color:rgba(255,211,77,.35);
-    box-shadow:0 0 30px rgba(255,205,50,.08);
-}
-
-/* ================= FINAL ================= */
-
-.final-section{
-    text-align:center;
-}
-
+/* GRAND FINAL */
 .final-card{
-    max-width:650px;
-    margin:auto;
-    padding:45px 25px;
-    border-radius:28px;
-    background:
-        radial-gradient(circle at center,rgba(255,190,35,.08),transparent 55%),
-        linear-gradient(145deg,#0b1727,#04080e);
-    border:1px solid rgba(255,205,70,.25);
-    box-shadow:0 0 80px rgba(255,191,37,.06);
+  max-width:720px;margin:auto;padding:32px 22px;border-radius:25px;
+  border:1px solid #ffd66b38;
+  background:radial-gradient(ellipse at center,#5a421b26,transparent 65%),#090f1d;
+  box-shadow:0 20px 70px #0003;
 }
-
-.final-label{
-    color:#ffd45a;
-    font-family:'Orbitron',sans-serif;
-    font-size:11px;
-    letter-spacing:5px;
+.final-label{text-align:center;color:var(--gold);font:700 10px Orbitron,sans-serif;letter-spacing:4px}
+.final-vs{display:flex;align-items:center;justify-content:center;gap:clamp(12px,5vw,45px);margin:32px 0}
+.final-team{width:175px;max-width:40%;text-align:center}
+.big-logo{
+  width:86px;height:86px;margin:auto;display:grid;place-items:center;
+  border-radius:22px;background:linear-gradient(145deg,#1a304e,#090e1b);
+  border:1px solid #ffffff18;color:#a9bfd9;font:900 15px Orbitron,sans-serif;
+  box-shadow:0 0 24px #42dcff08;
 }
+.final-team p{font-size:10px;color:#90a5c0;margin-top:12px;letter-spacing:1px}
+.vs{font:900 22px Orbitron,sans-serif;color:var(--gold);text-shadow:0 0 20px #ffd66b40}
+.score-label{text-align:center;color:#8298b6;font-size:10px;letter-spacing:2px}
+.final-score{text-align:center;font:800 30px Orbitron,sans-serif;color:#7189a8;margin-top:10px}
+.final-note{text-align:center;font-size:10px;color:#627b9b;margin-top:18px}
 
-.final-vs{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:35px;
-    margin:35px 0;
-}
-
-.final-team{
-    width:170px;
-}
-
-.final-team .big-logo{
-    width:90px;
-    height:90px;
-    margin:auto;
-    display:grid;
-    place-items:center;
-    border-radius:25px;
-    background:linear-gradient(145deg,#182f49,#060c15);
-    border:1px solid rgba(255,255,255,.1);
-    font-family:'Orbitron',sans-serif;
-    font-weight:900;
-    color:#607c96;
-}
-
-.final-team p{
-    margin-top:14px;
-    color:#728da8;
-    font-size:12px;
-}
-
-.vs{
-    font-family:'Orbitron',sans-serif;
-    color:#ffd34c;
-    font-weight:900;
-    font-size:20px;
-}
-
-/* ================= TROPHY ================= */
-
+/* TROPHY */
 .trophy-area{
-    position:relative;
-    text-align:center;
-    padding:90px 20px;
-    border-radius:35px;
-    background:
-        radial-gradient(circle at center,rgba(255,194,40,.12),transparent 50%),
-        linear-gradient(145deg,#0a1625,#03070d);
-    border:1px solid rgba(255,205,65,.22);
-    overflow:hidden;
+  position:relative;text-align:center;padding:65px 20px;
+  overflow:hidden;border-radius:28px;border:1px solid #ffd66b38;
+  background:radial-gradient(ellipse at center,#8b641e25,transparent 60%),#090f1d;
 }
-
 .trophy-glow{
-    position:absolute;
-    width:300px;
-    height:300px;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    background:radial-gradient(circle,rgba(255,205,55,.15),transparent 65%);
-    animation:trophyGlow 3s infinite;
+  position:absolute;width:260px;height:260px;left:50%;top:50%;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:#ffcc4a0b;filter:blur(10px);animation:glow 3s ease-in-out infinite;
 }
+@keyframes glow{50%{transform:translate(-50%,-50%) scale(1.25);opacity:.55}}
+.trophy{position:relative;font-size:95px;filter:drop-shadow(0 0 22px #ffd34a55);animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-9px) rotate(2deg)}}
+.champion-label{position:relative;color:var(--gold);font:700 11px Orbitron,sans-serif;letter-spacing:4px;margin-top:18px}
+.champion-name{position:relative;font:900 clamp(26px,6vw,48px) Orbitron,sans-serif;margin-top:14px;overflow-wrap:anywhere}
+.champion-name span{background:linear-gradient(90deg,#fff,#ffd66b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.champion-note{position:relative;font-size:10px;color:#8498b5;margin-top:13px;letter-spacing:1px}
 
-@keyframes trophyGlow{
-    0%,100%{transform:translate(-50%,-50%) scale(.8)}
-    50%{transform:translate(-50%,-50%) scale(1.2)}
+footer{position:relative;z-index:1;text-align:center;padding:35px 15px;border-top:1px solid #ffffff0c;color:#7185a2;font-size:10px;letter-spacing:1.5px;line-height:2.2}
+footer strong{color:var(--cyan);font-family:Orbitron,sans-serif}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.active{opacity:1;transform:none}
+
+@media(max-width:700px){
+  nav{justify-content:flex-start;gap:22px;overflow-x:auto}
+  nav a{font-size:9px}
+  .hero{min-height:520px;padding:60px 15px}
+  .hero p{font-size:10px;line-height:1.9}
+  .hero-stats{gap:8px}
+  .stat{min-width:88px;padding:11px}
+  .stat strong{font-size:17px}
+  .groups{grid-template-columns:1fr;gap:17px}
+  .group-inner{padding:18px}
+  section{margin-bottom:78px}
+  .section-head{margin-bottom:27px}
+  .final-card{padding:28px 12px}
+  .big-logo{width:68px;height:68px;border-radius:18px;font-size:12px}
+  .final-team{width:120px}
+  .final-vs{gap:10px}
+  .trophy-area{padding:48px 12px}
+  .trophy{font-size:78px}
 }
-
-.trophy{
-    position:relative;
-    z-index:2;
-    font-size:110px;
-    filter:drop-shadow(0 0 30px rgba(255,207,54,.55));
-    animation:trophyFloat 3s ease-in-out infinite;
-}
-
-@keyframes trophyFloat{
-    0%,100%{transform:translateY(0) rotate(-2deg)}
-    50%{transform:translateY(-15px) rotate(2deg)}
-}
-
-.champion-label{
-    position:relative;
-    z-index:2;
-    font-family:'Orbitron',sans-serif;
-    color:#ffd65a;
-    font-size:13px;
-    letter-spacing:6px;
-    margin-top:20px;
-}
-
-.champion-name{
-    position:relative;
-    z-index:2;
-    margin-top:15px;
-    font-family:'Orbitron',sans-serif;
-    font-size:clamp(28px,6vw,55px);
-    color:#fff;
-}
-
-.champion-name span{
-    color:#4dcaff;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-    position:relative;
-    z-index:2;
-    padding:45px 20px;
-    text-align:center;
-    border-top:1px solid rgba(255,255,255,.06);
-    color:#4c6680;
-    font-size:11px;
-    letter-spacing:2px;
-}
-
-footer strong{
-    color:#51caff;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:800px){
-
-    nav{
-        gap:14px;
-        padding:0 10px;
-        overflow-x:auto;
-        justify-content:flex-start;
-    }
-
-    nav a{
-        white-space:nowrap;
-        font-size:9px;
-    }
-
-    .hero{
-        min-height:560px;
-    }
-
-    .groups{
-        grid-template-columns:1fr;
-    }
-
-    section{
-        margin-bottom:85px;
-    }
-
-    .final-vs{
-        gap:10px;
-    }
-
-    .final-team{
-        width:120px;
-    }
-
-    .final-team .big-logo{
-        width:70px;
-        height:70px;
-    }
-}
-
-/* ================= REVEAL ================= */
-
-.reveal{
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
-
-.reveal.active{
-    opacity:1;
-    transform:none;
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
 }
 </style>
 </head>
 
 <body>
+<div id="particles" aria-hidden="true"></div>
 
-<!-- PARTICLES -->
-<div class="particles" id="particles"></div>
-
-<!-- NAVIGATION -->
 <nav>
-    <a href="#groups">GROUPS</a>
-    <a href="#knockout">KNOCKOUT</a>
-    <a href="#final">FINAL</a>
-    <a href="#champion">CHAMPION</a>
+  <a href="#groups">GROUPS</a>
+  <a href="#knockout">KNOCKOUT</a>
+  <a href="#final">GRAND FINAL</a>
+  <a href="#champion">CHAMPION</a>
 </nav>
 
-
-<!-- ================= HERO ================= -->
-
 <header class="hero">
-
-    <div class="hero-content">
-
-        <div class="small-title">
-            PES POINT PRESENTS
-        </div>
-
-        <h1>
-            PES POINT
-            <span>CHAMPIONSHIP</span>
-        </h1>
-
-        <div class="hero-line"></div>
-
-        <div class="hero-sub">
-            12 PLAYERS • 12 CLUBS • 1 CHAMPION
-        </div>
-
+  <div class="hero-content">
+    <div class="eyebrow"><span class="live-dot"></span> PES POINT PRESENTS</div>
+    <h1>PES POINT<span>ELITE CHAMPIONSHIP</span></h1>
+    <div class="hero-line"></div>
+    <p>12 PLAYERS &nbsp; • &nbsp; 12 CLUBS &nbsp; • &nbsp; ONE CHAMPION</p>
+    <div class="hero-stats">
+      <div class="stat"><strong>04</strong><span>GROUPS</span></div>
+      <div class="stat"><strong>12</strong><span>PLAYERS</span></div>
+      <div class="stat"><strong>01</strong><span>TROPHY</span></div>
     </div>
-
+  </div>
 </header>
 
-
-<!-- ================= GROUP STAGE ================= -->
-
 <section id="groups" class="reveal">
+  <div class="section-head">
+    <div class="tag">01 / GROUP STAGE</div>
+    <h2>THE GROUPS</h2>
+    <p>Four groups. Twelve contenders. One road to glory.</p>
+  </div>
 
-    <div class="section-head">
-
-        <div class="tag">01 • GROUP STAGE</div>
-
-        <h2>THE GROUPS</h2>
-
-        <p>Four groups. Twelve players. The journey begins here.</p>
-
-    </div>
-
-
-    <div class="groups">
-
-        <!-- GROUP A -->
-
-        <div class="group">
-
-            <div class="group-inner">
-
-                <div class="group-title">
-                    <h3>GROUP A</h3>
-                    <span>A</span>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">FCB</div>
-                    <div class="player-info">
-                        <div class="player-name">Rafiul</div>
-                        <div class="club-name">Barcelona</div>
-                    </div>
-                    <div class="player-number">01</div>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">MUN</div>
-                    <div class="player-info">
-                        <div class="player-name">Asif</div>
-                        <div class="club-name">Manchester United</div>
-                    </div>
-                    <div class="player-number">02</div>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">SAN</div>
-                    <div class="player-info">
-                        <div class="player-name">Hasan</div>
-                        <div class="club-name">Santos</div>
-                    </div>
-                    <div class="player-number">03</div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <!-- GROUP B -->
-
-        <div class="group">
-
-            <div class="group-inner">
-
-                <div class="group-title">
-                    <h3>GROUP B</h3>
-                    <span>B</span>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">ARS</div>
-                    <div class="player-info">
-                        <div class="player-name">Taki</div>
-                        <div class="club-name">Arsenal</div>
-                    </div>
-                    <div class="player-number">01</div>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">INT</div>
-                    <div class="player-info">
-                        <div class="player-name">Mahmudul Amin</div>
-                        <div class="club-name">Inter Milan</div>
-                    </div>
-                    <div class="player-number">02</div>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">AJA</div>
-                    <div class="player-info">
-                        <div class="player-name">Mudabbir</div>
-                        <div class="club-name">Ajax</div>
-                    </div>
-                    <div class="player-number">03</div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <!-- GROUP C -->
-
-        <div class="group">
-
-            <div class="group-inner">
-
-                <div class="group-title">
-                    <h3>GROUP C</h3>
-                    <span>C</span>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">SLB</div>
-                    <div class="player-info">
-                        <div class="player-name">Sujon</div>
-                        <div class="club-name">Benfica</div>
-                    </div>
-                    <div class="player-number">01</div>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">HIL</div>
-                    <div class="player-info">
-                        <div class="player-name">Junayed</div>
-                        <div class="club-name">Al Hilal</div>
-                    </div>
-                    <div class="player-number">02</div>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">PSG</div>
-                    <div class="player-info">
-                        <div class="player-name">Mahdi Hasan</div>
-                        <div class="club-name">PSG</div>
-                    </div>
-                    <div class="player-number">03</div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <!-- GROUP D -->
-
-        <div class="group">
-
-            <div class="group-inner">
-
-                <div class="group-title">
-                    <h3>GROUP D</h3>
-                    <span>D</span>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">BVB</div>
-                    <div class="player-info">
-                        <div class="player-name">Al Amin</div>
-                        <div class="club-name">Dortmund</div>
-                    </div>
-                    <div class="player-number">01</div>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">ACM</div>
-                    <div class="player-info">
-                        <div class="player-name">Tamim Iqbal</div>
-                        <div class="club-name">AC Milan</div>
-                    </div>
-                    <div class="player-number">02</div>
-                </div>
-
-                <div class="player">
-                    <div class="club-logo">NSS</div>
-                    <div class="player-info">
-                        <div class="player-name">Sharaiar</div>
-                        <div class="club-name">Al Nassr</div>
-                    </div>
-                    <div class="player-number">03</div>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
+  <div class="groups" id="group-container"></div>
 </section>
-
-
-<!-- ================= KNOCKOUT ================= -->
 
 <section id="knockout" class="reveal">
-
-    <div class="section-head">
-
-        <div class="tag">02 • ROAD TO GLORY</div>
-
-        <h2>KNOCKOUT STAGE</h2>
-
-        <p>Every match brings one step closer to the trophy.</p>
-
-    </div>
-
-
-    <div class="bracket-wrapper">
-
-        <div class="bracket">
-
-
-            <!-- QUARTER FINAL -->
-
-            <div class="round qf">
-
-                <div class="round-title">
-                    QUARTER FINAL
-                </div>
-
-                <div class="match">
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                </div>
-
-
-                <div class="match">
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                </div>
-
-
-                <div class="match">
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                </div>
-
-
-                <div class="match">
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- SEMI FINAL -->
-
-            <div class="round sf">
-
-                <div class="round-title">
-                    SEMI FINAL
-                </div>
-
-                <div class="match">
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                </div>
-
-
-                <div class="match">
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- FINAL -->
-
-            <div class="round final-round">
-
-                <div class="round-title">
-                    GRAND FINAL
-                </div>
-
-                <div class="match">
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                    <div class="team">
-                        <span class="team-name empty">TBD</span>
-                        <span class="score">–</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- CHAMPION -->
-
-            <div class="round final-round">
-
-                <div class="round-title">
-                    CHAMPION
-                </div>
-
-                <div class="match">
-
-                    <div class="team">
-
-                        <span class="team-name empty">
-                            TBD
-                        </span>
-
-                        <span class="score">🏆</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+  <div class="section-head">
+    <div class="tag">02 / ROAD TO GLORY</div>
+    <h2>KNOCKOUT STAGE</h2>
+    <p>Every goal matters. Every match brings the trophy closer.</p>
+  </div>
+
+  <div class="bracket-wrapper">
+    <div class="bracket">
+      <div class="round qf">
+        <div class="round-title">QUARTER FINALS</div>
+        <div class="match">
+          <div class="team"><span class="team-name empty">Qualifier 1</span><span class="score">–</span></div>
+          <div class="team"><span class="team-name empty">Qualifier 2</span><span class="score">–</span></div>
         </div>
+        <div class="match">
+          <div class="team"><span class="team-name empty">Qualifier 3</span><span class="score">–</span></div>
+          <div class="team"><span class="team-name empty">Qualifier 4</span><span class="score">–</span></div>
+        </div>
+        <div class="match">
+          <div class="team"><span class="team-name empty">Qualifier 5</span><span class="score">–</span></div>
+          <div class="team"><span class="team-name empty">Qualifier 6</span><span class="score">–</span></div>
+        </div>
+        <div class="match">
+          <div class="team"><span class="team-name empty">Qualifier 7</span><span class="score">–</span></div>
+          <div class="team"><span class="team-name empty">Qualifier 8</span><span class="score">–</span></div>
+        </div>
+      </div>
 
+      <div class="round sf">
+        <div class="round-title">SEMI FINALS</div>
+        <div class="match">
+          <div class="team"><span class="team-name empty">Winner QF 1</span><span class="score">–</span></div>
+          <div class="team"><span class="team-name empty">Winner QF 2</span><span class="score">–</span></div>
+        </div>
+        <div class="match">
+          <div class="team"><span class="team-name empty">Winner QF 3</span><span class="score">–</span></div>
+          <div class="team"><span class="team-name empty">Winner QF 4</span><span class="score">–</span></div>
+        </div>
+      </div>
+
+      <div class="round final-round">
+        <div class="round-title">GRAND FINAL</div>
+        <div class="match">
+          <div class="team"><span class="team-name empty">Finalist 01</span><span class="score">–</span></div>
+          <div class="team"><span class="team-name empty">Finalist 02</span><span class="score">–</span></div>
+        </div>
+      </div>
+
+      <div class="round final-round">
+        <div class="round-title">CHAMPION</div>
+        <div class="champion-slot">🏆<br><br>TO BE CROWNED</div>
+      </div>
     </div>
-
+  </div>
 </section>
 
+<section id="final" class="reveal">
+  <div class="section-head">
+    <div class="tag">03 / THE LAST BATTLE</div>
+    <h2>GRAND FINAL</h2>
+    <p>Two finalists. One unforgettable battle.</p>
+  </div>
 
-<!-- ================= GRAND FINAL ================= -->
-
-<section id="final" class="final-section reveal">
-
-    <div class="section-head">
-
-        <div class="tag">03 • THE LAST BATTLE</div>
-
-        <h2>GRAND FINAL</h2>
-
-        <p>Only two remain. One will become champion.</p>
-
+  <div class="final-card">
+    <div class="final-label">PES POINT CHAMPIONSHIP FINAL</div>
+    <div class="final-vs">
+      <div class="final-team">
+        <div class="big-logo">TBD</div>
+        <p>FINALIST 01</p>
+      </div>
+      <div class="vs">VS</div>
+      <div class="final-team">
+        <div class="big-logo">TBD</div>
+        <p>FINALIST 02</p>
+      </div>
     </div>
-
-
-    <div class="final-card">
-
-        <div class="final-label">
-            PES POINT FINAL
-        </div>
-
-
-        <div class="final-vs">
-
-            <div class="final-team">
-
-                <div class="big-logo">
-                    TBD
-                </div>
-
-                <p>FINALIST 01</p>
-
-            </div>
-
-
-            <div class="vs">
-                VS
-            </div>
-
-
-            <div class="final-team">
-
-                <div class="big-logo">
-                    TBD
-                </div>
-
-                <p>FINALIST 02</p>
-
-            </div>
-
-        </div>
-
-
-        <div style="
-            color:#536e88;
-            font-size:11px;
-            letter-spacing:2px;
-        ">
-            SCORE & RESULT
-        </div>
-
-        <div style="
-            font-family:Orbitron;
-            font-size:35px;
-            margin-top:10px;
-            color:#607991;
-        ">
-            – : –
-        </div>
-
-    </div>
-
+    <div class="score-label">FINAL SCORE</div>
+    <div class="final-score">– : –</div>
+    <div class="final-note">THE FINAL RESULT WILL BE UPDATED HERE</div>
+  </div>
 </section>
-
-
-<!-- ================= CHAMPION ================= -->
 
 <section id="champion" class="reveal">
-
-    <div class="section-head">
-
-        <div class="tag">04 • THE CROWN</div>
-
-        <h2>CHAMPION</h2>
-
-    </div>
-
-
-    <div class="trophy-area">
-
-        <div class="trophy-glow"></div>
-
-        <div class="trophy">
-            🏆
-        </div>
-
-        <div class="champion-label">
-            PES POINT CHAMPION
-        </div>
-
-        <div class="champion-name">
-            <span>TBD</span>
-        </div>
-
-        <div style="
-            position:relative;
-            z-index:2;
-            color:#647d96;
-            margin-top:10px;
-            font-size:12px;
-            letter-spacing:2px;
-        ">
-            THE CHAMPION WILL BE CROWNED HERE
-        </div>
-
-    </div>
-
+  <div class="section-head">
+    <div class="tag">04 / THE CROWN</div>
+    <h2>THE CHAMPION</h2>
+    <p>The ultimate prize awaits the winner.</p>
+  </div>
+  <div class="trophy-area">
+    <div class="trophy-glow"></div>
+    <div class="trophy">🏆</div>
+    <div class="champion-label">PES POINT CHAMPION</div>
+    <div class="champion-name"><span>TO BE CROWNED</span></div>
+    <div class="champion-note">A NEW CHAMPION. A NEW LEGACY.</div>
+  </div>
 </section>
 
-
-<!-- ================= FOOTER ================= -->
-
 <footer>
-
-    <strong>PES POINT</strong>
-    &nbsp; • &nbsp;
-    CHAMPIONSHIP
-
-    <br><br>
-
-    12 PLAYERS • 12 CLUBS • 1 TROPHY
-
+  <strong>PES POINT</strong> &nbsp; • &nbsp; ELITE CHAMPIONSHIP
+  <br>12 PLAYERS • 12 CLUBS • ONE TROPHY
+  <br>MADE FOR THE LOVE OF THE GAME
 </footer>
 
-
 <script>
+/* EDIT PLAYER NAMES AND CLUBS HERE */
+const groups = [
+  {
+    name:"GROUP A", letter:"A",
+    players:[
+      {name:"Mahdi",club:"PSG",logo:"PSG"},
+      {name:"Asif",club:"Manchester United",logo:"MUN"},
+      {name:"Taki",club:"Arsenal",logo:"ARS"}
+    ]
+  },
+  {
+    name:"GROUP B", letter:"B",
+    players:[
+      {name:"Shariar",club:"Al Nassr",logo:"NSS"},
+      {name:"Tamim",club:"AC Milan",logo:"ACM"},
+      {name:"Al Amin",club:"Dortmund",logo:"BVB"}
+    ]
+  },
+  {
+    name:"GROUP C", letter:"C",
+    players:[
+      {name:"Sujon",club:"Benfica",logo:"SLB"},
+      {name:"Rafiul",club:"Barcelona",logo:"FCB"},
+      {name:"Mahmudul",club:"Inter Milan",logo:"INT"}
+    ]
+  },
+  {
+    name:"GROUP D", letter:"D",
+    players:[
+      {name:"Mudabbir",club:"Ajax",logo:"AJA"},
+      {name:"Hasan",club:"Santos",logo:"SAN"},
+      {name:"Junayed",club:"Al Hilal",logo:"HIL"}
+    ]
+  }
+];
 
-/* ================= PARTICLES ================= */
+const container = document.getElementById("group-container");
 
-const particles = document.getElementById("particles");
+groups.forEach(group=>{
+  const card = document.createElement("article");
+  card.className = "group";
+  card.dataset.group = group.letter;
 
-for(let i=0;i<55;i++){
+  const inner = document.createElement("div");
+  inner.className = "group-inner";
 
-    const p = document.createElement("div");
+  const heading = document.createElement("div");
+  heading.className = "group-title";
 
-    p.className = "particle";
+  const title = document.createElement("h3");
+  title.textContent = group.name;
 
-    p.style.left = Math.random()*100 + "%";
+  const letter = document.createElement("div");
+  letter.className = "group-letter";
+  letter.textContent = group.letter;
 
-    p.style.animationDuration =
-        (Math.random()*10 + 8) + "s";
+  heading.append(title,letter);
 
-    p.style.animationDelay =
-        (Math.random()*8) + "s";
+  const caption = document.createElement("div");
+  caption.className = "group-caption";
+  caption.textContent = "3 PLAYERS • 3 CLUBS • ONE GROUP";
 
-    p.style.opacity =
-        Math.random()*.7 + .2;
+  inner.append(heading,caption);
 
-    particles.appendChild(p);
+  group.players.forEach((player,index)=>{
+    const row = document.createElement("div");
+    row.className = "player";
+
+    const logo = document.createElement("div");
+    logo.className = "club-logo";
+    logo.textContent = player.logo;
+
+    const info = document.createElement("div");
+    info.className = "player-info";
+
+    const name = document.createElement("div");
+    name.className = "player-name";
+    name.textContent = player.name;
+
+    const club = document.createElement("div");
+    club.className = "club-name";
+    club.textContent = player.club;
+
+    const tag = document.createElement("div");
+    tag.className = "club-tag";
+    tag.textContent = "CLUB MEMBER";
+
+    info.append(name,club,tag);
+
+    const number = document.createElement("div");
+    number.className = "player-number";
+    number.textContent = String(index+1).padStart(2,"0");
+
+    row.append(logo,info,number);
+    inner.appendChild(row);
+  });
+
+  card.appendChild(inner);
+  container.appendChild(card);
+});
+
+/* BACKGROUND PARTICLES */
+const particleBox = document.getElementById("particles");
+for(let i=0;i<45;i++){
+  const p = document.createElement("span");
+  p.className = "particle";
+  p.style.left = Math.random()*100+"%";
+  p.style.animationDuration = (9+Math.random()*13)+"s";
+  p.style.animationDelay = (-Math.random()*20)+"s";
+  p.style.opacity = (.15+Math.random()*.5).toFixed(2);
+  particleBox.appendChild(p);
 }
 
-
-/* ================= SCROLL REVEAL ================= */
-
-const reveals =
-document.querySelectorAll(".reveal");
-
-const observer =
-new IntersectionObserver(
-(entries)=>{
-
+/* SCROLL REVEAL */
+const sections = document.querySelectorAll(".reveal");
+if("IntersectionObserver" in window){
+  const observer = new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("active");
-
-        }
-
+      if(entry.isIntersecting){
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target);
+      }
     });
-
-},
-{
-    threshold:.12
-});
-
-
-reveals.forEach(
-el=>observer.observe(el)
-);
-
-
-/* ================= CARD STAGGER ================= */
-
-document
-.querySelectorAll(".player")
-.forEach((card,index)=>{
-
-    card.style.animation =
-        `cardIn .6s ease ${index*.08}s both`;
-
-});
-
-
-const style =
-document.createElement("style");
-
-style.innerHTML = `
-
-@keyframes cardIn{
-
-    from{
-        opacity:0;
-        transform:translateX(-25px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-
+  },{threshold:.08});
+  sections.forEach(section=>observer.observe(section));
+}else{
+  sections.forEach(section=>section.classList.add("active"));
 }
-`;
 
-document.head.appendChild(style);
+/* ACTIVE NAVIGATION */
+const navLinks = document.querySelectorAll("nav a");
+const navObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navLinks.forEach(link=>{
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href")==="#"+entry.target.id
+        );
+      });
+    }
+  });
+},{rootMargin:"-25% 0px -60% 0px"});
 
-
-/* ================= NAV ACTIVE EFFECT ================= */
-
-document.querySelectorAll("nav a")
-.forEach(link=>{
-
-    link.addEventListener("click",()=>{
-
-        document
-        .querySelectorAll("nav a")
-        .forEach(x=>x.style.color="");
-
-        link.style.color="#51caff";
-
-    });
-
+document.querySelectorAll("section[id]").forEach(section=>{
+  navObserver.observe(section);
 });
-
 </script>
-
 </body>
 </html>
