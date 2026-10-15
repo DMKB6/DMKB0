@@ -1,349 +1,258 @@
 /* =====================================================
-   CONTACT DATA
+   CONTACT DATA — ORIGINAL CONTACTS PRESERVED
 ===================================================== */
 
 const contacts = [
-
     {
         name: "Hanan Al Bannah",
         profile: "Banna.jpg",
-
         call: "01706026736",
         whatsapp: "01706026736",
         telegram: "01706026736"
     },
-
     {
         name: "Abidur Rahman",
         profile: "abid.jpg",
-
         call: "01925811325",
         whatsapp: "01925811325",
         telegram: "01925811325"
     },
-
     {
         name: "Shahariar",
         profile: "Sharai.jpg",
-
         call: "01790872494",
         whatsapp: "01790872494",
         telegram: "01790872494"
     },
 
-    /* ==========================
-       SAYEM
-    ========================== */
-
- /*   {
+    /*
+    {
         name: "Sayem Chowdhury",
         profile: "images/person4.jpg",
-
         call: "01976457864",
         whatsapp: "01976457864",
         telegram: "01976457864",
-
         facebook: "https://facebook.com/SayemUsername",
-
         x: "https://x.com/SayemUsername",
-
         imo: "SayemIMOUsername",
-
         instagram: "https://instagram.com/SayemUsername",
-
         tiktok: "https://tiktok.com/@SayemUsername"
     },
-*/
+    */
+
     {
         name: "Sibgatullah Sohan",
         profile: "Sibga.jpg",
-
         call: "01631384360",
         whatsapp: "01631384360"
     },
-
     {
         name: "Tamim Iqbal",
         profile: "tamim.jpeg",
-
         call: "01835868277",
         whatsapp: "01835868277"
     },
-
     {
         name: "Asif Ikram",
         profile: "asif.png",
-
         call: "01604358812",
         whatsapp: "01604358812",
         telegram: "01604358812"
     },
-
     {
         name: "Abdul Khalek",
         profile: "a.khalek.jpg",
-
         call: "01346566876",
         whatsapp: "01747540789"
     },
-
     {
         name: "Arman Asif",
         profile: "Arman.JPG",
-
         call: "01910441536"
     },
-
     {
         name: "Saadat",
         profile: "sadat.jpeg",
-
         call: "01987545415",
         whatsapp: "01987545415",
         telegram: "01987545415"
     },
-
     {
         name: "Hujaifa",
         profile: "Hujaifa.jpg",
-
         call: "01857737086",
         whatsapp: "01345572504"
     },
-
     {
         name: "Mahdi Hasan",
         profile: "Mahadi.jpg",
-
         call: "01909742115",
         whatsapp: "01909742115",
         telegram: "01909742115"
     },
-
     {
         name: "Muhitur Rahman",
         profile: "Muhit.jpg",
-
         call: "01833449196",
         whatsapp: "01618666955",
         telegram: "01618666955"
     },
-
     {
         name: "Tamim Bin Sayed",
         profile: "Tamim bin.jpg",
-
         call: "01978894952",
         whatsapp: "01978894952",
         telegram: "01978894952"
     },
-
     {
         name: "Mahbubullah Musa",
         profile: "musa.jpg",
-
         call: "01870503619",
         whatsapp: "01870503619",
         telegram: "01870503619"
     },
-
     {
         name: "Jubayer Ahmed",
         profile: "Jubu.JPG",
-
         call: "01789013628",
         whatsapp: "01789013628",
         telegram: "01789013628"
     },
-
     {
         name: "Taki",
         profile: "Taki.jpg",
-
         call: "01677185757",
         whatsapp: "01677185757"
     },
-
     {
         name: "Jahidul Islam Sujon",
         profile: "Sujon.jpg",
-
         call: "01943464407",
         whatsapp: "01943464407",
         telegram: "01943464407"
     },
-
     {
         name: "AL-Amin",
         profile: "Al amin.jpg",
-
         call: "01410733175",
         whatsapp: "01849969318"
     },
-
     {
         name: "Habibullah Esa",
         profile: "esa.png",
-
         call: "01746804733",
         whatsapp: "01746804733",
         telegram: "01746804733"
     },
-
     {
         name: "Junayed",
         profile: "images/person21.jpg",
-
         call: "01760938894",
         whatsapp: "01839517890"
     },
-
     {
         name: "Mudabbir",
         profile: "Mudabbir.png",
-
         call: "01973674145",
         whatsapp: "01973674145"
     },
-
     {
         name: "Mir Rafi",
         profile: "Mir Rafi.jpg",
-
         call: "01754038553",
         whatsapp: "01754038553",
         telegram: "01754038553"
     },
-
     {
         name: "Eyahiya",
         profile: "Eyahiya.png",
-
         call: "01730983367",
         whatsapp: "01730983367"
     },
-
     {
         name: "Nazmul",
         profile: "images/person25.jpg",
-
         call: "01715450885",
         whatsapp: "01715450885"
     },
-
     {
         name: "Abdullah",
         profile: "images/person26.jpg",
-
         call: "01606685443",
         whatsapp: "01824812518",
         telegram: "01824812518"
     },
-
     {
         name: "Mahmudul Amin",
         profile: "mahdi sy.png",
-
         call: "01703472143",
         whatsapp: "01603220353",
         telegram: "01603220353"
     },
-
     {
         name: "Habibur Rahman",
         profile: "images/person28.jpg",
-
         call: "01326320739",
         whatsapp: "01914921489"
     },
-
     {
         name: "Tanvir",
         profile: "Tanvi.jpg",
-
         call: "01819036458",
         whatsapp: "01819036458"
     },
-
     {
         name: "Abir Hossain",
         profile: "images/person30.jpg",
-
         call: "01921650054",
         whatsapp: "01921650054"
     },
-
     {
         name: "Yeazuddin Ahmed",
         profile: "yeaz uddin.png",
-
         call: "01861686952",
         whatsapp: "01735019250",
         telegram: "01735019250"
     },
-
     {
         name: "Mahdi Mobarok",
         profile: "mahdi moba.jpg",
-
         call: "01327482121",
         whatsapp: "01327482121",
         telegram: "01327482121"
     },
-
     {
         name: "Rafiul Islam",
         profile: "Rafiul.jpg",
-
         call: "01966387600",
         whatsapp: "01966387600"
     },
-
     {
         name: "Tahsinul Islam",
         profile: "tahsin.jpg",
-
         call: "01731087151",
         whatsapp: "01731087151"
     },
-
     {
         name: "Hasibujjaman",
         profile: "hasi.jpg",
-
         call: "01570279644",
         whatsapp: "01757674263"
     }
-
 ];
 
 
 /* =====================================================
-   CONTACT LIST
-===================================================== */
-
-const contactList =
-    document.getElementById("contactList");
-
-
-/* =====================================================
-   BANGLADESH NUMBER
+   INTERNATIONAL NUMBER
 ===================================================== */
 
 function internationalNumber(number) {
-
     if (!number) return "";
 
-    const clean =
-        number.replace(/\D/g, "");
+    const clean = String(number).replace(/\D/g, "");
 
-    if (
-        clean.length === 11 &&
-        clean.startsWith("01")
-    ) {
-
-        return "880" +
-            clean.substring(1);
+    if (clean.length === 11 && clean.startsWith("01")) {
+        return "88" + clean.substring(1);
     }
 
     return clean;
@@ -351,18 +260,13 @@ function internationalNumber(number) {
 
 
 /* =====================================================
-   CALL / WHATSAPP / TELEGRAM
+   CALL / WHATSAPP / TELEGRAM BUTTONS
 ===================================================== */
 
 function createButton(type, number) {
-
     if (!number) return "";
 
-
-    /* Masked number */
-
     if (number.includes("*")) {
-
         return `
             <span class="contact-btn">
                 <i class="fa-solid fa-lock"></i>
@@ -371,260 +275,259 @@ function createButton(type, number) {
         `;
     }
 
-
-    const intl =
-        internationalNumber(number);
-
+    const intl = internationalNumber(number);
     let link = "";
     let icon = "";
     let className = "";
 
-
     if (type === "Call") {
-
         link = `tel:${number}`;
-
-        icon =
-            "fa-solid fa-phone";
-
+        icon = "fa-solid fa-phone";
         className = "call";
     }
 
-
     if (type === "WhatsApp") {
-
-        link =
-            `https://wa.me/${intl}`;
-
-        icon =
-            "fa-brands fa-whatsapp";
-
+        link = `https://wa.me/${intl}`;
+        icon = "fa-brands fa-whatsapp";
         className = "whatsapp";
     }
 
-
     if (type === "Telegram") {
-
-        link =
-            `https://t.me/+${intl}`;
-
-        icon =
-            "fa-brands fa-telegram";
-
+        link = `https://t.me/+${intl}`;
+        icon = "fa-brands fa-telegram";
         className = "telegram";
     }
 
-
     return `
-        <a
-            class="contact-btn ${className}"
-            href="${link}"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
+        <a class="contact-btn ${className}"
+           href="${link}"
+           target="_blank"
+           rel="noopener noreferrer">
             <i class="${icon}"></i>
-
             ${type}
-
         </a>
     `;
 }
 
 
 /* =====================================================
-   SOCIAL BUTTON
+   SOCIAL BUTTONS
 ===================================================== */
 
 function createSocialButton(type, value) {
-
     if (!value) return "";
-
 
     let link = "";
     let icon = "";
     let className = "";
 
-
-    /* FACEBOOK */
-
     if (type === "Facebook") {
-
         link = value;
-
-        icon =
-            "fa-brands fa-facebook";
-
+        icon = "fa-brands fa-facebook";
         className = "facebook";
     }
 
-
-    /* X */
-
     if (type === "X") {
-
         link = value;
-
-        icon =
-            "fa-brands fa-x-twitter";
-
+        icon = "fa-brands fa-x-twitter";
         className = "x";
     }
 
-
-    /* IMO */
-
     if (type === "IMO") {
-
-        link =
-            `https://imo.im/${value}`;
-
-        icon =
-            "fa-solid fa-comment";
-
+        link = `https://imo.im/${encodeURIComponent(value)}`;
+        icon = "fa-solid fa-comment";
         className = "imo";
     }
 
-
-    /* INSTAGRAM */
-
     if (type === "Instagram") {
-
         link = value;
-
-        icon =
-            "fa-brands fa-instagram";
-
+        icon = "fa-brands fa-instagram";
         className = "instagram";
     }
 
-
-    /* TIKTOK */
-
     if (type === "TikTok") {
-
         link = value;
-
-        icon =
-            "fa-brands fa-tiktok";
-
+        icon = "fa-brands fa-tiktok";
         className = "tiktok";
     }
 
-
     return `
-        <a
-            class="contact-btn ${className}"
-            href="${link}"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
+        <a class="contact-btn ${className}"
+           href="${link}"
+           target="_blank"
+           rel="noopener noreferrer">
             <i class="${icon}"></i>
-
             ${type}
-
         </a>
     `;
 }
 
 
 /* =====================================================
-   CREATE CARDS
+   DRAGON ANIMATION
 ===================================================== */
 
-contacts.forEach((person, index) => {
+function launchDragon(card) {
+    card.classList.remove("dragon-active");
+    void card.offsetWidth;
+    card.classList.add("dragon-active");
 
-    const card =
-        document.createElement("div");
+    const dragon = document.createElement("span");
+    dragon.className = "dragon-fx";
+    dragon.textContent = "🐉";
+    dragon.setAttribute("aria-hidden", "true");
+    card.appendChild(dragon);
 
+    const colors = ["#49dcff", "#9b83ff", "#ff9b55", "#ffffff"];
 
-    card.className =
-        "contact-card";
+    for (let i = 0; i < 12; i++) {
+        const spark = document.createElement("span");
+        spark.className = "dragon-spark";
 
+        spark.style.setProperty("--sx", `${25 + Math.random() * 50}%`);
+        spark.style.setProperty("--sy", `${35 + Math.random() * 35}%`);
+        spark.style.setProperty("--ss", `${3 + Math.random() * 5}px`);
+        spark.style.setProperty("--dx", `${Math.random() * 120 - 60}px`);
+        spark.style.setProperty("--dy", `${-30 - Math.random() * 90}px`);
+        spark.style.setProperty(
+            "--spark-color",
+            colors[Math.floor(Math.random() * colors.length)]
+        );
 
-    card.style.animationDelay =
-        `${index * 0.04}s`;
+        card.appendChild(spark);
+        setTimeout(() => spark.remove(), 1000);
+    }
 
-
-    card.innerHTML = `
-
-        <div class="profile">
-
-            <img
-                src="${person.profile}"
-                alt="${person.name}"
-                onerror="
-                    this.style.display='none';
-                    this.nextElementSibling.style.display='block';
-                "
-            >
-
-            <i
-                class="fa-solid fa-user"
-                style="display:none;"
-            ></i>
-
-        </div>
-
-
-        <div class="info">
-
-            <h2>
-                ${person.name}
-            </h2>
+    setTimeout(() => dragon.remove(), 1700);
+    setTimeout(() => card.classList.remove("dragon-active"), 900);
+}
 
 
-            <div class="buttons">
+/* =====================================================
+   CREATE CONTACT CARDS
+===================================================== */
 
-                ${createButton(
-                    "Call",
-                    person.call
-                )}
+function createContactCard(person, index) {
+    const card = document.createElement("div");
+    card.className = "contact-card";
+    card.style.animationDelay = `${Math.min(index * 0.04, 0.5)}s`;
 
-                ${createButton(
-                    "WhatsApp",
-                    person.whatsapp
-                )}
+    const profile = document.createElement("div");
+    profile.className = "profile";
+    profile.title = "Click to change profile picture";
+    profile.style.cursor = "pointer";
 
-                ${createButton(
-                    "Telegram",
-                    person.telegram
-                )}
+    const img = document.createElement("img");
+    img.src = person.profile;
+    img.alt = person.name;
+    img.loading = "lazy";
 
+    const fallback = document.createElement("i");
+    fallback.className = "fa-solid fa-user";
+    fallback.style.display = "none";
 
-                ${createSocialButton(
-                    "Facebook",
-                    person.facebook
-                )}
+    img.addEventListener("error", () => {
+        img.style.display = "none";
+        fallback.style.display = "block";
+    });
 
-                ${createSocialButton(
-                    "X",
-                    person.x
-                )}
+    img.addEventListener("load", () => {
+        img.style.display = "block";
+        fallback.style.display = "none";
+    });
 
-                ${createSocialButton(
-                    "IMO",
-                    person.imo
-                )}
+    profile.append(img, fallback);
 
-                ${createSocialButton(
-                    "Instagram",
-                    person.instagram
-                )}
+    const info = document.createElement("div");
+    info.className = "info";
 
-                ${createSocialButton(
-                    "TikTok",
-                    person.tiktok
-                )}
+    const name = document.createElement("h2");
+    name.textContent = person.name;
 
-            </div>
+    const buttons = document.createElement("div");
+    buttons.className = "buttons";
 
-        </div>
-
+    buttons.innerHTML = `
+        ${createButton("Call", person.call)}
+        ${createButton("WhatsApp", person.whatsapp)}
+        ${createButton("Telegram", person.telegram)}
+        ${createSocialButton("Facebook", person.facebook)}
+        ${createSocialButton("X", person.x)}
+        ${createSocialButton("IMO", person.imo)}
+        ${createSocialButton("Instagram", person.instagram)}
+        ${createSocialButton("TikTok", person.tiktok)}
     `;
 
+    info.append(name, buttons);
+    card.append(profile, info);
 
-    contactList.appendChild(card);
+    let showingSecond = false;
+    let switching = false;
 
-});
+    profile.addEventListener("click", () => {
+        launchDragon(card);
+
+        if (!person.profile2 || switching) return;
+
+        const nextImage = showingSecond
+            ? person.profile
+            : person.profile2;
+
+        switching = true;
+        profile.classList.add("switching");
+
+        setTimeout(() => {
+            img.src = nextImage;
+            showingSecond = !showingSecond;
+        }, 160);
+
+        setTimeout(() => {
+            profile.classList.remove("switching");
+            switching = false;
+        }, 330);
+    });
+
+    card.addEventListener("click", event => {
+        if (event.target.closest("a")) return;
+        if (event.target.closest(".profile")) return;
+
+        launchDragon(card);
+    });
+
+    return card;
+}
+
+
+/* =====================================================
+   SEARCH + RENDER
+===================================================== */
+
+const contactList = document.getElementById("contactList");
+const searchInput = document.getElementById("searchInput");
+const emptyMessage = document.getElementById("emptyMessage");
+
+function renderContacts(list) {
+    contactList.innerHTML = "";
+
+    list.forEach((person, index) => {
+        contactList.appendChild(createContactCard(person, index));
+    });
+
+    if (emptyMessage) {
+        emptyMessage.hidden = list.length > 0;
+    }
+}
+
+if (searchInput) {
+    searchInput.addEventListener("input", () => {
+        const query = searchInput.value.trim().toLowerCase();
+
+        const filtered = contacts.filter(person =>
+            person.name.toLowerCase().includes(query)
+        );
+
+        renderContacts(filtered);
+    });
+}
+
+renderContacts(contacts);
