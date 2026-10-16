@@ -192,7 +192,7 @@ const contacts = [
     },
     {
         name: "Habibur Rahman",
-        profile: "images/person28.jpg",
+        profile: "Habib.jpg",
         call: "01326320739",
         whatsapp: "01914921489"
     },
@@ -204,7 +204,7 @@ const contacts = [
     },
     {
         name: "Abir Hossain",
-        profile: "images/person30.jpg",
+        profile: "Abir.jpg",
         call: "01921650054",
         whatsapp: "01921650054"
     },
