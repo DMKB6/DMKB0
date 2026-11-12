@@ -1,105 +1,332 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>kitab bivag</title>
-  <link rel="stylesheet" href="kaj.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
 
+<title>GHOST HUNTER</title>
 
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
 
+body {
+    background: #030303;
+    color: white;
+    font-family: Arial, sans-serif;
+}
 
+/* BACKGROUND */
 
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(ellipse at center,
+        #351010 0%,
+        #160707 35%,
+        #050505 75%,
+        #000 100%);
+}
 
+/* RED LIGHT */
 
+.light {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: #b30000;
+    filter: blur(130px);
+    opacity: .20;
+    animation: lightPulse 5s infinite alternate;
+}
 
+@keyframes lightPulse {
+    from { transform: scale(.7); opacity: .12; }
+    to { transform: scale(1.5); opacity: .30; }
+}
 
-<!--<div>nicer ta fb r logor jonno</div>-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+/* FOG */
+
+.fog {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    left: -50%;
+    bottom: -15%;
+    background:
+        radial-gradient(ellipse at 20% 70%, #ffffff18, transparent 40%),
+        radial-gradient(ellipse at 70% 80%, #ffffff15, transparent 45%),
+        radial-gradient(ellipse at 45% 60%, #aaaaaa12, transparent 50%);
+    filter: blur(35px);
+    animation: fogMove 18s linear infinite alternate;
+}
+
+@keyframes fogMove {
+    from { transform: translateX(-10%) scale(1); }
+    to { transform: translateX(10%) scale(1.2); }
+}
+
+/* GHOST SILHOUETTE */
+
+.ghost {
+    position: absolute;
+    width: 170px;
+    height: 220px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -65%);
+    opacity: .12;
+    filter: blur(2px);
+    animation: ghostFloat 5s ease-in-out infinite;
+}
+
+.ghost::before {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 160px;
+    left: 20px;
+    top: 0;
+    background: #eeeeee;
+    border-radius: 50% 50% 25% 25%;
+    box-shadow: 0 0 60px #ffffff55;
+}
+
+.ghost::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 55px;
+    left: 10px;
+    top: 140px;
+    background: #eeeeee;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 65% 65%, 40% 100%, 15% 65%);
+}
+
+.eyes {
+    position: absolute;
+    z-index: 2;
+    top: 65px;
+    left: 48px;
+    display: flex;
+    gap: 35px;
+}
+
+.eyes span {
+    width: 13px;
+    height: 22px;
+    background: #270000;
+    border-radius: 50%;
+}
+
+@keyframes ghostFloat {
+    0%,100% { margin-top: 0; }
+    50% { margin-top: -25px; }
+}
+
+/* MAIN TEXT */
+
+.content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 20px;
+}
+
+.small-title {
+    color: #b8b8b8;
+    letter-spacing: 8px;
+    font-size: 11px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: clamp(42px, 10vw, 85px);
+    font-weight: 900;
+    letter-spacing: 5px;
+    color: #fff;
+    text-shadow:
+        0 0 10px #ff0000,
+        0 0 30px #a00000,
+        0 0 65px #ff000055;
+    animation: glitch 4s infinite;
+}
+
+@keyframes glitch {
+    0%, 90%, 100% { transform: translate(0); }
+    92% { transform: translate(-3px, 2px); }
+    94% { transform: translate(3px, -2px); }
+    96% { transform: translate(-2px, 0); }
+}
+
+.line {
+    width: 100px;
+    height: 2px;
+    background: #bd0000;
+    margin: 22px auto;
+    box-shadow: 0 0 15px red;
+}
+
+.subtitle {
+    color: #aaa;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+
+/* PARTICLES */
+
+.particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.particles span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #ff3030;
+    box-shadow: 0 0 12px red;
+    animation: rise linear infinite;
+}
+
+@keyframes rise {
+    from {
+        transform: translateY(110vh) translateX(0);
+        opacity: 0;
+    }
+    20% { opacity: .8; }
+    80% { opacity: .6; }
+    to {
+        transform: translateY(-20vh) translateX(60px);
+        opacity: 0;
+    }
+}
+
+/* SCANLINES */
+
+.scan {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        transparent 0px,
+        transparent 3px,
+        #00000022 4px
+    );
+    z-index: 8;
+}
+
+/* VIGNETTE */
+
+.vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        transparent 30%,
+        #000000bb 100%
+    );
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* FOOTER */
+
+.footer {
+    position: absolute;
+    bottom: 28px;
+    width: 100%;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #555;
+    z-index: 9;
+}
+
+</style>
 </head>
+
 <body>
 
+<div class="scene">
 
+    <div class="light"></div>
+    <div class="fog"></div>
 
-
-  <!--<div>nicer ta pura box er jonno</div>-->
-<div class="container">
- <!-- box er lift er diker jonno -->
-  <div class="left">
-   
-   
-   
-
-  <!--<div>nicer ta  logor video o thik kore bosa nor jonno</div>-->
-  <div class="logo-video">
-  <video autoplay muted loop>
-    <source src="logo2.mp4" type="video/mp4">
-    আপনার ব্রাউজার ভিডিও সাপোর্ট করছে না।
-  </video>
-</div>
-   
-    
-
-
-  
-    <h2 class="jb">DIGNITARIES LIST</h2>
-
-    <!--<div class="input-box">
-      <input type="text" placeholder="Username">
+    <div class="ghost">
+        <div class="eyes">
+            <span></span>
+            <span></span>
+        </div>
     </div>
 
-    <div class="input-box">
-      <input type="password" placeholder="Password">
-    </div>-->
+    <div class="particles" id="particles"></div>
 
-    <a href="The Last Dance/The Last Dance.html"><button class="btn">Let's Go</button></a>
-  </div>
+    <div class="content">
+        <div class="small-title">THE DARKNESS IS WAITING</div>
 
-  <!-- Right Welcome -->
-  <div class="right">
-    <div>
-      <h1>WELCOME </h1>
-     <h2> <p>to<br>Friends Hub</p></h2>
+        <h1>GHOST<br>HUNTER</h1>
+
+        <div class="line"></div>
+
+        <div class="subtitle">
+            ENTER THE UNKNOWN
+        </div>
     </div>
-  </div>
+
+    <div class="vignette"></div>
+    <div class="scan"></div>
+
+    <div class="footer">
+        GH • GHOST HUNTER
+    </div>
 
 </div>
 
+<script>
 
+// PARTICLES GENERATOR
+const particles = document.getElementById("particles");
 
-<video class="video-background" autoplay muted loop>
-  <source src="login bg.mp4">
-  আপনার ব্রাউজার ভিডিও সাপোর্ট করছে না।
-</video>
+for (let i = 0; i < 45; i++) {
 
+    const p = document.createElement("span");
 
+    p.style.left = Math.random() * 100 + "%";
+    p.style.animationDuration = (6 + Math.random() * 12) + "s";
+    p.style.animationDelay = (-Math.random() * 15) + "s";
+    p.style.opacity = Math.random();
 
+    particles.appendChild(p);
+}
 
+// FULL PAGE REDIRECT
+document.addEventListener("click", function() {
+    window.location.href = "https://gh.xo.je/?i=1";
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- MIDDLE TRIANGLE -->
-  <!---<div class="middle-triangle">
-
-    <div class="box fb">
-      <i class="fab fa-facebook-f"></i>
-    </div>
---->
+</script>
 
 </body>
 </html>
